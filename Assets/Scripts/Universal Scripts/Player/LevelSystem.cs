@@ -1,0 +1,163 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class LevelSystem : MonoBehaviour
+{
+    #region Variables
+    public Player player;
+
+    int levelups;
+
+    int vigor;
+    int mind;
+    int dexterity;
+    int strength;
+    int intelligence;
+
+    public Button vPlus;
+    public Button vMinus;
+    public Button mPlus;
+    public Button mMinus;
+    public Button dPlus;
+    public Button dMinus;
+    public Button sPlus;
+    public Button sMinus;
+    public Button iPlus;
+    public Button iMinus;
+
+    #endregion
+
+    #region Adjustment Buttons
+
+    void OnVP()
+    {
+        vigor += 1;
+        levelups += 1;
+    }
+
+    void OnVM()
+    {
+        if (vigor > 0)
+        {
+            vigor -= 1;
+            levelups -= 1;
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    void OnMP()
+    {
+        mind += 1;
+        levelups += 1;
+    }
+
+    void OnMM()
+    {
+        if (mind > 0)
+        {
+            mind -= 1;
+            levelups -= 1;
+
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    void OnDP()
+    {
+       dexterity += 1;
+        levelups += 1;
+    }
+
+    void OnDM()
+    {
+        if (dexterity < 0)
+        {
+            dexterity -= 1;
+            levelups -= 1;
+
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    void OnSP()
+    {
+        strength += 1;
+        levelups += 1;
+    }
+
+    void OnSM()
+    {
+        if (strength < 0)
+        {
+            strength -= 1;
+            levelups -= 1;
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    void OnIP()
+    {
+        intelligence += 1;
+        levelups += 1;
+    }
+
+    void OnIM()
+    {
+        if (intelligence < 0)
+        {
+            intelligence -= 1;
+            levelups -= 1;
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    #endregion
+
+    public void OnApply()
+    {
+        
+        DistributeSkills(vigor, mind, dexterity, strength, intelligence);
+        vigor = 0;
+        mind = 0;
+        dexterity = 0;
+        strength = 0;
+        intelligence = 0;
+    }
+
+
+    void DistributeSkills(int vig, int mind, int dex, int str, int intel)
+    {
+        player.SetVigor(vig + player.GetVigor());
+        player.SetMind(mind + player.GetMind());
+        player.SetDexterity(dex + player.GetDexterity());
+        player.SetStrength(str + player.GetStrength());
+        player.SetIntelligence(intel + player.GetIntelligence());
+    }
+}
