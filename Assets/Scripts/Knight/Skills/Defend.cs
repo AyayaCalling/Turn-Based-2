@@ -21,16 +21,32 @@ public class Defend : MonoBehaviour
     {
         return baseBlock;
     }
+   
+   // This method uses one Mana to give a certain amount of block (If not enough Mana, displays an error message).
    public void UsingDefend()
     {
-        Debug.Log("Using Defend");
-        blockMod = Mathf.RoundToInt(player.GetDexterity() * 0.5f);
-        blockGiven += baseBlock + blockMod;
 
-        player.SetBlock(blockGiven);
+        if (player.GetCurrentMana() > 0) {
+            
+            player.SetCurrentMana(player.GetCurrentMana() -1);
+            
+            Debug.Log("Using Defend");
 
-        Debug.Log("Current Block: " + player.GetBlock().ToString());
-        Debug.Log("Block Given: " + blockGiven.ToString());
+            blockMod = Mathf.RoundToInt(player.GetDexterity() * 0.5f);
+            blockGiven += baseBlock + blockMod;
+
+            player.SetBlock(blockGiven);
+
+            Debug.Log("Current Block: " + player.GetBlock().ToString());
+            Debug.Log("Block Given: " + blockGiven.ToString());
+
+        }else {
+
+            Debug.Log("No Mana for this!");
+
+        }
+
+        
         
     }
 }
