@@ -28,18 +28,4 @@ public class StatManager : MonoBehaviour
         player.SetMagicDamage(5 + intelligence);
     }
 
-    private void Update()
-    {
-        vigor = player.GetVigor();
-        mind = player.GetMind();
-        dexterity = player.GetDexterity();
-        strength = player.GetStrength();
-        intelligence = player.GetIntelligence();
-
-        player.SetMaxHP(50 + vigor);
-        player.SetMaxMana(3 + mind);
-        player.SetPhysDamage(5 + strength);
-        player.SetMagicDamage(5 + intelligence);
-
-    }
 }

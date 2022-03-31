@@ -130,8 +130,7 @@ public class LevelSystem : MonoBehaviour
     #endregion
 
     public void OnApply()
-    {
-        
+    {   
         DistributeSkills(vigor, mind, dexterity, strength, intelligence);
         vigor = 0;
         mind = 0;
@@ -141,12 +140,19 @@ public class LevelSystem : MonoBehaviour
     }
 
 
-    void DistributeSkills(int vig, int mind, int dex, int str, int intel)
-    {
+    private void DistributeSkills(int vig, int mind, int dex, int str, int intel)
+    {     
         player.SetVigor(vig + player.GetVigor());
         player.SetMind(mind + player.GetMind());
         player.SetDexterity(dex + player.GetDexterity());
         player.SetStrength(str + player.GetStrength());
         player.SetIntelligence(intel + player.GetIntelligence());
+
+        player.SetMaxHP(50 + player.GetVigor());
+        player.SetMaxMana(3 + player.GetMind());
+        player.SetPhysDamage(5 + player.GetStrength());
+        player.SetMagicDamage(5 + player.GetIntelligence());
+        player.SetCurrentHP(player.GetCurrentHP() + vig);
+        player.SetCurrentMana(player.GetCurrentMana() + mind);        
     }
 }
