@@ -20,13 +20,13 @@ public class LevelSystem : MonoBehaviour
 
     #region Adjustment Buttons
 
-    void OnVP()
+    public void OnVP()
     {
         vigor += 1;
         levelups += 1;
     }
 
-    void OnVM()
+    public void OnVM()
     {
         if (vigor > 0)
         {
@@ -41,13 +41,13 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    void OnMP()
+    public void OnMP()
     {
         mind += 1;
         levelups += 1;
     }
 
-    void OnMM()
+    public void OnMM()
     {
         if (mind > 0)
         {
@@ -63,13 +63,13 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    void OnDP()
+    public void OnDP()
     {
        dexterity += 1;
         levelups += 1;
     }
 
-    void OnDM()
+    public void OnDM()
     {
         if (dexterity < 0)
         {
@@ -85,13 +85,13 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    void OnSP()
+    public void OnSP()
     {
         strength += 1;
         levelups += 1;
     }
 
-    void OnSM()
+    public void OnSM()
     {
         if (strength < 0)
         {
@@ -106,13 +106,13 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    void OnIP()
+    public void OnIP()
     {
         intelligence += 1;
         levelups += 1;
     }
 
-    void OnIM()
+    public void OnIM()
     {
         if (intelligence < 0)
         {
