@@ -8,13 +8,12 @@ public class LevelSystem : MonoBehaviour
     #region Variables
     public Player player;
 
-    int levelups;
-
-    int vigor;
-    int mind;
-    int dexterity;
-    int strength;
-    int intelligence;
+    private int levelups;
+    private int vigor;
+    private int mind;
+    private int dexterity;
+    private int strength;
+    private int intelligence;
 
     public Button vPlus;
     public Button vMinus;
