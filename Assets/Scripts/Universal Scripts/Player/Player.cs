@@ -5,23 +5,23 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Stats
-    int level;
+    private int level;
 
-    int currentHP;
-    int maxHP;
+    private int currentHP;
+    private int maxHP;
 
-    int currentMana;
-    int maxMana;
+    private int currentMana;
+    private int maxMana;
 
-    int physDamage;
-    int magicDamage;
-    int block;
+    private int physDamage;
+    private int magicDamage;
+    private int block;
 
-    int vigor;
-    int mind;
-    int strength;
-    int intelligence;
-    int dexterity;
+    private int vigor;
+    private int mind;
+    private int strength;
+    private int intelligence;
+    private int dexterity;
 
     #endregion  
 
