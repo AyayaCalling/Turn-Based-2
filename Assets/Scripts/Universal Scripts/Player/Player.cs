@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Stats
+
     private int level;
 
     private int currentHP;
@@ -24,6 +25,17 @@ public class Player : MonoBehaviour
     private int dexterity;
 
     #endregion  
+
+    #region Texts 
+
+    //display current stat lvl
+    public Text vigText; 
+    public Text minText;
+    public Text dexText;
+    public Text strText;
+    public Text intText;
+    
+    #endregion
 
     #region Set/Get Stats
   
@@ -183,6 +195,16 @@ public class Player : MonoBehaviour
 
     }
     #endregion
+
+    
+    public void Update()
+    {
+        vigText.Text = vigor.ToString();
+        minText.Text = mind.ToString();
+        dexText.Text = dexterity.ToString();
+        strText.Text = strength.ToString();
+        intText.Text = intelligence.ToString();
+    }
 }
 
 
