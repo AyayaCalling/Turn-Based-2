@@ -6,11 +6,11 @@ public class StatManager : MonoBehaviour
 {
     public Player player;
 
-    int vigor;
-    int mind;
-    int dexterity;
-    int strength;
-    int intelligence;
+    private int vigor;
+    private int mind;
+    private int dexterity;
+    private int strength;
+    private int intelligence;
 
     private void Awake()
     {

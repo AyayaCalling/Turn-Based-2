@@ -8,9 +8,9 @@ public class Defend : MonoBehaviour
     public Button useSkill;
     public Player player;
 
-    int baseBlock = 5;
-    int blockMod;
-    int blockGiven;
+    private int baseBlock = 5;
+    private int blockMod;
+    private int blockGiven;
 
     public void SetBase(int block)
     {
