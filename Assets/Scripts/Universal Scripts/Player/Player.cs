@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -199,11 +200,11 @@ public class Player : MonoBehaviour
     
     public void Update()
     {
-        vigText.Text = vigor.ToString();
-        minText.Text = mind.ToString();
-        dexText.Text = dexterity.ToString();
-        strText.Text = strength.ToString();
-        intText.Text = intelligence.ToString();
+        vigText.text = vigor.ToString();
+        minText.text = mind.ToString();
+        dexText.text = dexterity.ToString();
+        strText.text = strength.ToString();
+        intText.text = intelligence.ToString();
     }
 }
 
