@@ -15,16 +15,6 @@ public class LevelSystem : MonoBehaviour
     private int strength;
     private int intelligence;
 
-    public Button vPlus;
-    public Button vMinus;
-    public Button mPlus;
-    public Button mMinus;
-    public Button dPlus;
-    public Button dMinus;
-    public Button sPlus;
-    public Button sMinus;
-    public Button iPlus;
-    public Button iMinus;
 
     #endregion
 
