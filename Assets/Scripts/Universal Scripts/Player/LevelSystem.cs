@@ -129,6 +129,7 @@ public class LevelSystem : MonoBehaviour
 
     #endregion
 
+    // This Method applies changes and resets the temporary variables.
     public void OnApply()
     {   
         DistributeSkills(vigor, mind, dexterity, strength, intelligence);
@@ -140,6 +141,7 @@ public class LevelSystem : MonoBehaviour
     }
 
 
+    // This Method correctly distributes the temporary stats to the overall stats of the character.
     private void DistributeSkills(int vig, int mind, int dex, int str, int intel)
     {     
         player.SetVigor(vig + player.GetVigor());
@@ -153,6 +155,6 @@ public class LevelSystem : MonoBehaviour
         player.SetPhysDamage(5 + player.GetStrength());
         player.SetMagicDamage(5 + player.GetIntelligence());
         player.SetCurrentHP(player.GetCurrentHP() + vig);
-        player.SetCurrentMana(player.GetCurrentMana() + mind);        
+        player.SetCurrentMana(player.GetCurrentMana() + mind);
     }
 }

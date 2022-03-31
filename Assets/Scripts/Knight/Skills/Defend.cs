@@ -43,7 +43,7 @@ public class Defend : MonoBehaviour
         }else {
 
             Debug.Log("No Mana for this!");
-
+            
         }
 
         
