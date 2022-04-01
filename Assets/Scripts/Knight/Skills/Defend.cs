@@ -33,12 +33,6 @@ public class Defend : MonoBehaviour
         blockMod = newBlock;
     }
 
-    // This Method is to increase the variable blockMod (e.g. Items that increase blockmod aside from dexterity).
-    public void IncreaseBlockMod(int addedBlock)
-    {
-        blockMod += addedBlock;
-    }
-
     // Getter-Method for the variable blockMod.
     public int GetBlockMod()
     {
@@ -46,6 +40,16 @@ public class Defend : MonoBehaviour
     }
    
    #endregion
+
+    #region Inc/Dec-Methods
+
+    // This Method is to increase the variable blockMod (e.g. Items that increase blockmod aside from dexterity).
+    public void IncBlockMod(int addedBlock)
+    {
+        blockMod += addedBlock;
+    }
+
+    #endregion
 
     #region UseDefendMethod
 
