@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This Class contains the basic variables and methods for Defending/ Blocking in the game.
 public class Defend : MonoBehaviour
 {
-    public Button useSkill;
     public Player player;
 
     private int baseBlock = 5;
     private int blockMod;
     private int blockGiven;
 
+    // Setter-Method for the Variable baseBlock.
     public void SetBase(int block)
     {
         baseBlock = block;
     }
 
+    // Getter-Method for the Variable baseBlock.
     public int GetBase()
     {
         return baseBlock;

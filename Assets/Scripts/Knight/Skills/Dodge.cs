@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Dodge : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void UsingDodge()
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }
