@@ -8,6 +8,8 @@ public class LevelSystem : MonoBehaviour
     #region Variables
     public Player player;
 
+    public PlayerHUD HUD;
+
     private int levelups;
     private int vigor;
     private int mind;
@@ -156,5 +158,7 @@ public class LevelSystem : MonoBehaviour
         player.SetMagicDamage(5 + player.GetIntelligence());
         player.SetCurrentHP(player.GetCurrentHP() + vig);
         player.SetCurrentMana(player.GetCurrentMana() + mind);
+
+        HUD.updateSliders();
     }
 }

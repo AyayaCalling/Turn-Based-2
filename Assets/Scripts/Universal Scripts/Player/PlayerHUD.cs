@@ -20,9 +20,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void Start()
     {
-        Healthbar.maxValue = player.GetMaxtHP();
-        ManaBar.maxValue = player.GetMaxtMana();
-        
+        updateSliders();
     }
 
     private void Update()
@@ -33,6 +31,12 @@ public class PlayerHUD : MonoBehaviour
         ManaText.text = player.GetCurrentMana().ToString() + "/" + player.GetMaxtMana().ToString();
         BlockText.text = player.GetBlock().ToString();
       
+    }
+
+    public void updateSliders()
+    {
+        Healthbar.maxValue = player.GetMaxtHP();
+        ManaBar.maxValue = player.GetMaxtMana();
     }
 
   

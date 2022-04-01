@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 610072205}
+  HUD: {fileID: 654594589}
 --- !u!1 &212162757
 GameObject:
   m_ObjectHideFlags: 0
