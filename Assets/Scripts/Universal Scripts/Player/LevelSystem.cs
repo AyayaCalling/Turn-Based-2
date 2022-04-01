@@ -3,143 +3,166 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This Class contains the LevelSystem for the character.
+// You can increase the 5 different stats by spending Levelups.
 public class LevelSystem : MonoBehaviour
 {
     #region Variables
+
+    // This variable stores the values and actions of the player.
     public Player player;
 
+    // This variable stores the values for the HUD.
     public PlayerHUD HUD;
 
-    private int levelups;
-    private int vigor;
-    private int mind;
-    private int dexterity;
-    private int strength;
-    private int intelligence;
+    // These variables are defined base Stats for the character. 
+    private readonly int baseHP = 50;
+    private readonly int baseMana = 3;
+    private readonly int basePhysical = 5;
+    private readonly int baseMagical = 5; 
 
+    // These variables are the temporary version to increase the individual player stats.
+    private int tempLevelups;
+    private int tempVigor;
+    private int tempMind;
+    private int tempDexterity;
+    private int tempStrength;
+    private int tempIntelligence;
+
+    #endregion
+
+    #region ButtonMethods
+
+    // This Method increases the tempVigor variable.
+    public void IncreaseTempVig()
+    {
+        tempVigor += 1;
+        tempLevelups += 1;
+    }
+
+    // This Method decreases the tempVigor variable (if possible).
+    public void DecreaseTempVig()
+    {
+        if (tempVigor > 0)
+        {
+            tempVigor -= 1;
+            tempLevelups -= 1;
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    // This Method increases the tempMind variable.
+    public void IncreaseTempMin()
+    {
+        tempMind += 1;
+        tempLevelups += 1;
+    }
+
+    // This Method decreases the tempMind variable (if possible).
+    public void DecreaseTempMin()
+    {
+        if (tempMind > 0)
+        {
+            tempMind -= 1;
+            tempLevelups -= 1;
+
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    // This Method increases the tempDexterity variable.
+    public void IncreaseTempDex()
+    {
+        tempDexterity += 1;
+        tempLevelups += 1;
+    }
+
+    // This Method decreases the tempDexterity variable (if possible).
+    public void DecreaseTempDex()
+    {
+        if (tempDexterity > 0)
+        {
+            tempDexterity -= 1;
+            tempLevelups -= 1;
+
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    // This Method increases the tempStrength variable.
+    public void IncreaseTempStr()
+    {
+        tempStrength += 1;
+        tempLevelups += 1;
+    }
+
+    // This Method decreases the tempStrength variable (if possible).
+    public void DecreaseTempStr()
+    {
+        if (tempStrength > 0)
+        {
+            tempStrength -= 1;
+            tempLevelups -= 1;
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
+
+    // This Method increases the tempIntelligence variable.
+    public void IncreaseTempInt()
+    {
+        tempIntelligence += 1;
+        tempLevelups += 1;
+    }
+
+    // This Method decreases the tempIntelligence variable (if possible).
+    public void DecreaseTempInt()
+    {
+        if (tempIntelligence > 0)
+        {
+            tempIntelligence -= 1;
+            tempLevelups -= 1;
+        }
+        else
+        {
+            Debug.Log("This stat cannot be lowered any Further");
+            return;
+        }
+
+    }
 
     #endregion
 
-    #region Adjustment Buttons
-
-    public void OnVP()
-    {
-        vigor += 1;
-        levelups += 1;
-    }
-
-    public void OnVM()
-    {
-        if (vigor > 0)
-        {
-            vigor -= 1;
-            levelups -= 1;
-        }
-        else
-        {
-            Debug.Log("This stat cannot be lowered any Further");
-            return;
-        }
-
-    }
-
-    public void OnMP()
-    {
-        mind += 1;
-        levelups += 1;
-    }
-
-    public void OnMM()
-    {
-        if (mind > 0)
-        {
-            mind -= 1;
-            levelups -= 1;
-
-        }
-        else
-        {
-            Debug.Log("This stat cannot be lowered any Further");
-            return;
-        }
-
-    }
-
-    public void OnDP()
-    {
-       dexterity += 1;
-        levelups += 1;
-    }
-
-    public void OnDM()
-    {
-        if (dexterity < 0)
-        {
-            dexterity -= 1;
-            levelups -= 1;
-
-        }
-        else
-        {
-            Debug.Log("This stat cannot be lowered any Further");
-            return;
-        }
-
-    }
-
-    public void OnSP()
-    {
-        strength += 1;
-        levelups += 1;
-    }
-
-    public void OnSM()
-    {
-        if (strength < 0)
-        {
-            strength -= 1;
-            levelups -= 1;
-        }
-        else
-        {
-            Debug.Log("This stat cannot be lowered any Further");
-            return;
-        }
-
-    }
-
-    public void OnIP()
-    {
-        intelligence += 1;
-        levelups += 1;
-    }
-
-    public void OnIM()
-    {
-        if (intelligence < 0)
-        {
-            intelligence -= 1;
-            levelups -= 1;
-        }
-        else
-        {
-            Debug.Log("This stat cannot be lowered any Further");
-            return;
-        }
-
-    }
-
-    #endregion
+    #region ApplyChangedStats
 
     // This Method applies changes and resets the temporary variables.
     public void OnApply()
     {   
-        DistributeSkills(vigor, mind, dexterity, strength, intelligence);
-        vigor = 0;
-        mind = 0;
-        dexterity = 0;
-        strength = 0;
-        intelligence = 0;
+        DistributeSkills(tempVigor, tempMind, tempDexterity, tempStrength, tempIntelligence);
+        tempVigor = 0;
+        tempMind = 0;
+        tempDexterity = 0;
+        tempStrength = 0;
+        tempIntelligence = 0;
     }
 
 
@@ -152,13 +175,16 @@ public class LevelSystem : MonoBehaviour
         player.SetStrength(str + player.GetStrength());
         player.SetIntelligence(intel + player.GetIntelligence());
 
-        player.SetMaxHP(50 + player.GetVigor());
-        player.SetMaxMana(3 + player.GetMind());
-        player.SetPhysDamage(5 + player.GetStrength());
-        player.SetMagicDamage(5 + player.GetIntelligence());
+        player.SetMaxHP(baseHP + player.GetVigor());
+        player.SetMaxMana(baseMana + player.GetMind());
+        player.SetPhysDamage(basePhysical+ player.GetStrength());
+        player.SetMagicDamage(baseMagical + player.GetIntelligence());
         player.SetCurrentHP(player.GetCurrentHP() + vig);
         player.SetCurrentMana(player.GetCurrentMana() + mind);
 
         HUD.updateSliders();
     }
+
+    #endregion
+
 }
