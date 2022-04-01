@@ -167,6 +167,7 @@ public class LevelSystem : MonoBehaviour
 
 
     // This Method correctly distributes the temporary stats to the overall stats of the character.
+    // ALLE SACHEN ÄNDERN AUF INCREASE ODER DECREASE FÜR MEHR ABSTRAKTION
     private void DistributeSkills(int vig, int mind, int dex, int str, int intel)
     {     
         player.SetVigor(vig + player.GetVigor());

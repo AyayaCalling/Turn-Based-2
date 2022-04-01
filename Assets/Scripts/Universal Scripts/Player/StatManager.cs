@@ -12,6 +12,7 @@ public class StatManager : MonoBehaviour
     private int strength;
     private int intelligence;
 
+    // ÄNDERUNG VON SET METHODEN AUF INC/DEC to be implemented
     private void Awake()
     {
         vigor = player.GetVigor();
@@ -21,9 +22,9 @@ public class StatManager : MonoBehaviour
         intelligence = player.GetIntelligence();
 
         player.SetMaxHP(50 + vigor);
-        player.SetCurrentHP(player.GetMaxtHP());
+        player.SetCurrentHP(player.GetMaxHP());
         player.SetMaxMana(3 + mind);
-        player.SetCurrentMana(player.GetMaxtMana());
+        player.SetCurrentMana(player.GetMaxMana());
         player.SetPhysDamage(5 + strength);
         player.SetMagicDamage(5 + intelligence);
     }
