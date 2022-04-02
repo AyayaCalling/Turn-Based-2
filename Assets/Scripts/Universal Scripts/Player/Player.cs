@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
 {
     #region Variables
 
+    // This variable describes, if the player is allowed to do smth.
+    private bool active = false;
+
     // This variable displays the current level of the player.
     private int level;
 
@@ -34,6 +37,12 @@ public class Player : MonoBehaviour
 
     #region GetterAndSetter
   
+    // Getter-Method for the Variable active.
+    public bool GetActive()
+    {
+        return active;
+    }
+
     // Getter-Method for the Variable level.
     public int GetLevel()
     {
@@ -187,6 +196,12 @@ public class Player : MonoBehaviour
 
     #region Inc/Dec-Methods
 
+    // Changes the value of active.
+    public void ChangeActive()
+    {
+        active = !active;
+    }
+
     // This method increases level by the value lvl.
     public void IncLevel(int lvl)
     {
@@ -269,6 +284,24 @@ public class Player : MonoBehaviour
 
     }
 
+     // This method increases the maxMana by the value of addedMana(.
+    public void IncMaxMana(int addedMana)
+    {
+        int mana = GetMaxMana() + addedMana;
+        SetMaxHP(mana);
+    }
+
+    // This method decreases the maxMana by the value of minusMana and changes the currentMana, if they are higher than the new maxMana.
+    public void DecMaxMana(int minusMana)
+    {
+        int mana = GetMaxMana() - minusMana;
+        if (mana <= GetCurrentMana())
+        {
+            SetCurrentMana(mana);
+        }
+        SetMaxMana(mana);
+    }
+
     // This (help-)Method adds increase to value. (true = add, false = sub)
     private int ChangeStats(int value, int increase, bool add) {
         if (add)
@@ -286,7 +319,7 @@ public class Player : MonoBehaviour
     public void IncMagiDmg(int addedMagi){ magicDamage = ChangeStats(magicDamage, addedMagi, true);}
     public void IncBlock(int addedBlock){ block = ChangeStats(block, addedBlock, true);}
     public void IncVig(int addedVig){ vigor = ChangeStats(vigor, addedVig, true);}
-    public void IncMind(int addedMind){ mind = ChangeStats(mind, addedMind, true);}
+    public void IncMin(int addedMind){ mind = ChangeStats(mind, addedMind, true);}
     public void IncDex(int addedDex){ dexterity = ChangeStats(dexterity, addedDex, true);}
     public void IncStr(int addedStr){ strength = ChangeStats(strength, addedStr, true);}
     public void IncInt(int addedInt){ intelligence = ChangeStats(intelligence, addedInt, true);}
@@ -296,7 +329,7 @@ public class Player : MonoBehaviour
     public void DecMagiDmg(int minusMagi){ magicDamage = ChangeStats(magicDamage, minusMagi, false);}
     public void DecBlock(int minusBlock){ block = ChangeStats(block, minusBlock, false);}
     public void DecVig(int minusVig){ vigor = ChangeStats(vigor, minusVig, false);}
-    public void DecMind(int minusMind){ mind = ChangeStats(mind, minusMind, false);}
+    public void DecMin(int minusMind){ mind = ChangeStats(mind, minusMind, false);}
     public void DecDex(int minusDex){ dexterity = ChangeStats(dexterity, minusDex, false);}
     public void DecStr(int minusStr){ strength = ChangeStats(strength, minusStr, false);}
     public void DecInt(int minusInt){ intelligence = ChangeStats(intelligence, minusInt, false);}
@@ -304,18 +337,6 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Actions
-
-    // This Method describes the process of taking damage and executes it.
-    public void TakeDamage(int dmg)
-    {
-        DecCurrentHP(dmg);
-    }
-
-    // This Method describes the process of healing and executes it.
-    public void Heal(int hp)
-    {
-        IncCurrentHP(hp);
-    }
 
     // This Method describes the process of dying and executes it.
     // NOT IMPLEMENTED

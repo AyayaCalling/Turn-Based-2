@@ -37,6 +37,17 @@ public class LevelSystem : MonoBehaviour
 
     #endregion
 
+    #region TextMessages
+
+    //display current stat lvl
+    public Text vigValueText; 
+    public Text minValueText;
+    public Text dexValueText;
+    public Text strValueText;
+    public Text intValueText;
+    
+    #endregion
+
     #region ButtonMethods
 
     // This Method increases the tempVigor variable.
@@ -189,21 +200,29 @@ public class LevelSystem : MonoBehaviour
 
 
     // This Method correctly distributes the temporary stats to the overall stats of the character.
-    // ALLE SACHEN ÄNDERN AUF INCREASE ODER DECREASE FÜR MEHR ABSTRAKTION
     private void DistributeSkills(int vig, int mind, int dex, int str, int intel)
     {     
-        player.SetVigor(vig + player.GetVigor());
-        player.SetMind(mind + player.GetMind());
-        player.SetDexterity(dex + player.GetDexterity());
-        player.SetStrength(str + player.GetStrength());
-        player.SetIntelligence(intel + player.GetIntelligence());
+        player.IncVig(vig);
+        vigValueText.text = player.GetVigor().ToString();
 
-        player.SetMaxHP(baseHP + player.GetVigor());
-        player.SetMaxMana(baseMana + player.GetMind());
-        player.SetPhysDamage(basePhysical+ player.GetStrength());
-        player.SetMagicDamage(baseMagical + player.GetIntelligence());
-        player.SetCurrentHP(player.GetCurrentHP() + vig);
-        player.SetCurrentMana(player.GetCurrentMana() + mind);
+        player.IncMin(mind);
+        minValueText.text = player.GetMind().ToString();
+
+        player.IncDex(dex);
+        dexValueText.text = player.GetDexterity().ToString();
+
+        player.IncStr(str);
+        strValueText.text = player.GetStrength().ToString();
+
+        player.IncInt(intel);
+        intValueText.text = player.GetIntelligence().ToString();
+
+        player.IncMaxHP(player.GetVigor());
+        player.IncMaxMana(player.GetMind());
+        player.IncPhysDmg(player.GetStrength());
+        player.IncMagiDmg(baseMagical);
+        player.IncCurrentHP(vig);
+        player.IncCurrentMana(mind);
 
         HUD.updateSliders();
     }

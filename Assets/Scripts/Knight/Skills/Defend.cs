@@ -9,7 +9,7 @@ public class Defend : MonoBehaviour
     #region Variables
 
     // This variable stores the values and actions of the player.
-    public Player player;
+    public Player Player;
 
     // This variable is the basic amount of Block you get, while not having any modifiers.
     private static int baseBlock = 5;
@@ -56,20 +56,21 @@ public class Defend : MonoBehaviour
    // This method uses one Mana to give a certain amount of block (If not enough Mana, displays an error message).
    public void UsingDefend()
     {
-        if (player.GetCurrentMana() > 0)
+        if (Player.GetCurrentMana() > 0 && Player.GetActive())
         {
-            player.SetCurrentMana(player.GetCurrentMana() -1);
+            Player.SetCurrentMana(Player.GetCurrentMana() -1);
             
             Debug.Log("Using Defend");
 
-            blockMod = Mathf.RoundToInt(player.GetDexterity() * 0.5f);
+            blockMod = Mathf.RoundToInt(Player.GetDexterity() * 0.5f);
             
-            player.IncBlock((GetBase() + blockMod));
+            Player.IncBlock((GetBase() + blockMod));
 
-            Debug.Log("Current Block: " + player.GetBlock().ToString());
+            Debug.Log("Current Block: " + Player.GetBlock().ToString());
             Debug.Log("Block Given: " + (baseBlock + blockMod).ToString());
 
-        }else
+        }
+        else
         {
             Debug.Log("No Mana for this!");
         }
