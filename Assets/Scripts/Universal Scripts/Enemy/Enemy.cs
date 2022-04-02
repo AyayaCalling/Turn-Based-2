@@ -12,7 +12,11 @@ public class Enemy : MonoBehaviour
     private float scaleButton; 
 
     public Battlesystem Battle;
+
     public Transform EnemyTrans;
+
+    public GameObject EnemyObj;
+
     public RectTransform buttonRect;
     public RectTransform sliderRect;
 
@@ -21,6 +25,8 @@ public class Enemy : MonoBehaviour
     
     public void Start()
     {
+        Battle.AddEnemy(this);
+
         scaleButton = EnemyTrans.position.x * 25;
         scaleSlider = EnemyTrans.position.x * 30;
 
@@ -61,6 +67,8 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             SetCurrentHP(0);
+
+            Die();
         }
         else 
         {
@@ -68,6 +76,12 @@ public class Enemy : MonoBehaviour
         }        
 
     } 
+
+    public void Die()
+    {
+        Battle.RemoveEnemy(this);
+        Destroy(EnemyObj);
+    }
 }
 
 

@@ -10,7 +10,7 @@ public class LevelSystem : MonoBehaviour
     #region Variables
 
     // This variable stores the values and actions of the player.
-    public Player player;
+    public Player Player;
 
     // This variable stores the values for the HUD.
     public PlayerHUD HUD;
@@ -167,8 +167,7 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    //This Method opens the leveling Menu.
-
+    // These Methods open/close the leveling Menu.
     public void OpenLeveling()
     {
         LevelWindow.SetActive(true);
@@ -202,27 +201,27 @@ public class LevelSystem : MonoBehaviour
     // This Method correctly distributes the temporary stats to the overall stats of the character.
     private void DistributeSkills(int vig, int mind, int dex, int str, int intel)
     {     
-        player.IncVig(vig);
-        vigValueText.text = player.GetVigor().ToString();
+        Player.IncVig(vig);
+        vigValueText.text = Player.GetVigor().ToString();
 
-        player.IncMin(mind);
-        minValueText.text = player.GetMind().ToString();
+        Player.IncMin(mind);
+        minValueText.text = Player.GetMind().ToString();
 
-        player.IncDex(dex);
-        dexValueText.text = player.GetDexterity().ToString();
+        Player.IncDex(dex);
+        dexValueText.text = Player.GetDexterity().ToString();
 
-        player.IncStr(str);
-        strValueText.text = player.GetStrength().ToString();
+        Player.IncStr(str);
+        strValueText.text = Player.GetStrength().ToString();
 
-        player.IncInt(intel);
-        intValueText.text = player.GetIntelligence().ToString();
+        Player.IncInt(intel);
+        intValueText.text = Player.GetIntelligence().ToString();
 
-        player.IncMaxHP(vig);
-        player.IncMaxMana(mind);
-        player.IncCurrentHP(vig);
-        player.IncCurrentMana(mind);
-        player.IncPhysDmg(str);
-        player.IncMagiDmg(intel);
+        Player.IncMaxHP(vig);
+        Player.IncMaxMana(mind);
+        Player.IncCurrentHP(vig);
+        Player.IncCurrentMana(mind);
+        Player.IncPhysDmg(str);
+        Player.IncMagiDmg(intel);
 
         HUD.updateSliders();
     }

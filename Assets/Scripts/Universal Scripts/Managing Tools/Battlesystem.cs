@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Battlesystem : MonoBehaviour
 {
@@ -11,14 +12,23 @@ public class Battlesystem : MonoBehaviour
 
     public Player Player;
 
+    public Button SkillOneButton;
+    public Button SkillTwoButton;
+    public Button SkillThreeButton;
+
     private BattleState state = BattleState.PlayerTurn;
 
+    private List<Enemy> enemies = new List<Enemy>();
 
     //These methods change the current Battlestate.
     #region StateChanges
 
     public void ChangeStateToPlayerTurn()
     {
+        SkillOneButton.interactable = true;
+        SkillTwoButton.interactable = true;
+        SkillThreeButton.interactable = true;
+
         state = BattleState.PlayerTurn;
         Player.SetActive(true);
         Player.SetBlock(0);
@@ -27,10 +37,17 @@ public class Battlesystem : MonoBehaviour
 
     public void ChangeStateToEnemyTurn()
     {
+        SkillOneButton.interactable = false;
+        SkillTwoButton.interactable = false;
+        SkillThreeButton.interactable = false;
+
         state = BattleState.EnemyTurn;
         Player.SetActive(false);
 
-        //Command to trigger all enemy attacks.
+            foreach(Enemy enemy in enemies)
+            {
+               Debug.Log(enemy + "'s Move!");     
+            }
 
         ChangeStateToPlayerTurn();
     }
@@ -72,6 +89,16 @@ public class Battlesystem : MonoBehaviour
     {
         thisPlayer.DecCurrentHP(amount);
         Debug.Log("Dealt " + amount + " damage to Player " + thisPlayer);
+    }
+
+    public void AddEnemy(Enemy enemy)
+    {
+        enemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        enemies.Remove(enemy);
     }
 
 
