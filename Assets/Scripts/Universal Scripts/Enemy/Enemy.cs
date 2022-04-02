@@ -24,8 +24,8 @@ public class Enemy : MonoBehaviour
         scaleButton = EnemyTrans.position.x * 25;
         scaleSlider = EnemyTrans.position.x * 30;
 
-        posButton = new Vector3 (scaleButton, 0, 0);
-        posSlider = new Vector3 (scaleSlider, 200, 0);
+        posButton = new Vector3 (scaleButton, 100, 0);
+        posSlider = new Vector3 (scaleSlider, 300, 0);
 
         buttonRect.anchoredPosition = posButton;
         sliderRect.anchoredPosition = posSlider;

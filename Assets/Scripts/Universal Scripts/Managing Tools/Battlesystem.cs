@@ -9,23 +9,10 @@ public class Battlesystem : MonoBehaviour
         PlayerTurn, EnemyTurn, Won, Lost, None
     }  
 
-    public Player player;
+    public Player Player;
+
     private BattleState state = BattleState.PlayerTurn;
 
-   /* public void Update()
-    {
-        switch(state) 
-        {
-            case BattleState.PlayerTurn:
-            Debug.Log("sdsd");
-            break;
-
-            default:
-            Debug.Log("unexpected error");
-            break;
-        }
-        DealDamageToPlayer(player, 1);
-    } */
 
     //These methods change the current Battlestate.
     #region StateChanges
@@ -33,31 +20,37 @@ public class Battlesystem : MonoBehaviour
     public void ChangeStateToPlayerTurn()
     {
         state = BattleState.PlayerTurn;
-        player.SetActive(true);
+        Player.SetActive(true);
+        Player.SetBlock(0);
+        Player.SetCurrentMana(Player.GetMaxMana());
     }
 
     public void ChangeStateToEnemyTurn()
     {
         state = BattleState.EnemyTurn;
-        player.SetActive(false);
+        Player.SetActive(false);
+
+        //Command to trigger all enemy attacks.
+
+        ChangeStateToPlayerTurn();
     }
 
     public void ChangeStateToWon()
     {
         state = BattleState.Won;
-        player.SetActive(false);
+        Player.SetActive(false);
     }
 
     public void ChangeStateToLost()
     {
         state = BattleState.Lost;
-        player.SetActive(false);
+        Player.SetActive(false);
     }
 
     public void ChangeStateToNone()
     {
         state = BattleState.None;
-        player.SetActive(false);
+        Player.SetActive(false);
     }
 
     #endregion

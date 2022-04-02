@@ -29,7 +29,7 @@ public class PlayerHUD : MonoBehaviour
         ManaBar.value = player.GetCurrentMana();
         HealthText.text = player.GetCurrentHP().ToString() + "/" + player.GetMaxHP().ToString();
         ManaText.text = player.GetCurrentMana().ToString() + "/" + player.GetMaxMana().ToString();
-        BlockText.text = player.GetBlock().ToString();
+        BlockText.text = "+" + player.GetBlock().ToString();
       
     }
 
