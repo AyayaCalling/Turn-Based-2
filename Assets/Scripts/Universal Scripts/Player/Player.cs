@@ -10,8 +10,9 @@ public class Player : MonoBehaviour
     // This variable describes, if the player is allowed to do smth.
     private bool active = true;
 
-    // This variable displays the current level of the player.
-    private int level;
+    // This variable displays the current level and the levels to spent of the player.
+    private int level = 0;
+    private float levelToSpent = 0;
 
     // These variables display the current and maximum HP the player has.
     private int currentHP;
@@ -53,6 +54,18 @@ public class Player : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    // Getter-Method for the Variable levelToSpent in float.
+    public float GetLevelToSpentF()
+    {
+        return levelToSpent;
+    }
+
+    // Getter-Method for the Variable levelToSpent in int.
+    public int GetLevelToSpentI()
+    {
+        return (int)levelToSpent;
     }
 
     // Setter-Method for the Variable currentHP. (only used in the initialization publicly)
@@ -209,6 +222,17 @@ public class Player : MonoBehaviour
         level = lvl + GetLevel();
     }
 
+    // This method increases levelToSpent by the value lvlAdd.
+    public void IncLevelToSpent(float lvlAdd)
+    {
+        levelToSpent = lvlAdd + GetLevelToSpentF();
+    }
+
+    // This method decreases levelToSpent by the value lvlSub.
+    public void DecLevelToSpent(int lvlSub)
+    {
+        levelToSpent = GetLevelToSpentF() - lvlSub;
+    } 
 
     // This method inreases the currentHP by the value addedHP, not above maxHP.
     public void IncCurrentHP(int addedHP)
