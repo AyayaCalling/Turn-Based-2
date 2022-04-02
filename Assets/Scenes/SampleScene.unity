@@ -489,7 +489,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.627451, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072209}
+      - m_Target: {fileID: 610072208}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: UsingDodge
         m_Mode: 1
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 203773853}
   - component: {fileID: 203773854}
   m_Layer: 5
-  m_Name: Leveling
+  m_Name: Level System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a22ffaaaab4c6419dfa2c4cbaed0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 610072205}
+  Player: {fileID: 0}
   HUD: {fileID: 654594589}
   LevelWindow: {fileID: 203773852}
   OpenButton: {fileID: 1137885242}
@@ -997,7 +997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -85}
+  m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &212223419
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -2139,7 +2139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: -85}
+  m_AnchoredPosition: {x: 90, y: -140}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &525492128
@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -2506,11 +2506,9 @@ GameObject:
   - component: {fileID: 610072211}
   - component: {fileID: 610072205}
   - component: {fileID: 610072207}
-  - component: {fileID: 610072210}
-  - component: {fileID: 610072209}
-  - component: {fileID: 610072208}
   - component: {fileID: 610072212}
   - component: {fileID: 610072213}
+  - component: {fileID: 610072208}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -2568,25 +2566,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 610072204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f96b6e62112c4d4c99eeecdd2863ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 610072205}
-  targetter: {fileID: 610072212}
-  battle: {fileID: 610072213}
---- !u!114 &610072209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610072204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a36735daecc6334c9b48f53e9c13cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
   SkillButton: {fileID: 42635748}
+  observer: {fileID: 871080680}
   TileOne: {fileID: 1015360060}
   TileTwo: {fileID: 2046191613}
   TileThree: {fileID: 212223419}
@@ -2597,21 +2582,7 @@ MonoBehaviour:
   TileThreeTrans: {fileID: 1018883775}
   TileFourTrans: {fileID: 956885666}
   TileFiveTrans: {fileID: 651019119}
-  Player: {fileID: 610072205}
   PlayerController: {fileID: 610072211}
---- !u!114 &610072210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610072204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b4cdeb82be9644caeed72021926446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 610072205}
 --- !u!143 &610072211
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2656,6 +2627,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 610072205}
+  SkillOneButton: {fileID: 684188947}
+  SkillTwoButton: {fileID: 1294932417}
+  SkillThreeButton: {fileID: 42635748}
 --- !u!1 &610640038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3054,6 +3028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684188946}
   - component: {fileID: 684188947}
+  - component: {fileID: 684188948}
   m_Layer: 5
   m_Name: SkillOne
   m_TagString: Untagged
@@ -3106,7 +3081,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.627451, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3125,7 +3100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072208}
+      - m_Target: {fileID: 684188948}
         m_TargetAssemblyTypeName: Strike, Assembly-CSharp
         m_MethodName: UsingStrike
         m_Mode: 1
@@ -3137,6 +3112,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &684188948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684188945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f96b6e62112c4d4c99eeecdd2863ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
+  SkillButton: {fileID: 684188947}
+  observer: {fileID: 871080680}
+  targetter: {fileID: 610072212}
+  battle: {fileID: 610072213}
 --- !u!1 &770111443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,6 +3422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 871080678}
   - component: {fileID: 871080679}
+  - component: {fileID: 871080680}
   m_Layer: 5
   m_Name: Mana
   m_TagString: Untagged
@@ -3510,6 +3503,25 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &871080680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871080677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455493fe4c2e2d449aefd70582c4370b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
+  SkillOneButton: {fileID: 684188947}
+  SkillTwoButton: {fileID: 1294932417}
+  SkillThreeButton: {fileID: 42635748}
+  SkillOne: {fileID: 684188948}
+  SkillTwo: {fileID: 1294932418}
+  SkillThree: {fileID: 0}
 --- !u!1 &932319769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,7 +3993,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -4047,7 +4059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: -85}
+  m_AnchoredPosition: {x: -90, y: -140}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1018883774
@@ -4235,8 +4247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a8066b8c93398408b592e761312e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Battle: {fileID: 0}
+  Battle: {fileID: 610072213}
   EnemyTrans: {fileID: 1030987534}
+  EnemyObj: {fileID: 1030987533}
   buttonRect: {fileID: 1951130148}
   sliderRect: {fileID: 547584445}
 --- !u!114 &1030987537
@@ -5158,6 +5171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1294932416}
   - component: {fileID: 1294932417}
+  - component: {fileID: 1294932418}
   m_Layer: 5
   m_Name: SkillTwo
   m_TagString: Untagged
@@ -5210,7 +5224,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.627451, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5229,7 +5243,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072210}
+      - m_Target: {fileID: 1294932418}
         m_TargetAssemblyTypeName: Defend, Assembly-CSharp
         m_MethodName: UsingDefend
         m_Mode: 1
@@ -5241,6 +5255,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1294932418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294932415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b4cdeb82be9644caeed72021926446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
+  SkillButton: {fileID: 1294932417}
+  observer: {fileID: 871080680}
 --- !u!1 &1346922359
 GameObject:
   m_ObjectHideFlags: 0
@@ -8040,7 +8069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -85}
+  m_AnchoredPosition: {x: 45, y: -140}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007943457
@@ -8087,7 +8116,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -8432,7 +8461,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072209}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -8498,7 +8527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -85}
+  m_AnchoredPosition: {x: -45, y: -140}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2052213879
