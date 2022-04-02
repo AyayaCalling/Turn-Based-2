@@ -4,12 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // This Class contains the basic variables and methods for Defending/ Blocking in the game.
-public class Defend : MonoBehaviour
+public class Defend : Skill
 {
     #region Variables
-
-    // This variable stores the values and actions of the player.
-    public Player Player;
 
     // This variable is the basic amount of Block you get, while not having any modifiers.
     private static int baseBlock = 5;
@@ -58,7 +55,7 @@ public class Defend : MonoBehaviour
     {
         if (Player.GetCurrentMana() > 0 && Player.GetActive())
         {
-            Player.SetCurrentMana(Player.GetCurrentMana() -1);
+            Player.DecCurrentMana(GetManaCost());
             
             Debug.Log("Using Defend");
 
@@ -69,6 +66,7 @@ public class Defend : MonoBehaviour
             Debug.Log("Current Block: " + Player.GetBlock().ToString());
             Debug.Log("Block Given: " + (baseBlock + blockMod).ToString());
 
+            observer.ManaValueChange();
         }
         else
         {

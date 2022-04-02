@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // This Class contains the basic variables and methods for Attacking/ Striking in the game.
-public class Strike : MonoBehaviour
+public class Strike : Skill
 {
     #region Variables
-
-    // This variable describes the current instance of the player.
-    public Player Player;
 
     // These variables are used to display and calculate the battle phase.
     public TargettingSystem targetter;
     public Battlesystem battle;
-
-    // This variable descrobes the manCost of using Strike.
-    private readonly int manaCost = 1;
 
     #endregion
 
@@ -32,7 +26,9 @@ public class Strike : MonoBehaviour
             {
                 battle.DealDamageToEnemy(targetter.target, 10);
 
-                Player.DecCurrentMana(manaCost);
+                Player.DecCurrentMana(GetManaCost());
+
+                observer.ManaValueChange();
             }
         }
         else

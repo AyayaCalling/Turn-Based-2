@@ -48,13 +48,19 @@ public class LevelSystem : MonoBehaviour
     
     #endregion
 
+    // FEHLT NOCH LEVEL ÄNDERUNGEN BEI ALLEN AUßER VIGOR
     #region ButtonMethods
 
     // This Method increases the tempVigor variable.
     public void IncreaseTempVig()
     {
-        tempVigor += 1;
-        tempLevelups += 1;
+        if (Player.GetLevelToSpentI() > 0) {
+            tempVigor += 1;
+            tempLevelups += 1;
+            Player.DecLevelToSpent(1);
+        } else {
+            Debug.Log("Cant spend skill point without having a skill point :)");
+        }
     }
 
     // This Method decreases the tempVigor variable (if possible).
@@ -64,6 +70,7 @@ public class LevelSystem : MonoBehaviour
         {
             tempVigor -= 1;
             tempLevelups -= 1;
+            Player.IncLevelToSpent(1);
         }
         else
         {

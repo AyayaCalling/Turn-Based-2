@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 // This Class contains the basic variables and methods for Dodging/ Rolling in the game.
 // It moves the player across the playing Field. The Field contains 5 tiles (1|2|3|4|5).
-public class Dodge : MonoBehaviour 
+public class Dodge : Skill 
 {
     // BRAUCHT KOMMENTARE
     #region Variables
-
-    public Button SkillButton;
 
     public Button TileOne;
     public Button TileTwo;
@@ -31,13 +29,10 @@ public class Dodge : MonoBehaviour
     private List<Transform> buttonTrans = new List<Transform>();
     private List<Transform> availableButtonTrans = new List<Transform>();
 
-    public Player Player;
     public CharacterController PlayerController; 
     private Vector3 rollPos;
 
     private int rollRange = 1;
-
-    private int manaCost = 1;
 
     #endregion
 
@@ -117,7 +112,9 @@ public class Dodge : MonoBehaviour
 
         SkillButton.interactable = true;
 
-        Player.DecCurrentMana(manaCost);
+        Player.DecCurrentMana(GetManaCost());
+
+        observer.ManaValueChange();
     }
 
     #endregion
