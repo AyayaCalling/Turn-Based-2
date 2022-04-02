@@ -57,24 +57,25 @@ public class Dodge : MonoBehaviour
         if (Player.GetCurrentMana() < 1)
         {
             return;
-        }
-
-        SkillButton.interactable = false;
-        
-        foreach(Transform trans in buttonTrans)
+        }else if (Player.GetActive())
         {
-            if ((Mathf.Abs(Player.transform.position.x - trans.position.x) <= rollRange) && (Mathf.Abs(Player.transform.position.x - trans.position.x) != 0))
+
+            SkillButton.interactable = false;
+            
+            foreach(Transform trans in buttonTrans)
             {
-                availableButtonTrans.Add(trans);
+                if ((Mathf.Abs(Player.transform.position.x - trans.position.x) <= rollRange) && (Mathf.Abs(Player.transform.position.x - trans.position.x) != 0))
+                {
+                    availableButtonTrans.Add(trans);
+                }
+            }
+
+            foreach(Transform trans in availableButtonTrans)
+            {
+                tempButton = trans.GetComponentInChildren<Button>();
+                tempButton.interactable = true;
             }
         }
-
-        foreach(Transform trans in availableButtonTrans)
-        {
-            tempButton = trans.GetComponentInChildren<Button>();
-            tempButton.interactable = true;
-        }
-
     }
 
     //This method will use one mana to transport the player to the destined position.

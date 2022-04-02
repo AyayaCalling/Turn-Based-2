@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     #region Variables
 
     // This variable describes, if the player is allowed to do smth.
-    private bool active = false;
+    private bool active = true;
 
     // This variable displays the current level of the player.
     private int level;
@@ -41,6 +41,12 @@ public class Player : MonoBehaviour
     public bool GetActive()
     {
         return active;
+    }
+
+    //Setter-Method for the Variable active.
+    public void SetActive(bool state)
+    {
+        active = state;
     }
 
     // Getter-Method for the Variable level.
@@ -196,11 +202,6 @@ public class Player : MonoBehaviour
 
     #region Inc/Dec-Methods
 
-    // Changes the value of active.
-    public void ChangeActive()
-    {
-        active = !active;
-    }
 
     // This method increases level by the value lvl.
     public void IncLevel(int lvl)
