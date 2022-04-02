@@ -15,6 +15,8 @@ public class Dodge : Skill
     public Button TileThree;
     public Button TileFour;
     public Button TileFive;
+    
+    public Transform playerTrans;
 
     public Transform TileOneTrans;
     public Transform TileTwoTrans;
@@ -95,12 +97,12 @@ public class Dodge : Skill
     //This method will use one mana to transport the player to the destined position.
     public void Activation(int posX)
     {
-        posX = posX - Mathf.RoundToInt(transform.position.x);
+        posX = posX - Mathf.RoundToInt(playerTrans.position.x);
 
         rollPos = new Vector3(posX, 0, 0);
 
         PlayerController.Move(rollPos);
-
+        Debug.Log(rollPos);
         rollPos = new Vector3(0, 0, 0);
 
         availableButtonTrans.Clear();

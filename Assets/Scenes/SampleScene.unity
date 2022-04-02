@@ -437,6 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 42635747}
   - component: {fileID: 42635748}
+  - component: {fileID: 42635749}
   m_Layer: 5
   m_Name: SkillThree
   m_TagString: Untagged
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610072208}
+      - m_Target: {fileID: 42635749}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: UsingDodge
         m_Mode: 1
@@ -520,6 +521,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &42635749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42635746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a36735daecc6334c9b48f53e9c13cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
+  SkillButton: {fileID: 42635748}
+  observer: {fileID: 871080680}
+  TileOne: {fileID: 1015360060}
+  TileTwo: {fileID: 2046191613}
+  TileThree: {fileID: 212223419}
+  TileFour: {fileID: 2007943457}
+  TileFive: {fileID: 525492128}
+  playerTrans: {fileID: 610072206}
+  TileOneTrans: {fileID: 144711774}
+  TileTwoTrans: {fileID: 861916477}
+  TileThreeTrans: {fileID: 1018883775}
+  TileFourTrans: {fileID: 956885666}
+  TileFiveTrans: {fileID: 651019119}
+  PlayerController: {fileID: 610072211}
 --- !u!1 &46791126
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +1003,7 @@ GameObject:
   - component: {fileID: 212223420}
   - component: {fileID: 212223419}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tile Three Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1044,7 +1072,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 42635749}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -2117,7 +2145,7 @@ GameObject:
   - component: {fileID: 525492129}
   - component: {fileID: 525492128}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tile Five Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2186,7 +2214,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 42635749}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -2508,7 +2536,6 @@ GameObject:
   - component: {fileID: 610072207}
   - component: {fileID: 610072212}
   - component: {fileID: 610072213}
-  - component: {fileID: 610072208}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -2557,32 +2584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 610072205}
---- !u!114 &610072208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610072204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a36735daecc6334c9b48f53e9c13cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 610072205}
-  SkillButton: {fileID: 42635748}
-  observer: {fileID: 871080680}
-  TileOne: {fileID: 1015360060}
-  TileTwo: {fileID: 2046191613}
-  TileThree: {fileID: 212223419}
-  TileFour: {fileID: 2007943457}
-  TileFive: {fileID: 525492128}
-  TileOneTrans: {fileID: 144711774}
-  TileTwoTrans: {fileID: 861916477}
-  TileThreeTrans: {fileID: 1018883775}
-  TileFourTrans: {fileID: 956885666}
-  TileFiveTrans: {fileID: 651019119}
-  PlayerController: {fileID: 610072211}
 --- !u!143 &610072211
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3521,7 +3522,7 @@ MonoBehaviour:
   SkillThreeButton: {fileID: 42635748}
   SkillOne: {fileID: 684188948}
   SkillTwo: {fileID: 1294932418}
-  SkillThree: {fileID: 0}
+  SkillThree: {fileID: 42635749}
 --- !u!1 &932319769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3943,7 +3944,7 @@ GameObject:
   - component: {fileID: 1015360061}
   - component: {fileID: 1015360060}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tile One Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3993,7 +3994,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 42635749}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -8047,7 +8048,7 @@ GameObject:
   - component: {fileID: 2007943458}
   - component: {fileID: 2007943457}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tile Four Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8116,7 +8117,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 42635749}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
@@ -8411,7 +8412,7 @@ GameObject:
   - component: {fileID: 2046191614}
   - component: {fileID: 2046191613}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tile Two Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8461,7 +8462,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 42635749}
         m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
         m_MethodName: Activation
         m_Mode: 3
