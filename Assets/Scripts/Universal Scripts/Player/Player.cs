@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
     public void IncMaxMana(int addedMana)
     {
         int mana = GetMaxMana() + addedMana;
-        SetMaxHP(mana);
+        SetMaxMana(mana);
     }
 
     // This method decreases the maxMana by the value of minusMana and changes the currentMana, if they are higher than the new maxMana.

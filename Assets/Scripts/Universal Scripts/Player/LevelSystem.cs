@@ -217,12 +217,12 @@ public class LevelSystem : MonoBehaviour
         player.IncInt(intel);
         intValueText.text = player.GetIntelligence().ToString();
 
-        player.IncMaxHP(player.GetVigor());
-        player.IncMaxMana(player.GetMind());
-        player.IncPhysDmg(player.GetStrength());
-        player.IncMagiDmg(baseMagical);
+        player.IncMaxHP(vig);
+        player.IncMaxMana(mind);
         player.IncCurrentHP(vig);
         player.IncCurrentMana(mind);
+        player.IncPhysDmg(str);
+        player.IncMagiDmg(intel);
 
         HUD.updateSliders();
     }

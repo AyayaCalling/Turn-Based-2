@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//This class moves the player across the playing Field. The Field contains 5 Tiles.
+// This Class contains the basic variables and methods for Dodging/ Rolling in the game.
+// It moves the player across the playing Field. The Field contains 5 tiles (1|2|3|4|5).
 public class Dodge : MonoBehaviour 
 {
+    // BRAUCHT KOMMENTARE
+    #region Variables
 
     public Button SkillButton;
 
@@ -36,6 +39,11 @@ public class Dodge : MonoBehaviour
 
     private int manaCost = 1;
 
+    #endregion
+
+    #region InitializeTiles
+
+    // This Method initializes the Lists with all needed Buttons.
     public void Awake()
     {
         buttons.Add(TileOne);
@@ -51,13 +59,19 @@ public class Dodge : MonoBehaviour
         buttonTrans.Add(TileFiveTrans);
     }
 
+    #endregion
+
+    // BRAUCHT KOMMENTARE
+    #region UseDodgeMethod
+
     //This method detemines which Tiles will be in range for the Skill.
     public void UsingDodge()
     {
         if (Player.GetCurrentMana() < 1)
         {
             return;
-        }else if (Player.GetActive())
+        }
+        else if (Player.GetActive())
         {
 
             SkillButton.interactable = false;
@@ -77,6 +91,11 @@ public class Dodge : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    // BRAUCHT KOMMENTARE
+    #region ActivationMethod
 
     //This method will use one mana to transport the player to the destined position.
     public void Activation(int posX)
@@ -101,6 +120,6 @@ public class Dodge : MonoBehaviour
         Player.DecCurrentMana(manaCost);
     }
 
+    #endregion
+
 }
-
-
