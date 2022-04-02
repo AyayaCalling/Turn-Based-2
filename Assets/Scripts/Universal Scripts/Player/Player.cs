@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
 
     #endregion  
 
-    // Nicht alle Setter notwendig (public), bei manchhen sind increase/decrease sinnvoller
     #region GetterAndSetter
   
     // Getter-Method for the Variable level.
@@ -186,8 +185,6 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-
-    // Es fehlen noch inc/dec befehle ab physDmg
     #region Inc/Dec-Methods
 
     // This method increases level by the value lvl.
@@ -272,6 +269,38 @@ public class Player : MonoBehaviour
 
     }
 
+    // This (help-)Method adds increase to value. (true = add, false = sub)
+    private int ChangeStats(int value, int increase, bool add) {
+        if (add)
+        {
+            value += increase;
+        } else
+        {
+            value -= increase;
+        }
+        return value;
+    }
+
+    // These Methods increase each value.
+    public void IncPhysDmg(int addedPhys){ physDamage = ChangeStats(physDamage, addedPhys, true);}
+    public void IncMagiDmg(int addedMagi){ magicDamage = ChangeStats(magicDamage, addedMagi, true);}
+    public void IncBlock(int addedBlock){ block = ChangeStats(block, addedBlock, true);}
+    public void IncVig(int addedVig){ vigor = ChangeStats(vigor, addedVig, true);}
+    public void IncMind(int addedMind){ mind = ChangeStats(mind, addedMind, true);}
+    public void IncDex(int addedDex){ dexterity = ChangeStats(dexterity, addedDex, true);}
+    public void IncStr(int addedStr){ strength = ChangeStats(strength, addedStr, true);}
+    public void IncInt(int addedInt){ intelligence = ChangeStats(intelligence, addedInt, true);}
+
+    // These Methods decrease each value.
+    public void DecPhysDmg(int minusPhys){ physDamage = ChangeStats(physDamage, minusPhys, false);}
+    public void DecMagiDmg(int minusMagi){ magicDamage = ChangeStats(magicDamage, minusMagi, false);}
+    public void DecBlock(int minusBlock){ block = ChangeStats(block, minusBlock, false);}
+    public void DecVig(int minusVig){ vigor = ChangeStats(vigor, minusVig, false);}
+    public void DecMind(int minusMind){ mind = ChangeStats(mind, minusMind, false);}
+    public void DecDex(int minusDex){ dexterity = ChangeStats(dexterity, minusDex, false);}
+    public void DecStr(int minusStr){ strength = ChangeStats(strength, minusStr, false);}
+    public void DecInt(int minusInt){ intelligence = ChangeStats(intelligence, minusInt, false);}
+
     #endregion
 
     #region Actions
@@ -297,28 +326,6 @@ public class Player : MonoBehaviour
 
     #endregion
 
-
-    // kann zu Levelsystem, an richtige stelle! und player. davor
-
-    #region TextMessages
-
-    //display current stat lvl
-    public Text vigText; 
-    public Text minText;
-    public Text dexText;
-    public Text strText;
-    public Text intText;
-    
-    #endregion
-
-    public void Update()
-    {
-        vigText.text = vigor.ToString();
-        minText.text = mind.ToString();
-        dexText.text = dexterity.ToString();
-        strText.text = strength.ToString();
-        intText.text = intelligence.ToString();
-    }
 }
 
 

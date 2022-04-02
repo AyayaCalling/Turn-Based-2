@@ -54,7 +54,7 @@ public class Defend : MonoBehaviour
     #region UseDefendMethod
 
    // This method uses one Mana to give a certain amount of block (If not enough Mana, displays an error message).
-   public void usingDefend()
+   public void UsingDefend()
     {
         if (player.GetCurrentMana() > 0)
         {
@@ -63,13 +63,11 @@ public class Defend : MonoBehaviour
             Debug.Log("Using Defend");
 
             blockMod = Mathf.RoundToInt(player.GetDexterity() * 0.5f);
-
-            int blockGiven = GetBase() + blockMod;
-
-            player.SetBlock(blockGiven);
+            
+            player.IncBlock((GetBase() + blockMod));
 
             Debug.Log("Current Block: " + player.GetBlock().ToString());
-            Debug.Log("Block Given: " + blockGiven.ToString());
+            Debug.Log("Block Given: " + (baseBlock + blockMod).ToString());
 
         }else
         {
@@ -78,4 +76,5 @@ public class Defend : MonoBehaviour
     }
 
     #endregion
+
 }
