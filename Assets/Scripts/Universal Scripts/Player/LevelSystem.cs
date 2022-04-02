@@ -15,6 +15,12 @@ public class LevelSystem : MonoBehaviour
     // This variable stores the values for the HUD.
     public PlayerHUD HUD;
 
+    // These variables handle Pop-Ups and Button presses.
+
+    public GameObject LevelWindow;
+    public Button OpenButton;
+    public Button CloseButton;
+
     // These variables are defined base Stats for the character. 
     private readonly int baseHP = 50;
     private readonly int baseMana = 3;
@@ -148,6 +154,22 @@ public class LevelSystem : MonoBehaviour
             return;
         }
 
+    }
+
+    //This Method opens the leveling Menu.
+
+    public void OpenLeveling()
+    {
+        LevelWindow.SetActive(true);
+        OpenButton.interactable = false;
+        CloseButton.interactable = true;
+    }
+
+    public void CloseLeveling()
+    {
+        LevelWindow.SetActive(false);
+        OpenButton.interactable = true;
+        CloseButton.interactable = false;
     }
 
     #endregion
