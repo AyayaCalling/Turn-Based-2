@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This is the parent class for all enemies in the game.
 public class Enemy : MonoBehaviour
 {
     private int currentHP = 100;
     private int maxHP = 100;
 
+    //This variable displays the turn the enemy is already on in its cycle.
     private int turnNumber = 1;
 
+    //These variables are used to shift Hp Bar and Target Button to match the current enemy position.
     private float scaleSlider;
     private float scaleButton; 
 
@@ -19,14 +22,16 @@ public class Enemy : MonoBehaviour
 
     public GameObject EnemyObj;
 
-    public Player Player;
-
     public RectTransform buttonRect;
     public RectTransform sliderRect;
 
     private Vector3 posButton;
     private Vector3 posSlider;
-    
+
+    //This variable displays the player, the enemy currently targets.
+    public Player Player;
+
+    //This method shifts all UI elements to match the enemy's position and finds a default attack Target.
     public void Start()
     {
         Battle.AddEnemy(this);
@@ -83,12 +88,14 @@ public class Enemy : MonoBehaviour
 
     } 
 
+    //This method kills and destroys the enemy if its HP reaches zero.
     public void Die()
     {
         Battle.RemoveEnemy(this);
         Destroy(EnemyObj);
     }
 
+    //This method cycles the enemy's turns. Its virtual so it can be overwritten by children of the class.
     public virtual void  Move()
     {
         switch(turnNumber)
