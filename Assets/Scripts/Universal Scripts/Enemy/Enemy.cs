@@ -141,6 +141,8 @@ public class Enemy : MonoBehaviour
             case 3:
             Player.SetWeakness(0.3f);
             Player.SetWeakTurns(2);
+            Player.SetVulnerable(2f);
+            Player.SetVulnerableTurns(2);
             //Object.Instantiate(EnemyObj, new Vector3(-5, 0, 10), new Quaternion(0, 0, 0, 0));
             turnNumber = 1;
             break;

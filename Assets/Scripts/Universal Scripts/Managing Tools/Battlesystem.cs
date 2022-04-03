@@ -37,12 +37,6 @@ public class Battlesystem : MonoBehaviour
 
         Player.SetCurrentMana(Player.GetMaxMana());
 
-        Player.DecWeakTurns(1);
-
-        if(Player.GetWeakTurns() == 0)
-        {
-            Player.SetWeakness(0);
-        }
     }
 
     public void ChangeStateToEnemyTurn()
@@ -86,6 +80,21 @@ public class Battlesystem : MonoBehaviour
     //Button-Method for the End-Turn Button.
     public void OnEndturn()
     {
+        //Small Bug causes one Turn of vulerability loss. Debuff runs out before the enemies get a turn.
+        Player.DecWeakTurns(1);
+
+        if(Player.GetWeakTurns() == 0)
+        {
+            Player.SetWeakness(0);
+        }
+
+        Player.DecVulnerableTurns(1);
+
+        if(Player.GetVulnerableTurns() == 0)
+        {
+            Player.SetVulnerable(1);
+        }
+
         ChangeStateToEnemyTurn();
     }
 
@@ -98,7 +107,7 @@ public class Battlesystem : MonoBehaviour
 
     public void DealDamageToPlayer(Player thisPlayer, int amount)
     {
-        thisPlayer.DecCurrentHP(amount);
+        thisPlayer.DecCurrentHP(Mathf.RoundToInt(amount * Player.GetVulnerable()));
         Debug.Log("Dealt " + amount + " damage to Player " + thisPlayer);
     }
 

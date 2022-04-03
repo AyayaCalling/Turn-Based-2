@@ -35,8 +35,12 @@ public class Player : MonoBehaviour
     private int dexterity;
 
     //These variables are the individual player debuffs.
-    private float weakness;
-    private float vulnerable;
+
+    //Reduces damage dealt. 0.3 = 30% less damage.
+    private float weakness = 0;
+
+    //Increases damage taken. 1.3 = 130% more damage.
+    private float vulnerable = 1;
 
     private int poison;
 
@@ -383,13 +387,25 @@ public class Player : MonoBehaviour
         if(weakTurns > 0)
         {
             weakTurns -= turns;
-        }else weakTurns = 0;
-        
+        }      
     }
 
     public void IncWeakturns(int turns)
     {
         weakTurns += turns;
+    }
+
+    public void DecVulnerableTurns(int turns)
+    {
+        if(vulnerableTurns > 0)
+        {
+            vulnerableTurns -= turns;
+        }
+    }
+
+    public void IncVulnerableTurns(int turns)
+    {
+        vulnerableTurns += turns;
     }
 
     // This (help-)Method adds increase to value. (true = add, false = sub)
