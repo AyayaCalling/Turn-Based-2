@@ -139,8 +139,9 @@ public class Enemy : MonoBehaviour
             break;
 
             case 3:
-            Debug.Log("This will later put a Debuff on the Player.");
-            Object.Instantiate(EnemyObj, new Vector3(-5, 0, 10), new Quaternion(0, 0, 0, 0));
+            Player.SetWeakness(0.3f);
+            Player.SetWeakTurns(2);
+            //Object.Instantiate(EnemyObj, new Vector3(-5, 0, 10), new Quaternion(0, 0, 0, 0));
             turnNumber = 1;
             break;
         }

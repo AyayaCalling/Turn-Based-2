@@ -30,9 +30,19 @@ public class Battlesystem : MonoBehaviour
         SkillThreeButton.interactable = true;
 
         state = BattleState.PlayerTurn;
+
         Player.SetActive(true);
+
         Player.SetBlock(0);
+
         Player.SetCurrentMana(Player.GetMaxMana());
+
+        Player.DecWeakTurns(1);
+
+        if(Player.GetWeakTurns() == 0)
+        {
+            Player.SetWeakness(0);
+        }
     }
 
     public void ChangeStateToEnemyTurn()

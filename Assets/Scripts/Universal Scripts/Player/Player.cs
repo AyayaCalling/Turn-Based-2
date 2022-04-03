@@ -34,6 +34,17 @@ public class Player : MonoBehaviour
     private int intelligence;
     private int dexterity;
 
+    //These variables are the individual player debuffs.
+    private float weakness;
+    private float vulnerable;
+
+    private int poison;
+
+    //These variables are the duration for every debuff.
+    private int weakTurns;
+    private int vulnerableTurns;
+    private int poisonTurns;
+
     #endregion  
 
     #region GetterAndSetter
@@ -211,6 +222,46 @@ public class Player : MonoBehaviour
     {
         dexterity = amount;
     }
+
+    public float GetWeakness()
+    {
+        return weakness;
+    }
+
+    public void SetWeakness(float value)
+    {
+        weakness = value;
+    }
+
+    public int GetWeakTurns()
+    {
+        return weakTurns;
+    }
+
+    public void SetWeakTurns(int turns)
+    {
+        weakTurns = turns;
+    }
+
+    public float GetVulnerable()
+    {
+        return vulnerable;
+    }
+
+    public void SetVulnerable(float value)
+    {
+        vulnerable = value;
+    }
+
+    public int GetVulnerableTurns()
+    {
+        return vulnerableTurns;
+    }
+
+    public void SetVulnerableTurns(int turns)
+    {
+        vulnerableTurns = turns;
+    }
     #endregion
 
     #region Inc/Dec-Methods
@@ -325,6 +376,20 @@ public class Player : MonoBehaviour
             SetCurrentMana(mana);
         }
         SetMaxMana(mana);
+    }
+
+    public void DecWeakTurns(int turns)
+    {
+        if(weakTurns > 0)
+        {
+            weakTurns -= turns;
+        }else weakTurns = 0;
+        
+    }
+
+    public void IncWeakturns(int turns)
+    {
+        weakTurns += turns;
     }
 
     // This (help-)Method adds increase to value. (true = add, false = sub)
