@@ -60,12 +60,14 @@ public class Battlesystem : MonoBehaviour
     public void ChangeStateToWon()
     {
         state = BattleState.Won;
+        Debug.Log("You won the Battle!");
         Player.SetActive(false);
     }
 
     public void ChangeStateToLost()
     {
         state = BattleState.Lost;
+        Debug.Log("You lost the Battle!");
         Player.SetActive(false);
     }
 
@@ -103,6 +105,11 @@ public class Battlesystem : MonoBehaviour
     {
         thisEnemy.DecCurrentHP(amount);
         Debug.Log("Dealt " + amount + " damage to Enemy " + thisEnemy);
+        Debug.Log(enemies.Count);
+        if(enemies.Count == 0)
+        {
+            ChangeStateToWon();
+        }
     }
 
     public void DealDamageToPlayer(Player thisPlayer, int amount)

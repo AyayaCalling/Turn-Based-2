@@ -7,6 +7,12 @@ public class Player : MonoBehaviour
 {
     #region Variables
 
+    //This variable describes the Gameobject, that this script is linked to.
+    public GameObject PlayerObj;
+
+    //This variable manages the Battlestructure and Battlestates
+    public Battlesystem Battle;
+
     // This variable describes, if the player is allowed to do smth.
     private bool active = true;
 
@@ -63,6 +69,18 @@ public class Player : MonoBehaviour
     public void SetActive(bool state)
     {
         active = state;
+        if(active)
+        {
+            Battle.SkillOneButton.interactable = true;
+            Battle.SkillTwoButton.interactable = true;
+            Battle.SkillThreeButton.interactable = true;
+        }
+        else
+        {
+            Battle.SkillOneButton.interactable = false;
+            Battle.SkillTwoButton.interactable = false;
+            Battle.SkillThreeButton.interactable = false;
+        }
     }
 
     // Getter-Method for the Variable level.
@@ -311,6 +329,7 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             SetCurrentHP(0);
+            Die();
         } else 
         {
             SetCurrentHP(hp);
@@ -448,7 +467,9 @@ public class Player : MonoBehaviour
     // NOT IMPLEMENTED
     public void Die()
     {
-
+        Destroy(PlayerObj);
+        Battle.ChangeStateToLost();
+        //trigger defeat screen
     }
 
     #endregion

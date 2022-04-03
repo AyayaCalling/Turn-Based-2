@@ -12,7 +12,7 @@ public class Strike : Skill
     public Battlesystem battle;
 
     //These variables store the damage values for different damage sources.
-    private int baseDamage = 10;
+    private int baseDamage = 100;
     private int statDamage;
     private int itemDamage;
 
