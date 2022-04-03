@@ -20,6 +20,9 @@ public class Battlesystem : MonoBehaviour
 
     private List<Enemy> enemies = new List<Enemy>();
 
+    //This variable is a Game related object for the defeat screen.
+    public GameObject DefeatScreen;
+
     //These methods change the current Battlestate.
     #region StateChanges
 
@@ -69,6 +72,11 @@ public class Battlesystem : MonoBehaviour
         state = BattleState.Lost;
         Debug.Log("You lost the Battle!");
         Player.SetActive(false);
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.EnemyObj.SetActive(false);
+        }
+        DefeatScreen.SetActive(true);
     }
 
     public void ChangeStateToNone()

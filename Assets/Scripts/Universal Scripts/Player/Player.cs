@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
             Battle.SkillOneButton.interactable = false;
             Battle.SkillTwoButton.interactable = false;
             Battle.SkillThreeButton.interactable = false;
+            Debug.Log("The Player is no set to inactive");
         }
     }
 
@@ -467,9 +468,8 @@ public class Player : MonoBehaviour
     // NOT IMPLEMENTED
     public void Die()
     {
-        Destroy(PlayerObj);
         Battle.ChangeStateToLost();
-        //trigger defeat screen
+        Destroy(PlayerObj);
     }
 
     #endregion
