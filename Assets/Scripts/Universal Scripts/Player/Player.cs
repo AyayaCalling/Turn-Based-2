@@ -56,7 +56,12 @@ public class Player : MonoBehaviour
     private int poisonTurns;
 
     #endregion  
-
+    
+    /// Awake is called when the script instance is being loaded.
+    public void Awake()
+    {
+        DontDestroyOnLoad(PlayerObj);
+    }
     #region GetterAndSetter
   
     // Getter-Method for the Variable active.
