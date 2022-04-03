@@ -79,13 +79,14 @@ public class Player : MonoBehaviour
             Battle.SkillOneButton.interactable = true;
             Battle.SkillTwoButton.interactable = true;
             Battle.SkillThreeButton.interactable = true;
+            Battle.EndTurnButton.interactable = true;
         }
         else
         {
             Battle.SkillOneButton.interactable = false;
             Battle.SkillTwoButton.interactable = false;
             Battle.SkillThreeButton.interactable = false;
-            Debug.Log("The Player is no set to inactive");
+            Battle.EndTurnButton.interactable = false;
         }
     }
 

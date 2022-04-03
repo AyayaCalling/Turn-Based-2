@@ -2845,6 +2845,7 @@ MonoBehaviour:
   SkillOneButton: {fileID: 684188947}
   SkillTwoButton: {fileID: 1294932417}
   SkillThreeButton: {fileID: 42635748}
+  EndTurnButton: {fileID: 1578803469}
   DefeatScreen: {fileID: 678623130}
 --- !u!1 &610640038
 GameObject:

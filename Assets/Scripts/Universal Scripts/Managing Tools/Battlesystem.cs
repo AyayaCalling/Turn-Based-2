@@ -15,6 +15,7 @@ public class Battlesystem : MonoBehaviour
     public Button SkillOneButton;
     public Button SkillTwoButton;
     public Button SkillThreeButton;
+    public Button EndTurnButton;
 
     private BattleState state = BattleState.PlayerTurn;
 
@@ -31,6 +32,7 @@ public class Battlesystem : MonoBehaviour
         SkillOneButton.interactable = true;
         SkillTwoButton.interactable = true;
         SkillThreeButton.interactable = true;
+        EndTurnButton.interactable = true;
 
         state = BattleState.PlayerTurn;
 
@@ -47,6 +49,7 @@ public class Battlesystem : MonoBehaviour
         SkillOneButton.interactable = false;
         SkillTwoButton.interactable = false;
         SkillThreeButton.interactable = false;
+        EndTurnButton.interactable = false;
 
         state = BattleState.EnemyTurn;
         Player.SetActive(false);
