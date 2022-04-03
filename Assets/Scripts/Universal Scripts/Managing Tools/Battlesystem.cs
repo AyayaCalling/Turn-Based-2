@@ -46,7 +46,8 @@ public class Battlesystem : MonoBehaviour
 
             foreach(Enemy enemy in enemies)
             {
-               Debug.Log(enemy + "'s Move!");     
+                enemy.Move();
+                Debug.Log(enemy + "'s Move!");     
             }
 
         ChangeStateToPlayerTurn();

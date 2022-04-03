@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private int currentHP = 100;
     private int maxHP = 100;
 
+    private int turnNumber = 1;
+
     private float scaleSlider;
     private float scaleButton; 
 
@@ -16,6 +18,8 @@ public class Enemy : MonoBehaviour
     public Transform EnemyTrans;
 
     public GameObject EnemyObj;
+
+    public Player Player;
 
     public RectTransform buttonRect;
     public RectTransform sliderRect;
@@ -26,6 +30,8 @@ public class Enemy : MonoBehaviour
     public void Start()
     {
         Battle.AddEnemy(this);
+
+        Player = FindObjectOfType<Player>();
 
         scaleButton = EnemyTrans.position.x * 25;
         scaleSlider = EnemyTrans.position.x * 30;
@@ -81,6 +87,27 @@ public class Enemy : MonoBehaviour
     {
         Battle.RemoveEnemy(this);
         Destroy(EnemyObj);
+    }
+
+    public virtual void  Move()
+    {
+        switch(turnNumber)
+        {
+            case 1:
+            Battle.DealDamageToPlayer(Player, 10);
+            turnNumber = 2;
+            break;
+
+            case 2:
+            Battle.DealDamageToPlayer(Player, 5);
+            turnNumber = 3;
+            break;
+
+            case 3:
+            Debug.Log("This will later put a Debuff on the Player.");
+            turnNumber = 1;
+            break;
+        }
     }
 }
 
