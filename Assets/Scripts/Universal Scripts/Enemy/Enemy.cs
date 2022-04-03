@@ -28,8 +28,14 @@ public class Enemy : MonoBehaviour
     private Vector3 posButton;
     private Vector3 posSlider;
 
+    private int buttonY = 30;
+    private int sliderY = 230;
+
     //This variable displays the player, the enemy currently targets.
     public Player Player;
+
+    //This variable stores all information a basic enemy needs to be created in game.
+    
 
     //This method shifts all UI elements to match the enemy's position and finds a default attack Target.
     public void Start()
@@ -38,11 +44,33 @@ public class Enemy : MonoBehaviour
 
         Player = FindObjectOfType<Player>();
 
-        scaleButton = EnemyTrans.position.x * 25;
-        scaleSlider = EnemyTrans.position.x * 30;
+        switch(EnemyTrans.position.x)
+        {
+            case -5:
+            posButton = new Vector3 (-180, buttonY, 0);
+            posSlider = new Vector3 (-180, sliderY, 0);
+            break;
 
-        posButton = new Vector3 (scaleButton, 100, 0);
-        posSlider = new Vector3 (scaleSlider, 300, 0);
+            case -2:
+            posButton = new Vector3 (-50, buttonY, 0);
+            posSlider = new Vector3 (-50, sliderY, 0);
+            break;
+
+            case -1:
+            posButton = new Vector3 (0, buttonY, 0);
+            posSlider = new Vector3 (0, sliderY, 0);
+            break;
+
+            case 1:
+            posButton = new Vector3 (85, buttonY, 0);
+            posSlider = new Vector3 (90, sliderY, 0);
+            break;
+
+            case 4:
+            posButton = new Vector3 (225, buttonY, 0);
+            posSlider = new Vector3 (220, sliderY, 0);
+            break;
+        }
 
         buttonRect.anchoredPosition = posButton;
         sliderRect.anchoredPosition = posSlider;
@@ -112,6 +140,7 @@ public class Enemy : MonoBehaviour
 
             case 3:
             Debug.Log("This will later put a Debuff on the Player.");
+            Object.Instantiate(EnemyObj, new Vector3(-5, 0, 10), new Quaternion(0, 0, 0, 0));
             turnNumber = 1;
             break;
         }
