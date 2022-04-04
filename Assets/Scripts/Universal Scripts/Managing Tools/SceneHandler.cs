@@ -63,18 +63,21 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadFight()
     {
+        HUD.DestroyDoors();
         SceneManager.LoadScene("Fight");
         Debug.Log("Loading next Fight!");
     }
 
     public void LoadEvent()
     {
+        HUD.DestroyDoors();
         SceneManager.LoadScene("Event");
         Debug.Log("Loading next Event!");
     }
 
     public void LoadRest()
     {
+        HUD.DestroyDoors();
         SceneManager.LoadScene("Rest");
         Debug.Log("Loading next Rest!");
     }

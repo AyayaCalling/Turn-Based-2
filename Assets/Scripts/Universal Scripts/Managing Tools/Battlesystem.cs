@@ -27,6 +27,7 @@ public class Battlesystem : MonoBehaviour
     //These varialbes are used to create exit doors
     //private int amountOfPossibleExits = 3;
     //private int amountOfDoors = 2;
+    public HUD HUD;
 
     public GameObject EventDoor;
     public GameObject FightDoor;
@@ -35,6 +36,8 @@ public class Battlesystem : MonoBehaviour
     Vector3 doorPos = new Vector3(0, 540, 0);
 
     public Transform doorParent;
+
+    private GameObject doorObj;
 
     //These methods change the current Battlestate.
     #region StateChanges
@@ -185,8 +188,7 @@ public class Battlesystem : MonoBehaviour
                     Object.Instantiate(EventDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
                 break;
             }  
-
         }
-           
+
     }
 }
