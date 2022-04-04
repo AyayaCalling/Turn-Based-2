@@ -58,6 +58,29 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
+    //These methods are used to load the different rooms after using a door.
+    #region Load Areas;
+
+    public void LoadFight()
+    {
+        SceneManager.LoadScene("Fight");
+        Debug.Log("Loading next Fight!");
+    }
+
+    public void LoadEvent()
+    {
+        SceneManager.LoadScene("Event");
+        Debug.Log("Loading next Event!");
+    }
+
+    public void LoadRest()
+    {
+        SceneManager.LoadScene("Rest");
+        Debug.Log("Loading next Rest!");
+    }
+
+    #endregion
+
     public void QuitGame()
     {
         Application.Quit();

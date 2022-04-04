@@ -24,6 +24,18 @@ public class Battlesystem : MonoBehaviour
     //This variable is a Game related object for the defeat screen.
     public GameObject DefeatScreen;
 
+    //These varialbes are used to create exit doors
+    //private int amountOfPossibleExits = 3;
+    //private int amountOfDoors = 2;
+
+    public GameObject EventDoor;
+    public GameObject FightDoor;
+    public GameObject RestDoor;
+
+    Vector3 doorPos = new Vector3(0, 540, 0);
+
+    public Transform doorParent;
+
     //These methods change the current Battlestate.
     #region StateChanges
 
@@ -68,6 +80,7 @@ public class Battlesystem : MonoBehaviour
         state = BattleState.Won;
         Debug.Log("You won the Battle!");
         Player.SetActive(false);
+        CreateExit();
     }
 
     public void ChangeStateToLost()
@@ -140,6 +153,40 @@ public class Battlesystem : MonoBehaviour
     }
 
 
-
     
+    //This method creates the exit doors after a won battle
+    public void CreateExit()
+    {
+        for(int i = 0; i < 2; i++)
+        {
+            int doorType = Random.Range(1,3);
+
+            switch(i)
+            {
+                case 0:
+                    doorPos.x = 760;
+                break;
+
+                case 1:
+                    doorPos.x = 1160;
+                break;
+            }
+            switch(doorType)
+            {
+                case 1:
+                    Object.Instantiate(FightDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
+                break;
+
+                case 2:
+                    Object.Instantiate(RestDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
+                break;
+
+                case 3:
+                    Object.Instantiate(EventDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
+                break;
+            }  
+
+        }
+           
+    }
 }
