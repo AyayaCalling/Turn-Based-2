@@ -33,7 +33,8 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadMainMenu()
     {
-       SceneManager.LoadScene("Main Menu");
+        HUD.DestroyHUD();
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void StartGame()
