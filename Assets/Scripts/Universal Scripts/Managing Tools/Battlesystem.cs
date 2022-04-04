@@ -52,6 +52,7 @@ public class Battlesystem : MonoBehaviour
     //Player Turn
     public void ChangeStateToPlayerTurn()
     {
+        //Allows interaction with the skill buttons.
         SkillOneButton.interactable = true;
         SkillTwoButton.interactable = true;
         SkillThreeButton.interactable = true;
@@ -59,10 +60,13 @@ public class Battlesystem : MonoBehaviour
 
         state = BattleState.PlayerTurn;
 
+        //Allows the player to take actions.
         Player.SetActive(true);
 
+        //Resets the block value.
         Player.SetBlock(0);
 
+        //Refills the mana to max capacity.
         Player.SetCurrentMana(Player.GetMaxMana());
 
     }
@@ -92,7 +96,18 @@ public class Battlesystem : MonoBehaviour
     {
         state = BattleState.Won;
         Debug.Log("You won the Battle!");
+
+        //Deactivates fighting actions.
         Player.SetActive(false);
+
+        //This ensures the player does not have debuffs after leaving the fight.
+        Player.SetVulnerableTurns(0);
+        Player.SetWeakTurns(0);
+        Player.SetWeakness(0);
+        Player.SetVulnerable(1);
+        //Player.SetPoisonTurns(0);
+
+        //Creates Exits to continue the progession
         CreateExit();
     }
 
@@ -101,11 +116,17 @@ public class Battlesystem : MonoBehaviour
     {
         state = BattleState.Lost;
         Debug.Log("You lost the Battle!");
+
+        //Disables player actions.
         Player.SetActive(false);
+
+        //Disables all enemies to not interfere with the defeat screen.
         foreach(Enemy enemy in enemies)
         {
             enemy.EnemyObj.SetActive(false);
         }
+
+        //Enables defeat screen.
         DefeatScreen.SetActive(true);
     }
 
@@ -121,6 +142,7 @@ public class Battlesystem : MonoBehaviour
     //Button-Method for the End-Turn Button.
     public void OnEndturn()
     {
+        //Reduce all debuffs granted in the player by 1 turn. If the counter reaches 0, cleanses the debuff.
         //Small Bug causes one Turn of vulerability loss. Debuff runs out before the enemies get a turn.
         Player.DecWeakTurns(1);
 

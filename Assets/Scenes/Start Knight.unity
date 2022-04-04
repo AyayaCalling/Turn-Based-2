@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUD: {fileID: 698036379}
+  thisDoor: {fileID: 107938150}
 --- !u!1 &120664531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,6 +2961,7 @@ Transform:
   m_Children:
   - {fileID: 2022512684}
   - {fileID: 654594588}
+  - {fileID: 1666842366}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3025,7 +3027,7 @@ MonoBehaviour:
   SkillThreeButton: {fileID: 42635748}
   EndTurnButton: {fileID: 1578803469}
   DefeatScreen: {fileID: 678623130}
-  HUD: {fileID: 0}
+  HUD: {fileID: 698036379}
   EventDoor: {fileID: 107938150}
   FightDoor: {fileID: 1538580698}
   RestDoor: {fileID: 1596243664}
@@ -6853,6 +6855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUD: {fileID: 698036379}
+  thisDoor: {fileID: 1538580698}
 --- !u!1 &1540571402
 GameObject:
   m_ObjectHideFlags: 0
@@ -7326,6 +7329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUD: {fileID: 698036379}
+  thisDoor: {fileID: 1596243664}
 --- !u!1 &1596937510
 GameObject:
   m_ObjectHideFlags: 0
@@ -7552,6 +7556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUD: {fileID: 698036379}
+  Battle: {fileID: 610072213}
 --- !u!4 &1666842366
 Transform:
   m_ObjectHideFlags: 0
@@ -7559,12 +7564,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666842364}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9985459, y: 1.387439, z: -12.297344}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.9985459, y: 2.387439, z: -12.297344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 610072206}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1668366825
 GameObject:

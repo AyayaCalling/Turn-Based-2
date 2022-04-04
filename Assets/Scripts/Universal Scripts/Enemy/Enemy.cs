@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private float scaleSlider;
     private float scaleButton; 
 
-    public Battlesystem Battle;
+    private Battlesystem battle;
 
     public Transform EnemyTrans;
 
@@ -40,7 +40,9 @@ public class Enemy : MonoBehaviour
     //This method shifts all UI elements to match the enemy's position and finds a default attack Target.
     public void Start()
     {
-        Battle.AddEnemy(this);
+        battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
+
+        battle.AddEnemy(this);
 
         Player = FindObjectOfType<Player>();
 
@@ -119,7 +121,7 @@ public class Enemy : MonoBehaviour
     //This method kills and destroys the enemy if its HP reaches zero.
     public void Die()
     {
-        Battle.RemoveEnemy(this);
+        battle.RemoveEnemy(this);
         Destroy(EnemyObj);
     }
 
@@ -129,12 +131,12 @@ public class Enemy : MonoBehaviour
         switch(turnNumber)
         {
             case 1:
-            Battle.DealDamageToPlayer(Player, 10);
+            battle.DealDamageToPlayer(Player, 10);
             turnNumber = 2;
             break;
 
             case 2:
-            Battle.DealDamageToPlayer(Player, 5);
+            battle.DealDamageToPlayer(Player, 5);
             turnNumber = 3;
             break;
 

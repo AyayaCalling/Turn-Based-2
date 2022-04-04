@@ -12,6 +12,9 @@ public class SceneHandler : MonoBehaviour
     //This variable represents the currently selected Character.
     private string character;
 
+    //This variable stores all Battlesystem info.
+    public Battlesystem Battle;
+
     #region Character Selection
 
     //This method sets the selected Character
@@ -66,12 +69,14 @@ public class SceneHandler : MonoBehaviour
     //These methods are used to load the different rooms after using a door.
     #region Load Areas;
 
-    //Loads a standart Fight.
+    //Loads a standard Fight.
     public void LoadFight()
     {
         HUD.DestroyDoors();
         SceneManager.LoadScene("Fight");
         Debug.Log("Loading next Fight!");
+        Battle.ChangeStateToPlayerTurn();
+        Debug.Log("Battle State is now changed to Player's turn. " + Battle.Player.GetActive());
     }
 
     //Loads an Event
