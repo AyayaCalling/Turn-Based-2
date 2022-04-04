@@ -18,7 +18,6 @@ public class Door : MonoBehaviour
    {
        if(thisDoor.name.Contains("Clone"))
        {
-            Debug.Log("Destroying door: " + thisDoor);
             Destroy(thisDoor);
        }
    }

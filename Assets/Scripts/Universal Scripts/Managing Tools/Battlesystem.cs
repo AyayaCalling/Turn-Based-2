@@ -5,20 +5,25 @@ using UnityEngine.UI;
 
 public class Battlesystem : MonoBehaviour
 {
+    #region Variables
+
     enum BattleState
     {
         PlayerTurn, EnemyTurn, Won, Lost, None
     }  
-
+    //This variable stores all needed player info.
     public Player Player;
 
+    //These variables describe Buttons, that need to be dis-/enabled
     public Button SkillOneButton;
     public Button SkillTwoButton;
     public Button SkillThreeButton;
     public Button EndTurnButton;
 
+    //The used instance of the enum "Battlestate".
     private BattleState state = BattleState.PlayerTurn;
 
+    //This List tracks the amount of enemies that currently are present in the game.
     private List<Enemy> enemies = new List<Enemy>();
 
     //This variable is a Game related object for the defeat screen.
@@ -39,9 +44,12 @@ public class Battlesystem : MonoBehaviour
 
     private GameObject doorObj;
 
-    //These methods change the current Battlestate.
+    #endregion
+
+    //These methods change the current Battlestate to the following states...
     #region StateChanges
 
+    //Player Turn
     public void ChangeStateToPlayerTurn()
     {
         SkillOneButton.interactable = true;
@@ -59,6 +67,7 @@ public class Battlesystem : MonoBehaviour
 
     }
 
+    //Enemy Turn
     public void ChangeStateToEnemyTurn()
     {
         SkillOneButton.interactable = false;
@@ -78,6 +87,7 @@ public class Battlesystem : MonoBehaviour
         ChangeStateToPlayerTurn();
     }
 
+    //Won Battle
     public void ChangeStateToWon()
     {
         state = BattleState.Won;
@@ -86,6 +96,7 @@ public class Battlesystem : MonoBehaviour
         CreateExit();
     }
 
+    //Lost Battle
     public void ChangeStateToLost()
     {
         state = BattleState.Lost;
@@ -98,6 +109,7 @@ public class Battlesystem : MonoBehaviour
         DefeatScreen.SetActive(true);
     }
 
+    //No Battlestate (Nothing's happening here :<)
     public void ChangeStateToNone()
     {
         state = BattleState.None;
@@ -145,6 +157,7 @@ public class Battlesystem : MonoBehaviour
         Debug.Log("Dealt " + amount + " damage to Player " + thisPlayer);
     }
 
+    //These methods are used to update the "enemies" list.
     public void AddEnemy(Enemy enemy)
     {
         enemies.Add(enemy);
@@ -155,8 +168,6 @@ public class Battlesystem : MonoBehaviour
         enemies.Remove(enemy);
     }
 
-
-    
     //This method creates the exit doors after a won battle
     public void CreateExit()
     {

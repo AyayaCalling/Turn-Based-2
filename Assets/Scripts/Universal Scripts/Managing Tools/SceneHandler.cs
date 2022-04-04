@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 //This class Manages all Scenes in the Game. It will load fights, events, close the game and start it.
 public class SceneHandler : MonoBehaviour
 {
+    //This variable holds all Hud information used by this class.
     public HUD HUD;
 
+    //This variable represents the currently selected Character.
     private string character;
 
     #region Character Selection
 
+    //This method sets the selected Character
     public void SelectCharacter(string name)
     {
         if(character != name)
@@ -24,6 +27,7 @@ public class SceneHandler : MonoBehaviour
         }     
     }
 
+    //This method returns the currently selected Character.
     public string GetCharacter()
     {
         return character;
@@ -31,6 +35,7 @@ public class SceneHandler : MonoBehaviour
 
     #endregion
 
+    //These methods Load different core scenes of the game, such as: Main Menu and First Fight.
     public void LoadMainMenu()
     {
         HUD.DestroyHUD();
@@ -61,6 +66,7 @@ public class SceneHandler : MonoBehaviour
     //These methods are used to load the different rooms after using a door.
     #region Load Areas;
 
+    //Loads a standart Fight.
     public void LoadFight()
     {
         HUD.DestroyDoors();
@@ -68,6 +74,7 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Loading next Fight!");
     }
 
+    //Loads an Event
     public void LoadEvent()
     {
         HUD.DestroyDoors();
@@ -75,6 +82,7 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Loading next Event!");
     }
 
+    //Loads a Restsite to Heal or enhance a Skill.
     public void LoadRest()
     {
         HUD.DestroyDoors();
@@ -84,6 +92,7 @@ public class SceneHandler : MonoBehaviour
 
     #endregion
 
+    //Quits the Game.....yes that's it.
     public void QuitGame()
     {
         Application.Quit();
