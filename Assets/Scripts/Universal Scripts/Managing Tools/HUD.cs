@@ -6,7 +6,7 @@ public class HUD : MonoBehaviour
 {
     public GameObject thisObj;
 
-    private List<GameObject> doors = new List<GameObject>();
+    private List<Door> doors = new List<Door>();
 
     public void Awake()
     {
@@ -18,19 +18,16 @@ public class HUD : MonoBehaviour
         Destroy(thisObj);
     }
 
-    public void UpdateDoorList(GameObject door)
+    public void UpdateDoorList(Door door)
     {  
         doors.Add(door);
     }
 
     public void DestroyDoors()
     {
-        foreach(GameObject door in doors)
+        foreach(Door door in doors)
         {
-            if(door.transform.position.y != -400)
-            {
-                Destroy(door.GetComponent<GameObject>());
-            }
+                door.DestroyDoor();
         }
     }
 }
