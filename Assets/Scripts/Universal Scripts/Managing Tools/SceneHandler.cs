@@ -69,7 +69,7 @@ public class SceneHandler : MonoBehaviour
     //These methods are used to load the different rooms after using a door.
     #region Load Areas;
 
-    //Loads a standard Fight.
+    //Loads a standard Fight. Currently buggy. New Fight does not allow any actions taken by the Player.
     public void LoadFight()
     {
         HUD.DestroyDoors();
