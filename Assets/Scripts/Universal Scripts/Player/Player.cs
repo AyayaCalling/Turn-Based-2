@@ -475,7 +475,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         Battle.ChangeStateToLost();
-        Destroy(PlayerObj);
+        PlayerObj.SetActive(false);
     }
 
     #endregion

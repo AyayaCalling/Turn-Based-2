@@ -645,7 +645,7 @@ Transform:
   - {fileID: 1440503254}
   - {fileID: 1668366826}
   m_Father: {fileID: 698036378}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &107938152
 MonoBehaviour:
@@ -3856,7 +3856,7 @@ RectTransform:
   - {fileID: 781421530}
   - {fileID: 1741260728}
   m_Father: {fileID: 698036378}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4066,11 +4066,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 956541599}
   - {fileID: 1596243665}
   - {fileID: 1538580699}
   - {fileID: 107938151}
   - {fileID: 678623131}
+  - {fileID: 956541599}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4973,6 +4973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4f03c3f11e18c419faeb9fb719e2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
 --- !u!4 &956541599
 Transform:
   m_ObjectHideFlags: 0
@@ -4987,7 +4988,7 @@ Transform:
   - {fileID: 1570517713}
   - {fileID: 1978827688}
   m_Father: {fileID: 698036378}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956885665
 GameObject:
@@ -7281,7 +7282,7 @@ Transform:
   - {fileID: 2000309245}
   - {fileID: 1420403080}
   m_Father: {fileID: 698036378}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1538580700
 MonoBehaviour:
@@ -7637,7 +7638,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1570517715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 956541598}
+        m_TargetAssemblyTypeName: Heal, Assembly-CSharp
+        m_MethodName: OnHealButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1570517715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7876,7 +7889,7 @@ Transform:
   - {fileID: 1467816355}
   - {fileID: 595499125}
   m_Father: {fileID: 698036378}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1596243666
 MonoBehaviour:
@@ -8196,6 +8209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92f7b8d7dd106741b8d56492d71af45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 610072205}
   HUD: {fileID: 698036379}
   Battle: {fileID: 610072213}
   RestUI: {fileID: 956541597}

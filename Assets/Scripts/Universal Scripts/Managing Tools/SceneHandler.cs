@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 //This class Manages all Scenes in the Game. It will load fights, events, close the game and start it.
 public class SceneHandler : MonoBehaviour
 {
+    public Player Player;
+
     //This variable holds all Hud information used by this class.
     public HUD HUD;
 
@@ -44,6 +46,7 @@ public class SceneHandler : MonoBehaviour
     //These methods Load different core scenes of the game, such as: Main Menu and First Fight.
     public void LoadMainMenu()
     {
+        Destroy(Player.PlayerObj);
         HUD.DestroyHUD();
         SceneManager.LoadScene("Main Menu");
     }
@@ -60,6 +63,7 @@ public class SceneHandler : MonoBehaviour
 
     public void Restart(string usedCharacter)
     {
+        Destroy(Player.PlayerObj);
         switch(usedCharacter)
         {
             case "Knight":
