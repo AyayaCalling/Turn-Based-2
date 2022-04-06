@@ -52,14 +52,14 @@ public class Enemy : MonoBehaviour
 
         switch(EnemyTrans.position.x)
         {
-            case -5:
-                posButton = new Vector3 (-180, buttonY, 0);
-                posSlider = new Vector3 (-180, sliderY, 0);
+            case -7:
+                posButton = new Vector3 (-265, buttonY, 0);
+                posSlider = new Vector3 (-265, sliderY, 0);
                 break;
 
-            case -2:
-                posButton = new Vector3 (-50, buttonY, 0);
-                posSlider = new Vector3 (-50, sliderY, 0);
+            case -4:
+                posButton = new Vector3 (-135, buttonY, 0);
+                posSlider = new Vector3 (-135, sliderY, 0);
                 break;
 
             case -1:
@@ -67,14 +67,14 @@ public class Enemy : MonoBehaviour
                 posSlider = new Vector3 (0, sliderY, 0);
                 break;
 
-            case 1:
-                posButton = new Vector3 (85, buttonY, 0);
-                posSlider = new Vector3 (90, sliderY, 0);
+            case 2:
+                posButton = new Vector3 (135, buttonY, 0);
+                posSlider = new Vector3 (135, sliderY, 0);
                 break;
 
-            case 4:
-                posButton = new Vector3 (225, buttonY, 0);
-                posSlider = new Vector3 (220, sliderY, 0);
+            case 5:
+                posButton = new Vector3 (265, buttonY, 0);
+                posSlider = new Vector3 (265, sliderY, 0);
                 break;
 
             default:

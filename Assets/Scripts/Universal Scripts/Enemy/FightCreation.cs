@@ -27,10 +27,10 @@ public class FightCreation : MonoBehaviour
 
     //These are all Vectors that enemies can be placed on.
     private Vector3 posOne = new Vector3(-1, 0, 10);
-    private Vector3 posTwo = new Vector3(-2, 0, 10);
-    private Vector3 posThree = new Vector3(-5, 0, 10);
-    private Vector3 posFour = new Vector3(1, 0, 10);
-    private Vector3 posFive = new Vector3(4, 0, 10);
+    private Vector3 posTwo = new Vector3(-4, 0, 10);
+    private Vector3 posThree = new Vector3(-7, 0, 10);
+    private Vector3 posFour = new Vector3(2, 0, 10);
+    private Vector3 posFive = new Vector3(5, 0, 10);
 
     private Quaternion standard = new Quaternion(0, 0, 0, 0);
 
