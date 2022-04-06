@@ -35,11 +35,15 @@ public class Enemy : MonoBehaviour
     public Player Player;
 
     //This variable stores all information a basic enemy needs to be created in game.
-    
+    public Button button;
 
     //This method shifts all UI elements to match the enemy's position and finds a default attack Target.
     public void Start()
     {
+        button.onClick.AddListener(TargetClick);
+
+        Debug.Log("Initiating Battle Mode!");
+
         battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
 
         battle.AddEnemy(this);
@@ -146,10 +150,15 @@ public class Enemy : MonoBehaviour
             Player.SetWeakTurns(2);
             Player.SetVulnerable(2f);
             Player.SetVulnerableTurns(2);
-            //Object.Instantiate(EnemyObj, new Vector3(-5, 0, 10), new Quaternion(0, 0, 0, 0));
+            Object.Instantiate(EnemyObj, new Vector3(-5, 0, 10), new Quaternion(0, 0, 0, 0));
             turnNumber = 1;
             break;
         }
+    }
+
+    public void TargetClick()
+    {
+        Player.GetComponent<TargettingSystem>().TargetThisEnemy(this);
     }
 }
 
