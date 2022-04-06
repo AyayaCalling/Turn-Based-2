@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 //This class Manages all Scenes in the Game. It will load fights, events, close the game and start it.
 public class SceneHandler : MonoBehaviour
 {
+    //as always
     public Player Player;
 
     //This variable holds all Hud information used by this class.
@@ -17,8 +18,11 @@ public class SceneHandler : MonoBehaviour
     //This variable stores all Battlesystem info.
     public Battlesystem Battle;
 
-    //This variable is linked to the Restsite UI;
+    //This variable represents the Restsite UI;
     public GameObject RestUI;
+
+    //This variable represents the Event UI;
+    public GameObject EventUI;
 
     #region Character Selection
 
@@ -91,6 +95,8 @@ public class SceneHandler : MonoBehaviour
     {
         HUD.DestroyDoors();
         SceneManager.LoadScene("Event");
+        Player.PlayerObj.SetActive(false);
+        EventUI.SetActive(true);
         Debug.Log("Loading next Event!");
     }
 
