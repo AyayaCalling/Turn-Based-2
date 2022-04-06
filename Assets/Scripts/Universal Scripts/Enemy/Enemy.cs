@@ -53,29 +53,33 @@ public class Enemy : MonoBehaviour
         switch(EnemyTrans.position.x)
         {
             case -5:
-            posButton = new Vector3 (-180, buttonY, 0);
-            posSlider = new Vector3 (-180, sliderY, 0);
-            break;
+                posButton = new Vector3 (-180, buttonY, 0);
+                posSlider = new Vector3 (-180, sliderY, 0);
+                break;
 
             case -2:
-            posButton = new Vector3 (-50, buttonY, 0);
-            posSlider = new Vector3 (-50, sliderY, 0);
-            break;
+                posButton = new Vector3 (-50, buttonY, 0);
+                posSlider = new Vector3 (-50, sliderY, 0);
+                break;
 
             case -1:
-            posButton = new Vector3 (0, buttonY, 0);
-            posSlider = new Vector3 (0, sliderY, 0);
-            break;
+                posButton = new Vector3 (0, buttonY, 0);
+                posSlider = new Vector3 (0, sliderY, 0);
+                break;
 
             case 1:
-            posButton = new Vector3 (85, buttonY, 0);
-            posSlider = new Vector3 (90, sliderY, 0);
-            break;
+                posButton = new Vector3 (85, buttonY, 0);
+                posSlider = new Vector3 (90, sliderY, 0);
+                break;
 
             case 4:
-            posButton = new Vector3 (225, buttonY, 0);
-            posSlider = new Vector3 (220, sliderY, 0);
-            break;
+                posButton = new Vector3 (225, buttonY, 0);
+                posSlider = new Vector3 (220, sliderY, 0);
+                break;
+
+            default:
+                Debug.Log("There shouldn't be an enemy in this location");
+                break;
         }
 
         buttonRect.anchoredPosition = posButton;

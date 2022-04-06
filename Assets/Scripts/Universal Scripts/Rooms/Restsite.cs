@@ -38,6 +38,6 @@ public class Restsite : MonoBehaviour
     //This method opens an overview of all possible Upgrades for your skills. (The upgrading is done in a seperate class).
     public void OnSkillUpButton()
     {
-
+        Debug.Log("Coming Soon.");
     }
 }

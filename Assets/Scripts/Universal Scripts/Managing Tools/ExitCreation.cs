@@ -21,7 +21,7 @@ public class ExitCreation : MonoBehaviour
     private GameObject doorObj;
     
 
-    //This method creates the exit doors after a won battle
+    //This method creates "amount" randomly generated door types.
     public void CreateRandomExits(int amount)
     {    
         HUD.RemoveOldDoors();
@@ -41,7 +41,7 @@ public class ExitCreation : MonoBehaviour
                     {
                         doorPos.x = 760;
                     }
-                break;
+                    break;
 
                 case 1:
                     if(amount == 2)
@@ -52,27 +52,62 @@ public class ExitCreation : MonoBehaviour
                     {
                         doorPos.x = 960;
                     }   
-                break;
+                    break;
 
                 case 2:
                     doorPos.x = 1160;
-                break;
+                    break;
+                
+                default:
+                    Debug.Log("Too many or too few doors. Pls choose an amount between 1 and 3");
+                    break;
             }
             switch(doorType)
             {
                 case 1:
                     Object.Instantiate(FightDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
-                break;
+                    break;
 
                 case 2:
                     Object.Instantiate(RestDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
-                break;
+                    break;
 
                 case 3:
                     Object.Instantiate(EventDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
-                break;
+                    break;
+                
+                default:
+                    Debug.Log("I don't know that door.");
+                    break;
             }  
         }
 
+    }
+
+    //This creates one particular exit, based on the value of "doorType".
+    public void CreateFixExit(string doorType)
+    {
+        HUD.RemoveOldDoors();
+
+        doorPos.x = 960;
+
+        switch(doorType)
+        {
+            case "Fight":
+                Object.Instantiate(FightDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
+                break;
+
+            case "Rest":
+                Object.Instantiate(RestDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
+                break;
+
+            case "Event":
+                Object.Instantiate(EventDoor, doorPos, new Quaternion(0, 0, 0, 0), doorParent);
+                break;
+
+            default:
+                Debug.Log("I don't know that door.");
+                break;
+        }
     }
 }

@@ -23,6 +23,7 @@ public class SceneHandler : MonoBehaviour
 
     //This variable represents the Event UI;
     public GameObject EventUI;
+    public Eventroom EventManager;
 
     #region Character Selection
 
@@ -97,6 +98,7 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("Event");
         Player.PlayerObj.SetActive(false);
         EventUI.SetActive(true);
+        EventManager.CreateEvent();
         Debug.Log("Loading next Event!");
     }
 
