@@ -15,6 +15,9 @@ public class SceneHandler : MonoBehaviour
     //This variable stores all Battlesystem info.
     public Battlesystem Battle;
 
+    //This variable is linked to the Restsite UI;
+    public GameObject RestUI;
+
     #region Character Selection
 
     //This method sets the selected Character
@@ -93,6 +96,7 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("Rest");
         Debug.Log("Loading next Rest!");
         HUD.DestroyDoors();
+        RestUI.SetActive(true);
     }
 
     #endregion
