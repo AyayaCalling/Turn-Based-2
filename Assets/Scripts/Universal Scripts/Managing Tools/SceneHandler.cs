@@ -72,11 +72,11 @@ public class SceneHandler : MonoBehaviour
     //Loads a standard Fight. Currently buggy. New Fight does not allow any actions taken by the Player.
     public void LoadFight()
     {
-        HUD.DestroyDoors();
         SceneManager.LoadScene("Fight");
         Debug.Log("Loading next Fight!");
         Battle.ChangeStateToPlayerTurn();
         Debug.Log("Battle State is now changed to Player's turn. " + Battle.Player.GetActive());
+        HUD.DestroyDoors();
     }
 
     //Loads an Event
@@ -90,9 +90,9 @@ public class SceneHandler : MonoBehaviour
     //Loads a Restsite to Heal or enhance a Skill.
     public void LoadRest()
     {
-        HUD.DestroyDoors();
         SceneManager.LoadScene("Rest");
         Debug.Log("Loading next Rest!");
+        HUD.DestroyDoors();
     }
 
     #endregion

@@ -95,6 +95,9 @@ public class Battlesystem : MonoBehaviour
     public void ChangeStateToWon()
     {
         state = BattleState.Won;
+
+        HUD.RemoveOldDoors();
+
         Debug.Log("You won the Battle!");
 
         //Deactivates fighting actions.

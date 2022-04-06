@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
 
    public void Awake()
    {
-       HUD.UpdateDoorList(this);
+       AddToHUD();
    }
 
    public void DestroyDoor()
@@ -20,5 +20,10 @@ public class Door : MonoBehaviour
        {
             Destroy(thisDoor);
        }
+   }
+
+   public void AddToHUD()
+   {
+       HUD.AddDoor(this);
    }
 }

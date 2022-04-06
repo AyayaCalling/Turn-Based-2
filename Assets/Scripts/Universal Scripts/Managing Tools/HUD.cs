@@ -9,6 +9,7 @@ public class HUD : MonoBehaviour
 
     //This variable is needed for the door destroying work around.
     private List<Door> doors = new List<Door>();
+    private List<Door> originalDoors = new List<Door>();
 
     //This method ensures, that the Hud will not be destroyed when loading new scenes.
     public void Awake()
@@ -23,9 +24,19 @@ public class HUD : MonoBehaviour
     }
 
     //These methods are related to the door destroying work around.
-    public void UpdateDoorList(Door door)
+    public void AddDoor(Door door)
     {  
         doors.Add(door);
+
+        if(!door.name.Contains("Clone"))
+        {
+            originalDoors.Add(door);
+        }
+    }
+
+    public void RemoveDoor(Door door)
+    {
+        doors.Remove(door);
     }
 
     public void DestroyDoors()
@@ -35,4 +46,14 @@ public class HUD : MonoBehaviour
                 door.DestroyDoor();
         }
     }
+
+      public void RemoveOldDoors()
+   {
+       doors.Clear();
+       foreach(Door door in originalDoors)
+       {
+           doors.Add(door);
+       }
+   }
 }
+
