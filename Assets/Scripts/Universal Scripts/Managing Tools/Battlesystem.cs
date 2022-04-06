@@ -32,6 +32,8 @@ public class Battlesystem : MonoBehaviour
     //The class used to create all exits.
     public ExitCreation ExitCreation;
 
+    public SceneHandler SceneHandler;
+
     #endregion
 
     //These methods change the current Battlestate to the following states...
@@ -96,8 +98,11 @@ public class Battlesystem : MonoBehaviour
         Player.SetVulnerable(1);
         //Player.SetPoisonTurns(0);
 
+        if(SceneHandler.GetStage() < 20)
         //Creates Exits to continue the progession
         ExitCreation.CreateRandomExits(2);
+        else 
+        ExitCreation.CreateFixExit("Boss");
     }
 
     //Lost Battle
