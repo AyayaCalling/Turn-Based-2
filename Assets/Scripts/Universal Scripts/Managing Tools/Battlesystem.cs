@@ -164,8 +164,13 @@ public class Battlesystem : MonoBehaviour
 
     public void DealDamageToPlayer(Player thisPlayer, int amount)
     {
-        thisPlayer.DecCurrentHP(Mathf.RoundToInt(amount * Player.GetVulnerable()));
-        Debug.Log("Dealt " + amount + " damage to Player " + thisPlayer);
+        int damage = Mathf.RoundToInt((amount * Player.GetVulnerable() - Player.GetBlock()));
+
+        if(damage > 0)
+        {
+            Player.DecCurrentHP(damage);
+            Debug.Log("Dealt " + amount + " damage to Player " + thisPlayer);
+        }
     }
 
     //These methods are used to update the "enemies" list.

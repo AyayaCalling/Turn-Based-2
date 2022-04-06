@@ -17,6 +17,79 @@ public class Skill : MonoBehaviour
     //This varibale constantly checks for availability of the Skill.
     public ManaObserver observer;
 
+    //These variables scale the Skilldamage the player will deal.
+    private int baseDamage;
+    private int statDamage;
+    private int itemDamage;
+
+    //These methods set and get different values of "Strike".
+    #region Setter/Getter
+
+    public void SetBaseDamage(int dmg)
+    {
+        baseDamage = dmg;
+    }
+
+    public int GetBaseDamage()
+    {
+        return baseDamage;
+    }
+
+    public void SetStatDamage(int dmg)
+    {
+        statDamage = dmg;
+    }
+
+    public int GetStatDamage()
+    {
+        return statDamage;
+    }
+
+    public void SetItemDamage(int dmg)
+    {
+        itemDamage = dmg;
+    }
+
+    public int GetItemDamage()
+    {
+        return itemDamage;
+    }
+    #endregion
+
+    //These methods increase and decrease different values of "Strike"
+    #region  Inc/Dec
+
+    public void IncBaseDamage(int dmg)
+    {
+        baseDamage += dmg;
+    }
+
+    public void DecBaseDamage(int dmg)
+    {
+        baseDamage -= dmg;
+    }
+
+    public void IncStatDamage(int dmg)
+    {
+        statDamage += dmg;
+    }
+
+    public void DecStatDamage(int dmg)
+    {
+        statDamage -= dmg;
+    }
+
+    public void IncItemDamage(int dmg)
+    {
+        itemDamage += dmg;
+    }   
+
+    public void DecItemDamage(int dmg)
+    {
+        itemDamage -= dmg;
+    }
+    #endregion
+
     //Getter-Method for the Skills mana cost
     public int GetManaCost()
     {

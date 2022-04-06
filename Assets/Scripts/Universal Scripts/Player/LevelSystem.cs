@@ -12,6 +12,8 @@ public class LevelSystem : MonoBehaviour
     // This variable stores the values and actions of the player.
     public Player Player;
 
+    public DamageScaler DamageScaler;
+
     // This variable stores the values for the HUD.
     public PlayerHUD HUD;
 
@@ -59,7 +61,6 @@ public class LevelSystem : MonoBehaviour
     
     #endregion
 
-    // FEHLT NOCH LEVEL ÄNDERUNGEN BEI ALLEN AUßER VIGOR
     #region ButtonMethods
 
     // This Method increases the tempVigor variable.
@@ -299,6 +300,8 @@ public class LevelSystem : MonoBehaviour
         Player.IncCurrentMana(mind);
         Player.IncPhysDmg(str);
         Player.IncMagiDmg(intel);
+
+        DamageScaler.ScaleStatValue();
 
         HUD.updateSliders();
     }
