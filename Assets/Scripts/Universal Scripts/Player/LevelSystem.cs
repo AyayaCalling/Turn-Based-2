@@ -52,6 +52,10 @@ public class LevelSystem : MonoBehaviour
     public Text dexTempText;
     public Text strTempText;
     public Text intTempText;
+
+    //display Player lvl and lvls to spend.
+    public Text playerLvL;
+    public Text spendableLvLs;
     
     #endregion
 
@@ -67,7 +71,10 @@ public class LevelSystem : MonoBehaviour
             Player.DecLevelToSpent(1);
 
             vigTempText.text = "+" + tempVigor.ToString();
-        } else {
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
+        } 
+        else 
+        {
             Debug.Log("Cant spend skill point without having a skill point :)");
         }
     }
@@ -82,6 +89,7 @@ public class LevelSystem : MonoBehaviour
             Player.IncLevelToSpent(1);
 
             vigTempText.text = "+" + tempVigor.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
         else
         {
@@ -101,6 +109,7 @@ public class LevelSystem : MonoBehaviour
             Player.DecLevelToSpent(1);
 
             minTempText.text = "+" + tempMind.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
         else 
         {
@@ -118,6 +127,7 @@ public class LevelSystem : MonoBehaviour
             Player.IncLevelToSpent(1);
 
             minTempText.text = "+" + tempMind.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
         else
         {
@@ -137,6 +147,7 @@ public class LevelSystem : MonoBehaviour
             Player.DecLevelToSpent(1);
             
             dexTempText.text = "+" + tempDexterity.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
     }
     // This Method decreases the tempDexterity variable (if possible).
@@ -149,6 +160,7 @@ public class LevelSystem : MonoBehaviour
             Player.IncLevelToSpent(1);
 
             dexTempText.text = "+" + tempDexterity.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
         else
         {
@@ -168,6 +180,7 @@ public class LevelSystem : MonoBehaviour
             Player.DecLevelToSpent(1);
 
             strTempText.text = "+" + tempStrength.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
     }
     // This Method decreases the tempStrength variable (if possible).
@@ -180,6 +193,7 @@ public class LevelSystem : MonoBehaviour
             Player.IncLevelToSpent(1);
 
             strTempText.text = "+" + tempStrength.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
         else
         {
@@ -199,6 +213,7 @@ public class LevelSystem : MonoBehaviour
             Player.DecLevelToSpent(1);
 
             intTempText.text = "+" + tempIntelligence.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
     }
     // This Method decreases the tempIntelligence variable (if possible).
@@ -211,6 +226,7 @@ public class LevelSystem : MonoBehaviour
             Player.IncLevelToSpent(1);
 
             intTempText.text = "+" + tempIntelligence.ToString();
+            spendableLvLs.text = Player.GetLevelToSpentF().ToString();
         }
         else
         {
@@ -226,6 +242,8 @@ public class LevelSystem : MonoBehaviour
         LevelWindow.SetActive(true);
         OpenButton.interactable = false;
         CloseButton.interactable = true;
+        spendableLvLs.text = Player.GetLevelToSpentF().ToString();
+        playerLvL.text = Player.GetLevel().ToString();
     }
 
     public void CloseLeveling()

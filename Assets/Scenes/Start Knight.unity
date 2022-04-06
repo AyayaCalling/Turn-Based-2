@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8031832}
   m_Layer: 5
-  m_Name: Exp Cost
+  m_Name: Spendable Lvls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,6 +1200,8 @@ MonoBehaviour:
   dexTempText: {fileID: 1908649663}
   strTempText: {fileID: 1271624507}
   intTempText: {fileID: 115990815}
+  playerLvL: {fileID: 31824173}
+  spendableLvLs: {fileID: 2106577809}
 --- !u!1 &212162757
 GameObject:
   m_ObjectHideFlags: 0
@@ -11020,7 +11022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2092128035}
   m_Layer: 5
-  m_Name: Current Exp
+  m_Name: Player Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
