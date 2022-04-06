@@ -10,6 +10,8 @@ public class Eventroom : MonoBehaviour
     public Player Player;
     public PlayerHUD PlayerHUD;
 
+    public LevelSystem statDistribution;
+
     public SceneHandler SceneHandler;
 
     public ExitCreation ExitCreation;
@@ -41,7 +43,7 @@ public class Eventroom : MonoBehaviour
         switch(eventCode)
         {
             case 1:
-                Player.IncMin(1);
+                statDistribution.DistributeStats(0, 1, 0, 0, 0);
                 break;
             
             case 2:
@@ -61,7 +63,7 @@ public class Eventroom : MonoBehaviour
         switch(eventCode)
         {
             case 1:
-                Player.IncDex(1);
+                statDistribution.DistributeStats(0, 0, 0, 1, 0);
                 break;
             
             case 2:
@@ -81,12 +83,12 @@ public class Eventroom : MonoBehaviour
         switch(eventCode)
         {
             case 1:
-                Player.IncStr(1);
+                statDistribution.DistributeStats(0, 0, 1, 0, 0);
                 break;
             
             case 2:
                 Player.DecMaxHP(10);
-                Player.IncStr(3);
+                statDistribution.DistributeStats(0, 0, 0, 3, 0);
                 break;
 
             default: 
@@ -102,7 +104,7 @@ public class Eventroom : MonoBehaviour
         switch(eventCode)
         {
             case 1:
-                Player.IncInt(1);
+               statDistribution.DistributeStats(0, 0, 0, 0, 1);
                 break;
             
             case 2:

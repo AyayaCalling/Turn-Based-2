@@ -260,7 +260,7 @@ public class LevelSystem : MonoBehaviour
     // This Method applies changes and resets the temporary variables.
     public void OnApply()
     {   
-        DistributeSkills(tempVigor, tempMind, tempDexterity, tempStrength, tempIntelligence);
+        DistributeStats(tempVigor, tempMind, tempDexterity, tempStrength, tempIntelligence);
         tempVigor = 0;
         tempMind = 0;
         tempDexterity = 0;
@@ -276,7 +276,7 @@ public class LevelSystem : MonoBehaviour
 
 
     // This Method correctly distributes the temporary stats to the overall stats of the character.
-    private void DistributeSkills(int vig, int mind, int dex, int str, int intel)
+    public void DistributeStats(int vig, int mind, int dex, int str, int intel)
     {     
         Player.IncVig(vig);
         vigValueText.text = Player.GetVigor().ToString();

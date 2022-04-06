@@ -471,7 +471,6 @@ public class Player : MonoBehaviour
     #region Actions
 
     // This Method describes the process of dying and executes it.
-    // NOT IMPLEMENTED
     public void Die()
     {
         Battle.ChangeStateToLost();
