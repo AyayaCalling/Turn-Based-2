@@ -122,6 +122,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         battle.RemoveEnemy(this);
+        Player.IncLevelToSpent(5);
         Destroy(EnemyObj);
     }
 

@@ -39,12 +39,19 @@ public class LevelSystem : MonoBehaviour
 
     #region TextMessages
 
-    //display current stat lvl
+    //display current stat lvl.
     public Text vigValueText; 
     public Text minValueText;
     public Text dexValueText;
     public Text strValueText;
     public Text intValueText;
+
+    //display temp stat lvl.
+    public Text vigTempText;
+    public Text minTempText;
+    public Text dexTempText;
+    public Text strTempText;
+    public Text intTempText;
     
     #endregion
 
@@ -58,6 +65,8 @@ public class LevelSystem : MonoBehaviour
             tempVigor += 1;
             tempLevelups += 1;
             Player.DecLevelToSpent(1);
+
+            vigTempText.text = "+" + tempVigor.ToString();
         } else {
             Debug.Log("Cant spend skill point without having a skill point :)");
         }
@@ -71,6 +80,8 @@ public class LevelSystem : MonoBehaviour
             tempVigor -= 1;
             tempLevelups -= 1;
             Player.IncLevelToSpent(1);
+
+            vigTempText.text = "+" + tempVigor.ToString();
         }
         else
         {
@@ -83,8 +94,18 @@ public class LevelSystem : MonoBehaviour
     // This Method increases the tempMind variable.
     public void IncreaseTempMin()
     {
-        tempMind += 1;
-        tempLevelups += 1;
+        if (Player.GetLevelToSpentI() > 0)
+        {
+            tempMind += 1;
+            tempLevelups += 1;
+            Player.DecLevelToSpent(1);
+
+            minTempText.text = "+" + tempMind.ToString();
+        }
+        else 
+        {
+            Debug.Log("Cant spend skill point without having a skill point :)");
+        }
     }
 
     // This Method decreases the tempMind variable (if possible).
@@ -94,7 +115,9 @@ public class LevelSystem : MonoBehaviour
         {
             tempMind -= 1;
             tempLevelups -= 1;
+            Player.IncLevelToSpent(1);
 
+            minTempText.text = "+" + tempMind.ToString();
         }
         else
         {
@@ -106,11 +129,16 @@ public class LevelSystem : MonoBehaviour
 
     // This Method increases the tempDexterity variable.
     public void IncreaseTempDex()
-    {
-        tempDexterity += 1;
-        tempLevelups += 1;
+    { 
+        if(Player.GetLevelToSpentI() > 0)
+        {   
+            tempDexterity += 1;
+            tempLevelups += 1;
+            Player.DecLevelToSpent(1);
+            
+            dexTempText.text = "+" + tempDexterity.ToString();
+        }
     }
-
     // This Method decreases the tempDexterity variable (if possible).
     public void DecreaseTempDex()
     {
@@ -118,7 +146,9 @@ public class LevelSystem : MonoBehaviour
         {
             tempDexterity -= 1;
             tempLevelups -= 1;
+            Player.IncLevelToSpent(1);
 
+            dexTempText.text = "+" + tempDexterity.ToString();
         }
         else
         {
@@ -131,10 +161,15 @@ public class LevelSystem : MonoBehaviour
     // This Method increases the tempStrength variable.
     public void IncreaseTempStr()
     {
-        tempStrength += 1;
-        tempLevelups += 1;
-    }
+        if(Player.GetLevelToSpentI() > 0)
+        {
+            tempStrength += 1;
+            tempLevelups += 1;
+            Player.DecLevelToSpent(1);
 
+            strTempText.text = "+" + tempStrength.ToString();
+        }
+    }
     // This Method decreases the tempStrength variable (if possible).
     public void DecreaseTempStr()
     {
@@ -142,6 +177,9 @@ public class LevelSystem : MonoBehaviour
         {
             tempStrength -= 1;
             tempLevelups -= 1;
+            Player.IncLevelToSpent(1);
+
+            strTempText.text = "+" + tempStrength.ToString();
         }
         else
         {
@@ -154,10 +192,15 @@ public class LevelSystem : MonoBehaviour
     // This Method increases the tempIntelligence variable.
     public void IncreaseTempInt()
     {
-        tempIntelligence += 1;
-        tempLevelups += 1;
-    }
+        if(Player.GetLevelToSpentI() > 0)
+        {
+            tempIntelligence += 1;
+            tempLevelups += 1;
+            Player.DecLevelToSpent(1);
 
+            intTempText.text = "+" + tempIntelligence.ToString();
+        }
+    }
     // This Method decreases the tempIntelligence variable (if possible).
     public void DecreaseTempInt()
     {
@@ -165,6 +208,9 @@ public class LevelSystem : MonoBehaviour
         {
             tempIntelligence -= 1;
             tempLevelups -= 1;
+            Player.IncLevelToSpent(1);
+
+            intTempText.text = "+" + tempIntelligence.ToString();
         }
         else
         {
@@ -202,6 +248,12 @@ public class LevelSystem : MonoBehaviour
         tempDexterity = 0;
         tempStrength = 0;
         tempIntelligence = 0;
+
+        vigTempText.text = "+0";
+        minTempText.text = "+0";
+        dexTempText.text = "+0";
+        strTempText.text = "+0";
+        intTempText.text = "+0";
     }
 
 
