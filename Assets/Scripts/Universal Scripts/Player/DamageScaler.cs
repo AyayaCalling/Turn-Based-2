@@ -12,16 +12,17 @@ public class DamageScaler : MonoBehaviour
     public Skill SkillThree;
 
     //These values decide on the skills specific scaling.
-    private int knightStrikeBase = 100;
-    private float knightStrikeScaling = 0.3f;
+    private int knightStrikeBase = 15;
+    private float knightStrikeScaling = 0.5f;
 
     private int knightDefendBase = 5;
-    private float knightDefendScaling = 0.5f;
+    private float knightDefendScaling = 0.75f;
 
 
     public void Awake()
     {
         SetBaseValue();
+        ScaleStatValue();
     }
 
 

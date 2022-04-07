@@ -10,7 +10,7 @@ public class CharacterSelection : MonoBehaviour
 
     public SceneHandler scenes;
 
-    public void Update()
+    public void Start()
     {
         switch(scenes.GetCharacter())
         {
@@ -23,6 +23,33 @@ public class CharacterSelection : MonoBehaviour
                 SelectKnight.GetComponent<Image>().color = Color.green;
                 Debug.Log("Knight selected.");
             break;
+
+            default:
+                Debug.Log("Error!");
+            break;
         }
     }
+
+    public void SelectedCharacter(string name)
+    {
+            switch(name)
+            {
+                case null:
+                SelectKnight.GetComponent<Image>().color = Color.red;
+                Debug.Log("No Character selected.");
+            break;
+
+            case "Knight":
+                SelectKnight.GetComponent<Image>().color = Color.green;
+                Debug.Log("Knight selected.");
+            break;
+
+            default:
+                Debug.Log("Error!");
+            break;
+            
+            }
+    }
+
+
 }

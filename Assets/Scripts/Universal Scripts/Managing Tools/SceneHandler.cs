@@ -9,6 +9,8 @@ public class SceneHandler : MonoBehaviour
     //as always
     public Player Player;
 
+    public CharacterSelection CharacterSelection;
+
     //This variable holds all Hud information used by this class.
     public HUD HUD;
 
@@ -43,7 +45,9 @@ public class SceneHandler : MonoBehaviour
         else
         {
             character = null;
-        }     
+        }
+
+        CharacterSelection.SelectedCharacter(name);
     }
 
     //This method returns the currently selected Character.
