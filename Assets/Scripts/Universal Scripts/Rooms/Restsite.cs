@@ -32,7 +32,7 @@ public class Restsite : MonoBehaviour
 
         SceneHandler.RestUI.SetActive(false);
 
-        ExitCreation.CreateRandomExits(1);
+        ExitCreation.CreateFixExit("Fight");
     }
 
     //This method opens an overview of all possible Upgrades for your skills. (The upgrading is done in a seperate class).
