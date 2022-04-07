@@ -7,6 +7,8 @@ public class FightCreation : MonoBehaviour
 {
     public Player Player;
 
+    public Transform EnemyParent;
+
     //These variables are used to choose a specific Layout, out of all possible Layouts.
     private int fightCode;
 
@@ -46,12 +48,12 @@ public class FightCreation : MonoBehaviour
                 break;
 
             case 1:
-                Instantiate(EnemyOneName, posOne, standard, Player.PlayerObj.transform);
+                Instantiate(EnemyOneName, posOne, standard, EnemyParent);
                 break;
 
             case 2:
-                Instantiate(EnemyOneName, posTwo, standard, Player.PlayerObj.transform);
-                Instantiate(EnemyOneName, posFour, standard, Player.PlayerObj.transform);
+                Instantiate(EnemyOneName, posTwo, standard, EnemyParent);
+                Instantiate(EnemyOneName, posFour, standard, EnemyParent);
                 break;
 
         }
@@ -60,11 +62,11 @@ public class FightCreation : MonoBehaviour
     public void CreateBossFight()
     {
         Debug.Log("Bossfight initiated.");
-        Instantiate(EnemyOneName, posOne, standard, Player.PlayerObj.transform);
-        Instantiate(EnemyOneName, posTwo, standard, Player.PlayerObj.transform);
-        Instantiate(EnemyOneName, posThree, standard, Player.PlayerObj.transform);
-        Instantiate(EnemyOneName, posFour, standard, Player.PlayerObj.transform);
-        Instantiate(EnemyOneName, posFive, standard, Player.PlayerObj.transform);
+        Instantiate(EnemyOneName, posOne, standard, EnemyParent);
+        Instantiate(EnemyOneName, posTwo, standard, EnemyParent);
+        Instantiate(EnemyOneName, posThree, standard, EnemyParent);
+        Instantiate(EnemyOneName, posFour, standard, EnemyParent);
+        Instantiate(EnemyOneName, posFive, standard, EnemyParent);
                 
     }
 }
