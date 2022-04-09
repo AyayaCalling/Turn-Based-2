@@ -29,18 +29,29 @@ public class Enemy : MonoBehaviour
 
     public RectTransform buttonRect;
     public RectTransform sliderRect;
+    public RectTransform intentionRect;
 
     private Vector3 posButton;
     private Vector3 posSlider;
+    private Vector3 posIntention;
 
     private int buttonY = 30;
     private int sliderY = 230;
+    private int intentionY = 130;
 
     //This variable displays the player, the enemy currently targets.
     public Player Player;
 
-    //This variable stores all information a basic enemy needs to be created in game.
+    //All HUD Objects related to the enemy.
     public Button button;
+
+    public Text IntentionText;
+    public Text BlockText;
+
+    public Image AttackIntention;
+    public Image FixDamageIntention;
+    public Image BuffIntention;
+    public Image DebuffIntention;
 
     //This method shifts all UI elements to match the enemy's position and finds a default attack Target.
     public void Start()
@@ -60,26 +71,31 @@ public class Enemy : MonoBehaviour
             case -7:
                 posButton = new Vector3 (-265, buttonY, 0);
                 posSlider = new Vector3 (-265, sliderY, 0);
+                posIntention = new Vector3 (-265, intentionY, 0);
                 break;
 
             case -4:
                 posButton = new Vector3 (-135, buttonY, 0);
                 posSlider = new Vector3 (-135, sliderY, 0);
+                posIntention = new Vector3 (-135, intentionY, 0);
                 break;
 
             case -1:
                 posButton = new Vector3 (0, buttonY, 0);
                 posSlider = new Vector3 (0, sliderY, 0);
+                posIntention = new Vector3 (0, intentionY, 0);
                 break;
 
             case 2:
                 posButton = new Vector3 (135, buttonY, 0);
                 posSlider = new Vector3 (135, sliderY, 0);
+                posIntention = new Vector3 (135, intentionY, 0);
                 break;
 
             case 5:
                 posButton = new Vector3 (265, buttonY, 0);
                 posSlider = new Vector3 (265, sliderY, 0);
+                posIntention = new Vector3 (265, intentionY, 0);
                 break;
 
             default:
@@ -89,6 +105,7 @@ public class Enemy : MonoBehaviour
 
         buttonRect.anchoredPosition = posButton;
         sliderRect.anchoredPosition = posSlider;
+        intentionRect.anchoredPosition = posIntention;
     }
 
     // Setter-Method for the Variable currentHP. (only used in the initialization publicly)
@@ -123,6 +140,7 @@ public class Enemy : MonoBehaviour
     public void SetBlock(int value)
     {
         block = value;
+        BlockText.text = block.ToString();
     }
 
     public void DecCurrentHP(int minusHP)
@@ -144,11 +162,13 @@ public class Enemy : MonoBehaviour
     public void IncBlock(int amount)
     {
         block += amount;
+        BlockText.text = block.ToString();
     }
 
     public void DecBlock(int amount)
     {
         block -= amount;
+        BlockText.text = block.ToString();
     }
 
     public int GetMove()
@@ -161,8 +181,23 @@ public class Enemy : MonoBehaviour
         move = number;
     }
    
+    public void SetTurnNumber(int turn)
+    {
+        turnNumber = turn;
+    }
+
+    public int GetTurnNumber()
+    {
+        return turnNumber;
+    }
+
+    public Battlesystem GetBattle()
+    {
+        return Battle;
+    }
+    
     //This method kills and destroys the enemy if its HP reaches zero.
-    public void Die()
+    public virtual void Die()
     {
         Battle.RemoveEnemy(this);
         Player.IncLevelToSpent(5);

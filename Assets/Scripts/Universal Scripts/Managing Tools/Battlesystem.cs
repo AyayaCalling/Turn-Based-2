@@ -41,6 +41,8 @@ public class Battlesystem : MonoBehaviour
     public GameObject TFour;
     public GameObject TFive;
 
+    public Vector3 startTurnPos = new Vector3(0, 0, 0);
+
     #endregion
 
     public void Start()
@@ -53,6 +55,8 @@ public class Battlesystem : MonoBehaviour
     //Player Turn
     public void ChangeStateToPlayerTurn()
     {
+        startTurnPos.x = Player.transform.position.x;
+        
         foreach(Enemy enemy in enemies)
         {
             enemy.Intentions();
@@ -97,7 +101,7 @@ public class Battlesystem : MonoBehaviour
                 Debug.Log(enemy + "'s Move!");     
             }
 
-
+        ResetFloor();
 
         ChangeStateToPlayerTurn();
 

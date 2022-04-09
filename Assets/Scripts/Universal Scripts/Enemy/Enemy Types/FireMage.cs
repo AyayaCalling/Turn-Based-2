@@ -5,11 +5,14 @@ using UnityEngine;
 public class FireMage : Enemy
 {
     //These variables describe the chances for thsi enemy to use a special move in percentages. (20 = 20% chance).
-    private int pFireShield = 20; //"p"ercentage chance to use the skill "FireShield".
-    private int pDebuff = 30;
+    private int pFireShield = 10; //"p"ercentage chance to use the skill "FireShield".
+    private int pDebuff = 10;
 
     //These are the values for the different spells.
-    private int FireShield = 20; //grants 20 block to the lowest enemy.
+    private int FireShieldBlock = 20; //grants 20 block to the lowest enemy.
+    private int FireballDamage = 10;
+    private int FirePillarDamage = 15;
+    private int CurseOfTheFlameDamage = 5;
 
     private Enemy lowestEnemy;
     private List<Enemy> enemies = new List<Enemy>();
@@ -23,10 +26,163 @@ public class FireMage : Enemy
 
     public override void Intentions()
     {
+        SetMove(Random.Range(1,101));
+
         if(battle == null) battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
         if(GetMove() <= pFireShield)
         {
-            enemies = battle.GetEnemies();
+            FireShieldIntention();
+        }
+
+        else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
+        {
+            DebuffIntention.enabled = true;
+        }
+        else
+        {
+            switch(GetTurnNumber())
+            {
+                default:
+                    Debug.Log("This Turn does not exist.");
+                    break;
+                
+                case 1:
+                    FireballIntention();
+                    break;
+
+                case 2:
+                    FirePillarIntention();
+                    break;
+
+                case 3:
+                    CurseOfTheFlameIntention();
+                    break;
+
+            }
+        }
+    }
+
+    public override void Move()
+    {
+        if(GetMove() <= pFireShield)
+        {   
+            if(lowestEnemy != null)
+            FireShield();
+        }
+
+        else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
+        {
+            Player.SetVulnerable(5);
+            Player.SetVulnerableTurns(3);
+        }
+
+        else
+        {
+             switch(GetTurnNumber())
+            {
+                case 1:
+                Fireball();
+                SetTurnNumber(2);
+                break;
+
+                case 2:
+                FirePillars();
+                SetTurnNumber(3);
+                break;
+
+                case 3:
+                CurseOfTheFlame();
+                SetTurnNumber(1);
+                break;
+            }
+        }
+
+        IntentionText.text = "";
+        IntentionText.color = Color.red;
+        AttackIntention.enabled = false;
+        FixDamageIntention.enabled = false;
+        DebuffIntention.enabled = false;
+        BuffIntention.enabled = false;
+    }
+
+    //Throws a fireball on the tile the Player stood on in the beginning of the Turn.
+    public void Fireball()
+    {
+        if(Player.transform.position.x == GetBattle().startTurnPos.x)
+        {
+            GetBattle().DealDamageToPlayer(Player, FireballDamage);
+        }
+    }
+
+    public void FireballIntention()
+    {
+        switch(GetBattle().startTurnPos.x)
+        {
+            default:
+                Debug.Log("This is not a viable Position for the Player.");
+                break;
+
+            case -2:
+                GetBattle().MarkFloor(true, false, false, false ,false);
+                break;
+            
+            case -1:
+                GetBattle().MarkFloor(false, true, false, false ,false);
+                break;
+
+            case 0:
+                GetBattle().MarkFloor(false, false, true, false ,false);
+                break;
+
+            case 1:
+                GetBattle().MarkFloor(false, false, false, true ,false);
+                break;
+
+            case 2:
+                GetBattle().MarkFloor(false, false, false, false ,true);
+                break;     
+        }
+
+        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*FireballDamage).ToString();
+        AttackIntention.enabled = true;
+    }
+
+    //Shoots firepillars out uf every odd Tile
+    public void FirePillars()
+    {
+        if(Player.transform.position.x % 2 == 0)
+        {
+            GetBattle().DealDamageToPlayer(Player, FirePillarDamage);
+        }
+    }
+
+    public void FirePillarIntention()
+    {
+        GetBattle().MarkFloor(true, false, true, false, true);
+        IntentionText.text =  Mathf.RoundToInt(Player.GetVulnerable()*FirePillarDamage).ToString();
+        AttackIntention.enabled = true;
+    }
+
+    public void CurseOfTheFlame()
+    {
+        GetBattle().DealDamageToPlayer(Player, CurseOfTheFlameDamage);
+    }
+
+    public void CurseOfTheFlameIntention()
+    {
+        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*CurseOfTheFlameDamage).ToString();
+        IntentionText.color = Color.magenta;
+        FixDamageIntention.enabled = true;
+    }
+
+    public void FireShield()
+    {
+        lowestEnemy.IncBlock(FireShieldBlock);
+    }
+
+    public void FireShieldIntention()
+    {
+        enemies = battle.GetEnemies();
             foreach(Enemy enemy in enemies)
             {
                 if(lowestEnemy != null && enemy.GetCurrentHP() < lowestEnemy.GetCurrentHP())
@@ -39,38 +195,8 @@ public class FireMage : Enemy
                 }
             }
 
-            Debug.Log(this + " will shield " + lowestEnemy + " for " + FireShield);
-        }
-
-        else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
-        {
-            Debug.Log(this + " will aplly 3 Turns of vulnerable.");
-        }
-        else
-        {
-            base.Intentions();
-        }
+        IntentionText.color = Color.blue;
+        IntentionText.text = FireShieldBlock.ToString();
+        BuffIntention.enabled = true;
     }
-
-    public override void Move()
-    {
-        if(GetMove() <= pFireShield)
-        {   
-            if(lowestEnemy != null)
-            lowestEnemy.IncBlock(FireShield);
-        }
-
-        else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
-        {
-            Player.SetVulnerable(5);
-            Player.SetVulnerableTurns(3);
-        }
-
-        else
-        {
-            base.Move();
-        }
-    }
-
-
 }
