@@ -42,6 +42,10 @@ public class Battlesystem : MonoBehaviour
     //Player Turn
     public void ChangeStateToPlayerTurn()
     {
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.Intentions();
+        }
         //Allows interaction with the skill buttons.
         SkillOneButton.interactable = true;
         SkillTwoButton.interactable = true;
@@ -64,6 +68,10 @@ public class Battlesystem : MonoBehaviour
     //Enemy Turn
     public void ChangeStateToEnemyTurn()
     {
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.SetBlock(0);;
+        }
         SkillOneButton.interactable = false;
         SkillTwoButton.interactable = false;
         SkillThreeButton.interactable = false;
@@ -158,12 +166,21 @@ public class Battlesystem : MonoBehaviour
     //These methods deal damage to an enemy or player.
     public void DealDamageToEnemy(Enemy thisEnemy, int amount)
     {
-        thisEnemy.DecCurrentHP(amount);
-        Debug.Log("Dealt " + amount + " damage to Enemy " + thisEnemy);
-        Debug.Log(enemies.Count);
-        if(enemies.Count == 0)
+        if(amount > thisEnemy.GetBlock())
         {
-            ChangeStateToWon();
+            thisEnemy.DecCurrentHP(amount - thisEnemy.GetBlock());
+            thisEnemy.SetBlock(0);
+            Debug.Log("Dealt " + amount + " damage to Enemy " + thisEnemy);
+            Debug.Log(enemies.Count);
+            if(enemies.Count == 0)
+            {
+                ChangeStateToWon();
+            }
+        }
+
+        else
+        {
+            thisEnemy.DecBlock(amount);
         }
     }
 
@@ -189,4 +206,8 @@ public class Battlesystem : MonoBehaviour
         enemies.Remove(enemy);
     }
 
+    public List<Enemy> GetEnemies()
+    {
+        return enemies;
+    }
 }

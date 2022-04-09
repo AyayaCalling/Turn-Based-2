@@ -28,6 +28,5 @@ public class Heal : MonoBehaviour
         Debug.Log("Player got healed for: " + Mathf.RoundToInt(Player.GetMaxHP() * healAmount));
 
         HealButton.interactable = false;
-
     }
 }

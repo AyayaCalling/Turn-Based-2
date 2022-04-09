@@ -9,14 +9,19 @@ public class Enemy : MonoBehaviour
     private int currentHP = 100;
     private int maxHP = 100;
 
+    private int block;
+
     //This variable displays the turn the enemy is already on in its cycle.
     private int turnNumber = 1;
+
+    //This is the Randomly Generated Number, that decides what the enemy will do.
+    private int move;
 
     //These variables are used to shift Hp Bar and Target Button to match the current enemy position.
     private float scaleSlider;
     private float scaleButton; 
 
-    private Battlesystem battle;
+    private Battlesystem Battle;
 
     public Transform EnemyTrans;
 
@@ -44,9 +49,9 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Initiating Battle Mode!");
 
-        battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
+        Battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
 
-        battle.AddEnemy(this);
+        Battle.AddEnemy(this);
 
         Player = FindObjectOfType<Player>();
 
@@ -110,6 +115,16 @@ public class Enemy : MonoBehaviour
         return currentHP;
     }
 
+    public int GetBlock()
+    {
+        return block;
+    }
+
+    public void SetBlock(int value)
+    {
+        block = value;
+    }
+
     public void DecCurrentHP(int minusHP)
     {
         int hp = GetCurrentHP() - minusHP;
@@ -126,12 +141,55 @@ public class Enemy : MonoBehaviour
 
     } 
 
+    public void IncBlock(int amount)
+    {
+        block += amount;
+    }
+
+    public void DecBlock(int amount)
+    {
+        block -= amount;
+    }
+
+    public int GetMove()
+    {
+        return move;
+    }
+
+    public void SetMove(int number)
+    {
+        move = number;
+    }
+   
     //This method kills and destroys the enemy if its HP reaches zero.
     public void Die()
     {
-        battle.RemoveEnemy(this);
+        Battle.RemoveEnemy(this);
         Player.IncLevelToSpent(5);
         Destroy(EnemyObj);
+    }
+
+    //This method displays what the enemy will do on its next turn.
+    public virtual void Intentions()
+    {
+        switch(turnNumber)
+        {
+            default:
+                Debug.Log("This turn does not exist!");
+                break;
+            
+            case 1:
+                Debug.Log(this + "will deal 10 Damage.");
+                break;
+            
+            case 2:
+                Debug.Log(this + "will deal 5 Damage");
+                break;
+
+            case 3:
+                Debug.Log(this + "will make you weak for 2 and vulnerable for 1 turn(s)");
+                break;
+        }
     }
 
     //This method cycles the enemy's turns. Its virtual so it can be overwritten by children of the class.
@@ -140,12 +198,12 @@ public class Enemy : MonoBehaviour
         switch(turnNumber)
         {
             case 1:
-            battle.DealDamageToPlayer(Player, 10);
+            Battle.DealDamageToPlayer(Player, 10);
             turnNumber = 2;
             break;
 
             case 2:
-            battle.DealDamageToPlayer(Player, 5);
+            Battle.DealDamageToPlayer(Player, 5);
             turnNumber = 3;
             break;
 
