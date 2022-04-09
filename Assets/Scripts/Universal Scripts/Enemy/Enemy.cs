@@ -180,10 +180,12 @@ public class Enemy : MonoBehaviour
             
             case 1:
                 Debug.Log(this + "will deal 10 Damage.");
+                Battle.MarkFloor(true, true, true, true, true);
                 break;
             
             case 2:
                 Debug.Log(this + "will deal 5 Damage");
+                Battle.MarkFloor(true, true, true, true, true);
                 break;
 
             case 3:
@@ -222,6 +224,8 @@ public class Enemy : MonoBehaviour
     {
         Player.GetComponent<TargettingSystem>().TargetThisEnemy(this);
     }
+
 }
+
 
 

@@ -34,6 +34,13 @@ public class Battlesystem : MonoBehaviour
 
     public SceneHandler SceneHandler;
 
+    //The different Floor Tiles.
+    public GameObject TOne;
+    public GameObject TTwo;
+    public GameObject TThree;
+    public GameObject TFour;
+    public GameObject TFive;
+
     #endregion
 
     public void Start()
@@ -90,7 +97,10 @@ public class Battlesystem : MonoBehaviour
                 Debug.Log(enemy + "'s Move!");     
             }
 
+
+
         ChangeStateToPlayerTurn();
+
     }
 
     //Won Battle
@@ -214,4 +224,26 @@ public class Battlesystem : MonoBehaviour
     {
         return enemies;
     }
+
+    //This methods marks the hit tiles red.
+    public void MarkFloor(bool tOne, bool tTwo, bool tThree, bool tFour, bool tFive)
+    {
+        if(tOne) TOne.GetComponent<Renderer> ().material.color = Color.red;
+        if(tTwo) TTwo.GetComponent<Renderer> ().material.color = Color.red;
+        if(tThree) TThree.GetComponent<Renderer> ().material.color = Color.red;
+        if(tFour) TFour.GetComponent<Renderer> ().material.color = Color.red;
+        if(tFive) TFive.GetComponent<Renderer> ().material.color = Color.red;
+    }
+
+    //Changes all Tile Colors back to white.
+    public void ResetFloor()
+    {
+        TOne.GetComponent<Renderer> ().material.color = Color.white;
+        TTwo.GetComponent<Renderer> ().material.color = Color.white;
+        TThree.GetComponent<Renderer> ().material.color = Color.white;
+        TFour.GetComponent<Renderer> ().material.color = Color.white;
+        TFive.GetComponent<Renderer> ().material.color = Color.white;
+    }
+
 }
+
