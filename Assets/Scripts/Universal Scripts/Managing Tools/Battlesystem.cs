@@ -36,6 +36,10 @@ public class Battlesystem : MonoBehaviour
 
     #endregion
 
+    public void Start()
+    {
+        ChangeStateToPlayerTurn();
+    }
     //These methods change the current Battlestate to the following states...
     #region StateChanges
 
