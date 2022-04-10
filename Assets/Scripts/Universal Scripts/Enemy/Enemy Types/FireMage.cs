@@ -13,14 +13,16 @@ public class FireMage : Enemy
     private int fireShieldBlock = 20; //grants 20 block to the lowest enemy.
     private int fireballDamage = 10;
     private int firePillarDamage = 15;
-    private int curseOfTheFlameDamage = 5;
-    private int iceAndFireDamage = 30;
+    private int curseOfTheFlameDamage = 6;
+    private int iceAndFireDamage = 5;
     private int markTimer = 3;
 
     private Enemy lowestEnemy;
     private List<Enemy> enemies = new List<Enemy>();
 
     private Battlesystem battle;
+
+    private int totalDamage;
 
     public void AddEnemy(Enemy enemy)
     {
@@ -30,8 +32,6 @@ public class FireMage : Enemy
     public override void Intentions()
     {
         SetMove(Random.Range(1,101));
-
-        Debug.Log(GetMove());
 
         if(GetBattle() == null) SetBattle(GameObject.FindWithTag("Player").GetComponent<Battlesystem>());
         
@@ -80,7 +80,7 @@ public class FireMage : Enemy
 
         else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
         {
-            Player.SetVulnerable(5);
+            Player.SetVulnerable(1.5f);
             Player.SetVulnerableTurns(3);
         }
 
@@ -105,9 +105,9 @@ public class FireMage : Enemy
             }
         }
 
-        if(Player.GetMarkOfIce() == 1 && Player.GetMarkOfIce() == 1)
+        if(Player.GetMarkOfFlame() == 1 && Player.GetMarkOfIce() == 1)
         {
-            GetBattle().DealDamageToPlayer(Player, iceAndFireDamage);
+            CalculateDamage(iceAndFireDamage);
             Player.SetMarkOfFlame(0);
             Player.SetMarkOfIce(0);
             Player.SetIceTurns(0);
@@ -120,6 +120,8 @@ public class FireMage : Enemy
         FixDamageIntention.enabled = false;
         DebuffIntention.enabled = false;
         BuffIntention.enabled = false;
+
+        DealDamage();
     }
 
     //Throws a fireball on the tile the Player stood on in the beginning of the Turn.
@@ -127,7 +129,7 @@ public class FireMage : Enemy
     {
         if(Player.transform.position.x == GetBattle().startTurnPos.x)
         {
-            GetBattle().DealDamageToPlayer(Player, fireballDamage);
+            CalculateDamage(fireballDamage);
             Player.SetFlameTurns(markTimer);
             Player.SetMarkOfFlame(1);
         }
@@ -171,7 +173,7 @@ public class FireMage : Enemy
     {
         if(Player.transform.position.x % 2 == 0)
         {
-            GetBattle().DealDamageToPlayer(Player, firePillarDamage);
+            CalculateDamage(firePillarDamage);
             Player.SetFlameTurns(markTimer);
             Player.SetMarkOfFlame(1);
         }
@@ -186,7 +188,7 @@ public class FireMage : Enemy
 
     public void CurseOfTheFlame()
     {
-        GetBattle().DealDamageToPlayer(Player, curseOfTheFlameDamage);
+        CalculateDamage(curseOfTheFlameDamage);
         Player.SetFlameTurns(markTimer);
         Player.SetMarkOfFlame(1);
     }
@@ -221,5 +223,16 @@ public class FireMage : Enemy
         IntentionText.color = Color.blue;
         IntentionText.text = fireShieldBlock.ToString();
         BuffIntention.enabled = true;
+    }
+
+    public void CalculateDamage(int damage)
+    {
+        totalDamage += damage;
+    }
+
+    public void DealDamage()
+    {
+        GetBattle().DealDamageToPlayer(Player, totalDamage);
+        totalDamage = 0;
     }
 }

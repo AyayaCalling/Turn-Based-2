@@ -12,14 +12,16 @@ public class FrostMage : Enemy
     private int FrozenMedicineHeal = 20; //grants 20 block to the lowest enemy.
     private int IceBallDamage = 10;
     private int FrostPillarDamage = 15;
-    private int CurseOfTheColdDamage = 5;
-    private int iceAndFireDamage = 30;
+    private int CurseOfTheColdDamage = 6;
+    private int iceAndFireDamage = 5;
     private int markTimer = 3;
 
     private Enemy lowestEnemy;
     private List<Enemy> enemies = new List<Enemy>();
 
     private Battlesystem battle;
+
+    private int totalDamage;
 
     public void AddEnemy(Enemy enemy)
     {
@@ -29,8 +31,6 @@ public class FrostMage : Enemy
     public override void Intentions()
     {
         SetMove(Random.Range(1,101));
-
-        Debug.Log(GetMove());
 
         if(GetBattle() == null) SetBattle(GameObject.FindWithTag("Player").GetComponent<Battlesystem>());
         
@@ -79,7 +79,7 @@ public class FrostMage : Enemy
 
         else if(GetMove() > pFrozenMedicine && GetMove() <= (pFrozenMedicine + pDebuff))
         {
-            Player.SetVulnerable(5);
+            Player.SetVulnerable(1.5f);
             Player.SetVulnerableTurns(3);
         }
 
@@ -106,7 +106,7 @@ public class FrostMage : Enemy
 
         if(Player.GetMarkOfIce() == 1 && Player.GetMarkOfFlame() == 1)
         {
-            GetBattle().DealDamageToPlayer(Player, iceAndFireDamage);
+            CalculateDamage(iceAndFireDamage);
             Player.SetMarkOfFlame(0);
             Player.SetMarkOfIce(0);
             Player.SetIceTurns(0);
@@ -119,6 +119,8 @@ public class FrostMage : Enemy
         FixDamageIntention.enabled = false;
         DebuffIntention.enabled = false;
         BuffIntention.enabled = false;
+
+        DealDamage();
     }
 
     //Throws an iceball on the tile the Player stood on in the beginning of the Turn.
@@ -126,7 +128,7 @@ public class FrostMage : Enemy
     {
         if(Player.transform.position.x == GetBattle().startTurnPos.x)
         {
-            GetBattle().DealDamageToPlayer(Player, IceBallDamage);
+            CalculateDamage(IceBallDamage);
             Player.SetMarkOfIce(1);
             Player.SetIceTurns(markTimer);
         }
@@ -170,7 +172,7 @@ public class FrostMage : Enemy
     {
         if(Player.transform.position.x == 1 || Player.transform.position.x == -1)
         {
-            GetBattle().DealDamageToPlayer(Player, FrostPillarDamage);
+            CalculateDamage(FrostPillarDamage);
             Player.SetMarkOfIce(1);
             Player.SetIceTurns(markTimer);
         }
@@ -185,7 +187,7 @@ public class FrostMage : Enemy
 
     public void CurseOfTheCold()
     {
-        GetBattle().DealDamageToPlayer(Player, CurseOfTheColdDamage);
+        CalculateDamage(CurseOfTheColdDamage);
         Player.SetMarkOfIce(1);
         Player.SetIceTurns(markTimer);
     }
@@ -220,5 +222,16 @@ public class FrostMage : Enemy
         IntentionText.color = Color.blue;
         IntentionText.text = FrozenMedicineHeal.ToString();
         BuffIntention.enabled = true;
+    }
+
+    public void CalculateDamage(int damage)
+    {
+        totalDamage += damage;
+    }
+
+    public void DealDamage()
+    {
+        GetBattle().DealDamageToPlayer(Player, totalDamage);
+        totalDamage = 0;
     }
 }

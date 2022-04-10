@@ -75,7 +75,6 @@ public class Dodge : Skill
             
             foreach(Transform trans in buttonTrans)
             {
-                Debug.Log("The absolute distance to this tile, " + trans + " is calculated as: " + Mathf.Abs(Player.transform.position.x - trans.position.x));
                 if ((Mathf.Abs(Player.transform.position.x - trans.position.x) <= rollRange) && (Mathf.Abs(Player.transform.position.x - trans.position.x) > 0.1))
                 {
                     //Debug.Log("The absolute distance to this tile, " + trans + " is calculated as: " + Mathf.Abs(Player.transform.position.x - trans.position.x));
@@ -104,7 +103,7 @@ public class Dodge : Skill
         rollPos = new Vector3(posX, 0, 0);
 
         PlayerController.Move(rollPos);
-        Debug.Log(rollPos);
+        
         rollPos = new Vector3(0, 0, 0);
 
         availableButtonTrans.Clear();

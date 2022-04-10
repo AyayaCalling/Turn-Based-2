@@ -100,8 +100,7 @@ public class Battlesystem : MonoBehaviour
 
             foreach(Enemy enemy in enemies)
             {
-                enemy.Move();
-                Debug.Log(enemy + "'s Move!");     
+                enemy.Move();    
             }
 
         ResetFloor();
@@ -194,7 +193,6 @@ public class Battlesystem : MonoBehaviour
         {
             thisEnemy.DecCurrentHP(amount - thisEnemy.GetBlock());
             thisEnemy.SetBlock(0);
-            Debug.Log("Dealt " + amount + " damage to Enemy " + thisEnemy);
             Debug.Log(enemies.Count);
             if(enemies.Count == 0)
             {
@@ -210,12 +208,15 @@ public class Battlesystem : MonoBehaviour
 
     public void DealDamageToPlayer(Player thisPlayer, int amount)
     {
-        int damage = Mathf.RoundToInt((amount * Player.GetVulnerable() - Player.GetBlock()));
+        int damage = Mathf.RoundToInt(amount * thisPlayer.GetVulnerable() - thisPlayer.GetBlock());
 
         if(damage > 0)
         {
-            Player.DecCurrentHP(damage);
-            Debug.Log("Dealt " + amount + " damage to Player " + thisPlayer);
+            thisPlayer.DecCurrentHP(damage);
+        }
+        else
+        {
+            thisPlayer.DecBlock(Mathf.RoundToInt(amount * thisPlayer.GetVulnerable()));
         }
     }
 
