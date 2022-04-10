@@ -104,7 +104,7 @@ public class FrostMage : Enemy
             }
         }
 
-        if(Player.GetMarkOfIce() == 1 && Player.GetMarkOfIce() == 1)
+        if(Player.GetMarkOfIce() == 1 && Player.GetMarkOfFlame() == 1)
         {
             GetBattle().DealDamageToPlayer(Player, iceAndFireDamage);
             Player.SetMarkOfFlame(0);
