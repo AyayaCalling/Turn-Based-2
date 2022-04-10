@@ -48,17 +48,9 @@ public class Battlesystem : MonoBehaviour
 
     public void Start()
     {
-        intitialEnemies = FindObjectsOfType<Enemy>();
-        for(int i = 0; i < intitialEnemies.Length; i++)
-        {
-            if(intitialEnemies[i] != null)
-            {
-                enemies.Add(intitialEnemies[i]);
-            }
-        }
-        
+        UpdateEnemies();
+
         ChangeStateToPlayerTurn();
-        Debug.Log("Your Move!");
     }
     //These methods change the current Battlestate to the following states...
     #region StateChanges
@@ -67,12 +59,10 @@ public class Battlesystem : MonoBehaviour
     public void ChangeStateToPlayerTurn()
     {
         startTurnPos.x = Player.transform.position.x;
-        
-        Debug.Log(enemies.Count);
+
         foreach(Enemy enemy in enemies)
         {
             enemy.Intentions();
-            Debug.Log("Blubb Blubb (Intention Please).");
         }
         //Allows interaction with the skill buttons.
         SkillOneButton.interactable = true;
@@ -229,7 +219,10 @@ public class Battlesystem : MonoBehaviour
     //These methods are used to update the "enemies" list.
     public void AddEnemy(Enemy enemy)
     {
-        enemies.Add(enemy);
+        if(!enemies.Contains(enemy))
+        {
+            enemies.Add(enemy);
+        }
     }
 
     public void RemoveEnemy(Enemy enemy)
@@ -240,6 +233,20 @@ public class Battlesystem : MonoBehaviour
     public List<Enemy> GetEnemies()
     {
         return enemies;
+    }
+
+    public void UpdateEnemies()
+    {
+        enemies.Clear();
+
+        intitialEnemies = FindObjectsOfType<Enemy>();
+        for(int i = 0; i < intitialEnemies.Length; i++)
+        {
+            if(intitialEnemies[i] != null)
+            {
+                enemies.Add(intitialEnemies[i]);
+            }
+        }
     }
 
     //This methods marks the hit tiles red.

@@ -62,8 +62,6 @@ public class Enemy : MonoBehaviour
 
         Battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
 
-        Battle.AddEnemy(this);
-
         Player = FindObjectOfType<Player>();
 
         switch(EnemyTrans.position.x)
@@ -158,6 +156,20 @@ public class Enemy : MonoBehaviour
         }        
 
     } 
+
+    public void IncCurrentHP(int plusHP)
+    {
+        int hp = GetCurrentHP() + plusHP;
+
+        if(hp <= GetMaxHP())
+        {
+            SetCurrentHP(hp);
+        }
+        else
+        {
+            SetCurrentHP(GetMaxHP());
+        }
+    }
 
     public void IncBlock(int amount)
     {

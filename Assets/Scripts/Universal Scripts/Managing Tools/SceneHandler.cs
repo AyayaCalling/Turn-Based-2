@@ -114,6 +114,7 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Loading next Fight!");
         FightCreation.CreateFight();
         Battle.ChangeStateToPlayerTurn();
+        Battle.UpdateEnemies();
         Debug.Log("Battle State is now changed to Player's turn. " + Battle.Player.GetActive());
         HUD.DestroyDoors();  
         IncStage(1);

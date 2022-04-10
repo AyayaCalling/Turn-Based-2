@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FireMage : Enemy
+public class FrostMage : Enemy
 {
     //These variables describe the chances for thsi enemy to use a special move in percentages. (20 = 20% chance).
-    private int pFireShield = 10; //"p"ercentage chance to use the skill "FireShield".
+    private int pFrozenMedicine = 10; //"p"ercentage chance to use the skill "FrozenMedicine".
     private int pDebuff = 10;
 
     //These are the values for the different spells.
-    private int FireShieldBlock = 20; //grants 20 block to the lowest enemy.
-    private int FireballDamage = 10;
-    private int FirePillarDamage = 15;
-    private int CurseOfTheFlameDamage = 5;
+    private int FrozenMedicineHeal = 20; //grants 20 block to the lowest enemy.
+    private int IceBallDamage = 10;
+    private int FrostPillarDamage = 15;
+    private int CurseOfTheColdDamage = 5;
 
     private Enemy lowestEnemy;
     private List<Enemy> enemies = new List<Enemy>();
@@ -35,12 +34,12 @@ public class FireMage : Enemy
         
         if(Player == null) Player = FindObjectOfType<Player>();
 
-        if(GetMove() <= pFireShield)
+        if(GetMove() <= pFrozenMedicine)
         {
-            FireShieldIntention();
+            FrozenMedicineIntention();
         }
 
-        else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
+        else if(GetMove() > pFrozenMedicine && GetMove() <= (pFrozenMedicine + pDebuff))
         {
             DebuffIntention.enabled = true;
         }
@@ -53,15 +52,15 @@ public class FireMage : Enemy
                     break;
                 
                 case 1:
-                    FireballIntention();
+                    IceballIntention();
                     break;
 
                 case 2:
-                    FirePillarIntention();
+                    FrostPillarIntention();
                     break;
 
                 case 3:
-                    CurseOfTheFlameIntention();
+                    CurseOfTheColdIntention();
                     break;
 
             }
@@ -70,13 +69,13 @@ public class FireMage : Enemy
 
     public override void Move()
     {
-        if(GetMove() <= pFireShield)
+        if(GetMove() <= pFrozenMedicine)
         {   
             if(lowestEnemy != null)
-            FireShield();
+            FrozenMedicine();
         }
 
-        else if(GetMove() > pFireShield && GetMove() <= (pFireShield + pDebuff))
+        else if(GetMove() > pFrozenMedicine && GetMove() <= (pFrozenMedicine + pDebuff))
         {
             Player.SetVulnerable(5);
             Player.SetVulnerableTurns(3);
@@ -87,17 +86,17 @@ public class FireMage : Enemy
              switch(GetTurnNumber())
             {
                 case 1:
-                Fireball();
+                Iceball();
                 SetTurnNumber(2);
                 break;
 
                 case 2:
-                FirePillars();
+                FrostPillars();
                 SetTurnNumber(3);
                 break;
 
                 case 3:
-                CurseOfTheFlame();
+                CurseOfTheCold();
                 SetTurnNumber(1);
                 break;
             }
@@ -111,16 +110,16 @@ public class FireMage : Enemy
         BuffIntention.enabled = false;
     }
 
-    //Throws a fireball on the tile the Player stood on in the beginning of the Turn.
-    public void Fireball()
+    //Throws an iceball on the tile the Player stood on in the beginning of the Turn.
+    public void Iceball()
     {
         if(Player.transform.position.x == GetBattle().startTurnPos.x)
         {
-            GetBattle().DealDamageToPlayer(Player, FireballDamage);
+            GetBattle().DealDamageToPlayer(Player, IceBallDamage);
         }
     }
 
-    public void FireballIntention()
+    public void IceballIntention()
     {
         switch(GetBattle().startTurnPos.x)
         {
@@ -149,44 +148,44 @@ public class FireMage : Enemy
                 break;     
         }
 
-        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*FireballDamage).ToString();
+        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*IceBallDamage).ToString();
         AttackIntention.enabled = true;
     }
 
-    //Shoots firepillars out uf every odd Tile
-    public void FirePillars()
+    //Shoots frostpillars out uf every odd Tile
+    public void FrostPillars()
     {
-        if(Player.transform.position.x % 2 == 0)
+        if(Player.transform.position.x == 1 || Player.transform.position.x == -1)
         {
-            GetBattle().DealDamageToPlayer(Player, FirePillarDamage);
+            GetBattle().DealDamageToPlayer(Player, FrostPillarDamage);
         }
     }
 
-    public void FirePillarIntention()
+    public void FrostPillarIntention()
     {
-        GetBattle().MarkFloor(true, false, true, false, true);
-        IntentionText.text =  Mathf.RoundToInt(Player.GetVulnerable()*FirePillarDamage).ToString();
+        GetBattle().MarkFloor(false, true, false, true, false);
+        IntentionText.text =  Mathf.RoundToInt(Player.GetVulnerable()*FrostPillarDamage).ToString();
         AttackIntention.enabled = true;
     }
 
-    public void CurseOfTheFlame()
+    public void CurseOfTheCold()
     {
-        GetBattle().DealDamageToPlayer(Player, CurseOfTheFlameDamage);
+        GetBattle().DealDamageToPlayer(Player, CurseOfTheColdDamage);
     }
 
-    public void CurseOfTheFlameIntention()
+    public void CurseOfTheColdIntention()
     {
-        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*CurseOfTheFlameDamage).ToString();
+        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*CurseOfTheColdDamage).ToString();
         IntentionText.color = Color.magenta;
         FixDamageIntention.enabled = true;
     }
 
-    public void FireShield()
+    public void FrozenMedicine()
     {
-        lowestEnemy.IncBlock(FireShieldBlock);
+        lowestEnemy.IncCurrentHP(FrozenMedicineHeal);
     }
 
-    public void FireShieldIntention()
+    public void FrozenMedicineIntention()
     {
         enemies = GetBattle().GetEnemies();
             foreach(Enemy enemy in enemies)
@@ -202,7 +201,7 @@ public class FireMage : Enemy
             }
 
         IntentionText.color = Color.blue;
-        IntentionText.text = FireShieldBlock.ToString();
+        IntentionText.text = FrozenMedicineHeal.ToString();
         BuffIntention.enabled = true;
     }
 }
