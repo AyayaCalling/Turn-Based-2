@@ -58,6 +58,13 @@ public class Battlesystem : MonoBehaviour
     //Player Turn
     public void ChangeStateToPlayerTurn()
     {
+        Player.DecVulnerableTurns(1);
+
+        if(Player.GetVulnerableTurns() == 0)
+        {
+            Player.SetVulnerable(1);
+        }
+        
         startTurnPos.x = Player.transform.position.x;
 
         foreach(Enemy enemy in enemies)
@@ -171,13 +178,6 @@ public class Battlesystem : MonoBehaviour
         if(Player.GetWeakTurns() == 0)
         {
             Player.SetWeakness(0);
-        }
-
-        Player.DecVulnerableTurns(1);
-
-        if(Player.GetVulnerableTurns() == 0)
-        {
-            Player.SetVulnerable(1);
         }
 
         Player.DecIceTurns(1);
