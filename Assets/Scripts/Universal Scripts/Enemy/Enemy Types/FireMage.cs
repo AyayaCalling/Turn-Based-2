@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireMage : Enemy
 {
@@ -28,7 +29,10 @@ public class FireMage : Enemy
     {
         SetMove(Random.Range(1,101));
 
-        if(battle == null) battle = GameObject.FindWithTag("Player").GetComponent<Battlesystem>();
+        if(GetBattle() == null) SetBattle(GameObject.FindWithTag("Player").GetComponent<Battlesystem>());
+        
+        if(Player == null) Player = FindObjectOfType<Player>();
+
         if(GetMove() <= pFireShield)
         {
             FireShieldIntention();
@@ -182,7 +186,7 @@ public class FireMage : Enemy
 
     public void FireShieldIntention()
     {
-        enemies = battle.GetEnemies();
+        enemies = GetBattle().GetEnemies();
             foreach(Enemy enemy in enemies)
             {
                 if(lowestEnemy != null && enemy.GetCurrentHP() < lowestEnemy.GetCurrentHP())

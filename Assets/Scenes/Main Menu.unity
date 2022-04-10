@@ -894,6 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  CharacterSelection: {fileID: 631651046}
   HUD: {fileID: 0}
   Battle: {fileID: 0}
   RestUI: {fileID: 0}

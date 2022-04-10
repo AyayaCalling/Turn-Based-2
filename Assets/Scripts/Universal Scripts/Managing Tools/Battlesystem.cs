@@ -25,6 +25,7 @@ public class Battlesystem : MonoBehaviour
 
     //This List tracks the amount of enemies that currently are present in the game.
     private List<Enemy> enemies = new List<Enemy>();
+    private Enemy[] intitialEnemies;
 
     //This variable is a Game related object for the defeat screen.
     public GameObject DefeatScreen;
@@ -47,7 +48,17 @@ public class Battlesystem : MonoBehaviour
 
     public void Start()
     {
+        intitialEnemies = FindObjectsOfType<Enemy>();
+        for(int i = 0; i < intitialEnemies.Length; i++)
+        {
+            if(intitialEnemies[i] != null)
+            {
+                enemies.Add(intitialEnemies[i]);
+            }
+        }
+        
         ChangeStateToPlayerTurn();
+        Debug.Log("Your Move!");
     }
     //These methods change the current Battlestate to the following states...
     #region StateChanges
@@ -57,9 +68,11 @@ public class Battlesystem : MonoBehaviour
     {
         startTurnPos.x = Player.transform.position.x;
         
+        Debug.Log(enemies.Count);
         foreach(Enemy enemy in enemies)
         {
             enemy.Intentions();
+            Debug.Log("Blubb Blubb (Intention Please).");
         }
         //Allows interaction with the skill buttons.
         SkillOneButton.interactable = true;

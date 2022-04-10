@@ -195,6 +195,11 @@ public class Enemy : MonoBehaviour
     {
         return Battle;
     }
+
+    public void SetBattle(Battlesystem battlesystem)
+    {
+        Battle = battlesystem;
+    }
     
     //This method kills and destroys the enemy if its HP reaches zero.
     public virtual void Die()
