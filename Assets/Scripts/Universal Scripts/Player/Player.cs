@@ -50,6 +50,18 @@ public class Player : MonoBehaviour
 
     private int poison;
 
+    //These are relevant for the Fire and Ice Boss-Fight.
+    private int markOfTheIce;
+    private int markOfTheFlame;
+
+    private int iceTimer;
+    private int flameTimer; 
+
+    public Image FlameDebuff;
+    public Image IceDebuff;
+    public Text FlameTurns;
+    public Text IceTurns;
+
     //These variables are the duration for every debuff.
     private int weakTurns;
     private int vulnerableTurns;
@@ -291,7 +303,71 @@ public class Player : MonoBehaviour
     {
         vulnerableTurns = turns;
     }
+    
+    public int GetMarkOfIce()
+    {
+        return markOfTheIce;
+    }
+
+    public void SetMarkOfIce(int amount)
+    {
+        markOfTheIce = amount;
+    }
+
+    public int GetMarkOfFlame()
+    {
+        return markOfTheFlame;
+    }
+
+    public void SetMarkOfFlame(int amount)
+    {
+        markOfTheFlame = amount;
+    }
+    
+    public int GetIceTurns()
+    {
+        return iceTimer;
+    }
+
+    public void SetIceTurns(int amount)
+    {
+        iceTimer = amount;
+
+        if(iceTimer > 0)
+        {
+            IceDebuff.enabled = true;
+            IceTurns.text = iceTimer.ToString();
+        }
+        else
+        {
+            IceDebuff.enabled = false;
+            IceTurns.text = "";
+        }
+    }
+
+    public int GetFlameTurns()
+    {
+        return flameTimer;
+    }
+
+    public void SetFlameTurns(int amount)
+    {
+        flameTimer = amount;
+
+        if(flameTimer > 0)
+        {
+            FlameDebuff.enabled = true;
+            FlameTurns.text = flameTimer.ToString();
+        }
+        else
+        {
+            FlameDebuff.enabled = false;
+            FlameTurns.text = "";
+        }
+    }
+
     #endregion
+
 
     #region Inc/Dec-Methods
 
@@ -466,6 +542,76 @@ public class Player : MonoBehaviour
     public void DecStr(int minusStr){ strength = ChangeStats(strength, minusStr, false);}
     public void DecInt(int minusInt){ intelligence = ChangeStats(intelligence, minusInt, false);}
 
+
+    public void IncIceTurns(int amount)
+    {
+        iceTimer += amount;
+
+        if(iceTimer > 0)
+        {
+            IceDebuff.enabled = true;
+            IceTurns.text = iceTimer.ToString();
+        }
+        else
+        {
+            IceDebuff.enabled = false;
+            IceTurns.text = "";
+        }
+    }
+
+    public void DecIceTurns(int amount)
+    {
+        if(iceTimer > 0)
+        {
+            iceTimer -= amount;
+        }
+
+        if(iceTimer > 0)
+        {
+            IceDebuff.enabled = true;
+            IceTurns.text = iceTimer.ToString();
+        }
+        else
+        {
+            IceDebuff.enabled = false;
+            IceTurns.text = "";
+        }
+    }
+
+    public void IncFlameTurns(int amount)
+    {
+        flameTimer += amount;
+
+        if(flameTimer > 0)
+        {
+            FlameDebuff.enabled = true;
+            FlameTurns.text = flameTimer.ToString();
+        }
+        else
+        {
+            FlameDebuff.enabled = false;
+            FlameTurns.text = "";
+        }
+    }
+
+    public void DecFlameTurns(int amount)
+    {
+        if(flameTimer > 0)
+        {
+            flameTimer -= amount;
+        }
+
+        if(flameTimer > 0)
+        {
+            FlameDebuff.enabled = true;
+            FlameTurns.text = flameTimer.ToString();
+        }
+        else
+        {
+            FlameDebuff.enabled = false;
+            FlameTurns.text = "";
+        }
+    }
     #endregion
 
     #region Actions

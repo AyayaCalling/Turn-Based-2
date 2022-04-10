@@ -181,6 +181,9 @@ public class Battlesystem : MonoBehaviour
             Player.SetVulnerable(1);
         }
 
+        Player.DecIceTurns(1);
+        Player.DecFlameTurns(1);
+
         ChangeStateToEnemyTurn();
     }
 

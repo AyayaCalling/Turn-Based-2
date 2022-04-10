@@ -10,10 +10,12 @@ public class FireMage : Enemy
     private int pDebuff = 10;
 
     //These are the values for the different spells.
-    private int FireShieldBlock = 20; //grants 20 block to the lowest enemy.
-    private int FireballDamage = 10;
-    private int FirePillarDamage = 15;
-    private int CurseOfTheFlameDamage = 5;
+    private int fireShieldBlock = 20; //grants 20 block to the lowest enemy.
+    private int fireballDamage = 10;
+    private int firePillarDamage = 15;
+    private int curseOfTheFlameDamage = 5;
+    private int iceAndFireDamage = 30;
+    private int markTimer = 3;
 
     private Enemy lowestEnemy;
     private List<Enemy> enemies = new List<Enemy>();
@@ -103,6 +105,15 @@ public class FireMage : Enemy
             }
         }
 
+        if(Player.GetMarkOfIce() == 1 && Player.GetMarkOfIce() == 1)
+        {
+            GetBattle().DealDamageToPlayer(Player, iceAndFireDamage);
+            Player.SetMarkOfFlame(0);
+            Player.SetMarkOfIce(0);
+            Player.SetIceTurns(0);
+            Player.SetFlameTurns(0);
+        } 
+    
         IntentionText.text = "";
         IntentionText.color = Color.red;
         AttackIntention.enabled = false;
@@ -116,7 +127,9 @@ public class FireMage : Enemy
     {
         if(Player.transform.position.x == GetBattle().startTurnPos.x)
         {
-            GetBattle().DealDamageToPlayer(Player, FireballDamage);
+            GetBattle().DealDamageToPlayer(Player, fireballDamage);
+            Player.SetFlameTurns(markTimer);
+            Player.SetMarkOfFlame(1);
         }
     }
 
@@ -149,7 +162,7 @@ public class FireMage : Enemy
                 break;     
         }
 
-        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*FireballDamage).ToString();
+        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*fireballDamage).ToString();
         AttackIntention.enabled = true;
     }
 
@@ -158,32 +171,36 @@ public class FireMage : Enemy
     {
         if(Player.transform.position.x % 2 == 0)
         {
-            GetBattle().DealDamageToPlayer(Player, FirePillarDamage);
+            GetBattle().DealDamageToPlayer(Player, firePillarDamage);
+            Player.SetFlameTurns(markTimer);
+            Player.SetMarkOfFlame(1);
         }
     }
 
     public void FirePillarIntention()
     {
         GetBattle().MarkFloor(true, false, true, false, true);
-        IntentionText.text =  Mathf.RoundToInt(Player.GetVulnerable()*FirePillarDamage).ToString();
+        IntentionText.text =  Mathf.RoundToInt(Player.GetVulnerable()*firePillarDamage).ToString();
         AttackIntention.enabled = true;
     }
 
     public void CurseOfTheFlame()
     {
-        GetBattle().DealDamageToPlayer(Player, CurseOfTheFlameDamage);
+        GetBattle().DealDamageToPlayer(Player, curseOfTheFlameDamage);
+        Player.SetFlameTurns(markTimer);
+        Player.SetMarkOfFlame(1);
     }
 
     public void CurseOfTheFlameIntention()
     {
-        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*CurseOfTheFlameDamage).ToString();
+        IntentionText.text = Mathf.RoundToInt(Player.GetVulnerable()*curseOfTheFlameDamage).ToString();
         IntentionText.color = Color.magenta;
         FixDamageIntention.enabled = true;
     }
 
     public void FireShield()
     {
-        lowestEnemy.IncBlock(FireShieldBlock);
+        lowestEnemy.IncBlock(fireShieldBlock);
     }
 
     public void FireShieldIntention()
@@ -202,7 +219,7 @@ public class FireMage : Enemy
             }
 
         IntentionText.color = Color.blue;
-        IntentionText.text = FireShieldBlock.ToString();
+        IntentionText.text = fireShieldBlock.ToString();
         BuffIntention.enabled = true;
     }
 }

@@ -13,6 +13,8 @@ public class FrostMage : Enemy
     private int IceBallDamage = 10;
     private int FrostPillarDamage = 15;
     private int CurseOfTheColdDamage = 5;
+    private int iceAndFireDamage = 30;
+    private int markTimer = 3;
 
     private Enemy lowestEnemy;
     private List<Enemy> enemies = new List<Enemy>();
@@ -102,6 +104,15 @@ public class FrostMage : Enemy
             }
         }
 
+        if(Player.GetMarkOfIce() == 1 && Player.GetMarkOfIce() == 1)
+        {
+            GetBattle().DealDamageToPlayer(Player, iceAndFireDamage);
+            Player.SetMarkOfFlame(0);
+            Player.SetMarkOfIce(0);
+            Player.SetIceTurns(0);
+            Player.SetFlameTurns(0);
+        } 
+
         IntentionText.text = "";
         IntentionText.color = Color.red;
         AttackIntention.enabled = false;
@@ -116,6 +127,8 @@ public class FrostMage : Enemy
         if(Player.transform.position.x == GetBattle().startTurnPos.x)
         {
             GetBattle().DealDamageToPlayer(Player, IceBallDamage);
+            Player.SetMarkOfIce(1);
+            Player.SetIceTurns(markTimer);
         }
     }
 
@@ -158,6 +171,8 @@ public class FrostMage : Enemy
         if(Player.transform.position.x == 1 || Player.transform.position.x == -1)
         {
             GetBattle().DealDamageToPlayer(Player, FrostPillarDamage);
+            Player.SetMarkOfIce(1);
+            Player.SetIceTurns(markTimer);
         }
     }
 
@@ -171,6 +186,8 @@ public class FrostMage : Enemy
     public void CurseOfTheCold()
     {
         GetBattle().DealDamageToPlayer(Player, CurseOfTheColdDamage);
+        Player.SetMarkOfIce(1);
+        Player.SetIceTurns(markTimer);
     }
 
     public void CurseOfTheColdIntention()
