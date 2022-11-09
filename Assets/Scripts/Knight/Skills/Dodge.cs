@@ -88,6 +88,8 @@ public class Dodge : Skill
                 tempButton.interactable = true;
             }
         }
+
+        scaler.SkillOne.SetLastUsed(False);
     }
 
     #endregion

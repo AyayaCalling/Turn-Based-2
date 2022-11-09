@@ -23,7 +23,7 @@ public class StatManager : MonoBehaviour
 
         player.SetMaxHP(50 + vigor);
         player.SetCurrentHP(player.GetMaxHP());
-        player.SetMaxMana(3 + mind);
+        player.SetMaxMana(100 + mind);
         player.SetCurrentMana(player.GetMaxMana());
         player.SetPhysDamage(5 + strength);
         player.SetMagicDamage(5 + intelligence);

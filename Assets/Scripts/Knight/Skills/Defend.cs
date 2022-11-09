@@ -72,6 +72,8 @@ public class Defend : Skill
         {
             Debug.Log("No Mana for this!");
         }
+
+         scaler.SkillOne.SetLastUsed(False);
     }
 
     #endregion

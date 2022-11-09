@@ -13,7 +13,8 @@ public class DamageScaler : MonoBehaviour
 
     //These values decide on the skills specific scaling.
     private int knightStrikeBase = 15;
-    private float knightStrikeScaling = 0.5f;
+    private float knightStrikeScalingPhys = 0.5f;
+    private float knightStrikeScalingMagic = 0f;
 
     private int knightDefendBase = 5;
     private float knightDefendScaling = 0.75f;
@@ -40,12 +41,11 @@ public class DamageScaler : MonoBehaviour
         }
     }
 
-    public void ScaleStatValue()
     {
         switch(Player.PlayerObj.name)
         {
             case "Knight":
-                SkillOne.SetStatDamage(Mathf.RoundToInt(Player.GetPhysDamage() * knightStrikeScaling));
+                SkillOne.SetStatDamage(Mathf.RoundToInt(Player.GetPhysDamage() * knightStrikeScalingPhys), Mathf.RoundToInt(Player.GetMagicDamage() * knightStrikeScalingMagic));
                 break;
             
             default:
@@ -58,4 +58,28 @@ public class DamageScaler : MonoBehaviour
     {
 
     }
+
+    #region Getter/Setter
+
+    public void SetKnightStrikePhysScaling(float value)
+    {
+        knightStrikeScalingPhys = value;
+    }
+
+    public void SetKnightStrikeMagicScaling(float value)
+    {
+        knightStrikeScalingMagic = value;
+    }
+
+    public float GetKnightStrikePhysScaling()
+    {
+        return knightStrikeScalingPhys;
+    }
+
+    public float GetKnightStrikeMagicScaling()
+    {
+        return knightStrikeScalingMagic;
+    }
+
+    #endregion
 }
