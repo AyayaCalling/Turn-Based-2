@@ -14,6 +14,7 @@ public class Debuff : MonoBehaviour
     public Image DebuffSprite;
     public Text DebuffTimer;
 
+    public string Name;
     private int duration;
     private bool isActive = false;
 
@@ -27,7 +28,7 @@ public class Debuff : MonoBehaviour
 
     public virtual void TriggerEffect()
     {
-        DebuffSprite.enabled = false;
+        DebuffSprite.enabled = false;    
     }
 
     public virtual void TickEffect()
@@ -50,6 +51,12 @@ public class Debuff : MonoBehaviour
     public void SetActive(bool state)
     {
         isActive = state;
+
+        if(!GetActive())
+        {
+            DebuffSprite.enabled = false;
+            DebuffTimer.text = "";
+        }
     }
 
     public bool GetActive()

@@ -97,9 +97,20 @@ public class Strike : Skill
 
         if(GetUpgrade31())
         {
+            foreach(Debuff debuff in battle.GetDebuffs())
+            {
+                if(debuff.Target == targetter.target && debuff.Name == "Mana Reave")
+                {
+                    debuff.TriggerEffect();
+                }
+            }
             ManaReave manaReave = new ManaReave(targetter.target, manaReaveDuration);
-            Debug.Log(manaReave.Target.ManaReaveSpirte.enabled);
             battle.DebuffEnemy(manaReave, targetter.target, manaReaveDuration);
+        }
+
+        if(GetUpgrade32())
+        {
+            
         }
 
         if(GetUpgrade33())

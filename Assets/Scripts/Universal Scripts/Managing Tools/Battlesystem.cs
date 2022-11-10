@@ -27,6 +27,7 @@ public class Battlesystem : MonoBehaviour
     private List<Enemy> enemies = new List<Enemy>();
     private Enemy[] intitialEnemies;
     private List<Debuff> activeDebuffs = new List<Debuff>();
+    private List<Debuff> debuffHelp = new List<Debuff>();    
 
     //This variable is a Game related object for the defeat screen.
     public GameObject DefeatScreen;
@@ -189,14 +190,16 @@ public class Battlesystem : MonoBehaviour
             debuff.DecDuration(1);
             if(debuff.GetDuration() == 0)
             {
-                activeDebuffs.Remove(debuff);
                 debuff.SetActive(false);
+                debuffHelp.Add(debuff); 
             }
             else
             {
                 debuff.TickEffect();
             }
         }
+
+        if(debuffHelp != null) debuffHelp.Clear();
 
         ChangeStateToEnemyTurn();
     }
@@ -272,6 +275,10 @@ public class Battlesystem : MonoBehaviour
         }
     }
 
+    public List<Debuff> GetDebuffs()
+    {
+        return activeDebuffs;
+    }
     //This methods marks the hit tiles red.
     public void MarkFloor(bool tOne, bool tTwo, bool tThree, bool tFour, bool tFive)
     {

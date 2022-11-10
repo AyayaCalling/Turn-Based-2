@@ -17,24 +17,30 @@ public class ManaReave : Debuff
     public ManaReave(Enemy enemy, int duration)
     {
         Target = enemy;
+        Player = FindObjectOfType<Player>();
         SetDuration(duration);
         DebuffSprite = Target.ManaReaveSpirte;
         DebuffTimer = Target.ManaReaveTimer;
         DebuffSprite.enabled = true;
         DebuffTimer.text = duration.ToString();
+        Name = "Mana Reave";
     }
 
     public override void TriggerEffect()
-    {
-        Target.DecCurrentHP(baseTriggerDamage + Mathf.RoundToInt(Player.GetIntelligence()*intScaling));
-        Player.IncCurrentMana(manaRefund);
-        SetActive(false);
-        base.TriggerEffect();
+    {   
+        if(GetActive())
+        {
+            Target.DecCurrentHP(baseTriggerDamage + Mathf.RoundToInt(Player.GetIntelligence()*intScaling));
+            Player.IncCurrentMana(manaRefund);
+            SetActive(false);
+            base.TriggerEffect();     
+        }
     }
 
     public override void TickEffect()
     {
         Target.DecCurrentHP(baseTickDamage + Mathf.RoundToInt(Player.GetMind()*mindScaling));
+        DebuffTimer.text = GetDuration().ToString();
     }
 
 }
