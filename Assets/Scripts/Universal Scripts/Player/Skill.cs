@@ -22,12 +22,13 @@ public class Skill : MonoBehaviour
     private int baseDamage;
     private int statDamage;
     private int itemDamage;
+    private int totalDamage;
 
     private bool lastUsed;
 
     //These bools handle Skill-Upgrade-Tracking
     private bool u2P1 = false;
-    private bool u2P2 = false;
+    private bool u2P2 = true;
     private bool u2P3 = false;
     private bool u3P1 = false;
     private bool u3P2 = false;
@@ -120,32 +121,26 @@ public class Skill : MonoBehaviour
         {
             case 21:
                 return u21Scaling;
-                break;
+                
 
             case 22:
-                return u22Scaling;
-                break;
+                return u22Scaling;                
             case 23:
-                return u23Scaling;
-                break;
+                return u23Scaling;                
             case 31:
                 return u31Scaling;
-                break;
             case 32:
                 return u32Scaling;
-                break;
             case 33:
                 return u33Scaling;
-                break;
             default:
                 Debug.Log("There's no such Upgrade!");
                 return 0;
-                break;
 
         }
     }
     
-    public void SetUpgradeScaling(int iD, int scaleValue)
+    public void SetUpgradeScaling(int iD, float scaleValue)
     {
         switch(iD)
         {
@@ -172,6 +167,39 @@ public class Skill : MonoBehaviour
                 Debug.Log("There's no such Upgrade!");
                 break;   
         }
+    }
+
+    //Getter-Method for the Skills mana cost
+    public int GetManaCost()
+    {
+        return manaCost;
+    }
+
+    //Setter-Method for the Skills mana cost
+    public void SetManaCost(int cost)
+    {
+        manaCost = cost;
+    }
+
+    public void SetLastUsed(bool state)
+    {
+        lastUsed = state;
+
+    }
+
+    public bool GetLastUsed()
+    {
+        return lastUsed;
+    }   
+
+    public void SetTotalDamage(int value)
+    {
+        totalDamage = value;
+    }
+
+    public int GetTotalDamage()
+    {
+        return totalDamage;
     }
     #endregion
 
@@ -209,26 +237,4 @@ public class Skill : MonoBehaviour
     }
     #endregion
 
-    //Getter-Method for the Skills mana cost
-    public int GetManaCost()
-    {
-        return manaCost;
-    }
-
-    //Setter-Method for the Skills mana cost
-    public void SetManaCost(int cost)
-    {
-        manaCost = cost;
-    }
-
-    public void SetLastUsed(bool state)
-    {
-        lastUsed = state;
-
-    }
-
-    public bool GetLastUsed()
-    {
-        return lastUsed;
-    }   
 }

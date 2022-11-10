@@ -10,15 +10,17 @@ public class Strike : Skill
     // These variables are used to display and calculate the battle phase.
     public TargettingSystem targetter;
     public Battlesystem battle;
-
-    private float u21Scaling = 0.5f;
-    private float u22Scaling = 1f;
     private bool u21Applied;
     private bool u22Applied;
     private int u23Stacks;
 
     #endregion
 
+    public void Awake()
+    {
+        SetUpgradeScaling(21, 0.5f);
+        SetUpgradeScaling(22, 1.5f);
+    }
 //This method will trigger every action binded to the "Strike" skill of "Knight".
     #region UseStrikeMethod
 
@@ -31,10 +33,9 @@ public class Strike : Skill
         {
             if(Player.GetCurrentMana() > 0 && Player.GetActive())
             {
-                int damage = Mathf.RoundToInt((GetBaseDamage() + GetStatDamage() + GetItemDamage()) * (1-Player.GetWeakness()));
-                //add different Upgrade effects here.
+                ModifyStrike();
 
-                battle.DealDamageToEnemy(targetter.target, damage);
+                battle.DealDamageToEnemy(targetter.target, GetTotalDamage());
 
                 Player.DecCurrentMana(GetManaCost());
 
@@ -53,26 +54,34 @@ public class Strike : Skill
 
     #region Upgrades
 
-    public void ApplyUpgrades()
+    public void ModifyStrike()
     {
         if(GetUpgrade21() == true && u21Applied == false)
         {
-            scaler.SetKnightStrikeMagicScaling(u21Scaling);
+            scaler.SetKnightStrikeMagicScaling(GetUpgradeScaling(21));
+            scaler.ScaleStatValue();
             u21Applied = true;
         }
         if(GetUpgrade22() == true && u22Applied == false)
         {
-            scaler.SetKnightStrikePhysScaling(u22Scaling);
+            scaler.SetKnightStrikePhysScaling(GetUpgradeScaling(22));
+            scaler.ScaleStatValue();
             u22Applied = true;
         }
+
+        float damage = (GetBaseDamage() + GetStatDamage() + GetItemDamage()) * (1-Player.GetWeakness());
+
         if(GetUpgrade23() == true)
             {
-                //damage = damage*(1+u23Stacks*0.2);
+                damage = damage*(1+u23Stacks*0.2f);
                 if(GetLastUsed() && u23Stacks <= 3)
                 {
                     u23Stacks +=1;
                 }       
             }
+
+        //Total damage Set
+        SetTotalDamage(Mathf.RoundToInt(damage));
     } 
 
     #endregion
