@@ -10,6 +10,8 @@ public class Strike : Skill
     // These variables are used to display and calculate the battle phase.
     public TargettingSystem targetter;
     public Battlesystem battle;
+
+    //Knight's Strike only variables:
     private bool u21Applied;
     private bool u22Applied;
     private int u23Stacks;
@@ -19,6 +21,8 @@ public class Strike : Skill
     private int thirdHitChance = 80;
     private float secondHitRatio = 0.2f;
     private float thirdHitRatio = 0.1f;
+
+    private int manaReaveDuration = 3;
 
     #endregion
 
@@ -89,6 +93,12 @@ public class Strike : Skill
                 u23Stacks +=1;
             }
             SetTotalDamage(Mathf.RoundToInt(damage23));       
+        }
+
+        if(GetUpgrade31())
+        {
+            ManaReave manaReave = new ManaReave();
+            battle.DebuffEnemy(manaReave, targetter.target, manaReaveDuration);
         }
 
         if(GetUpgrade33())

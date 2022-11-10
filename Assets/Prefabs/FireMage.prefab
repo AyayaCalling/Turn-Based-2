@@ -25,6 +25,8 @@ MonoBehaviour:
   FixDamageIntention: {fileID: 3123512614267672262}
   BuffIntention: {fileID: 6897391602764017447}
   DebuffIntention: {fileID: 1507737536822722179}
+  ManaReaveSpirte: {fileID: 4746842951840643159}
+  ManaReaveTimer: {fileID: 4099517016257352271}
 --- !u!1001 &6276442188141443830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +144,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 421455220559417619, guid: 13b9702faa407b748afac3df4dcdd856, type: 3}
   m_PrefabInstance: {fileID: 6276442188141443830}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4746842951840643159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1655717629059728033, guid: 13b9702faa407b748afac3df4dcdd856, type: 3}
+  m_PrefabInstance: {fileID: 6276442188141443830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4099517016257352271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8069905084651301049, guid: 13b9702faa407b748afac3df4dcdd856, type: 3}
+  m_PrefabInstance: {fileID: 6276442188141443830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3748884678037302236 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7141811988298158378, guid: 13b9702faa407b748afac3df4dcdd856, type: 3}

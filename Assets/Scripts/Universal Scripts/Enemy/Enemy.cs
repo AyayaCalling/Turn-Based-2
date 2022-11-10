@@ -53,6 +53,10 @@ public class Enemy : MonoBehaviour
     public Image BuffIntention;
     public Image DebuffIntention;
 
+    //List of Debuff Icons and Timers.
+    public Image ManaReaveSpirte;
+    public Text ManaReaveTimer;
+
     //This method shifts all UI elements to match the enemy's position and finds a default attack Target.
     public void Start()
     {
@@ -106,6 +110,7 @@ public class Enemy : MonoBehaviour
         intentionRect.anchoredPosition = posIntention;
     }
 
+    #region Getter/Setter
     // Setter-Method for the Variable currentHP. (only used in the initialization publicly)
     public void SetCurrentHP(int hp)
     {
@@ -141,6 +146,7 @@ public class Enemy : MonoBehaviour
         BlockText.text = block.ToString();
     }
 
+    #endregion
     public void DecCurrentHP(int minusHP)
     {
         int hp = GetCurrentHP() - minusHP;
@@ -219,6 +225,8 @@ public class Enemy : MonoBehaviour
         Battle.RemoveEnemy(this);
         Player.IncLevelToSpent(5);
         Destroy(EnemyObj);
+
+        //Delete intentions when enemy dies.
     }
 
     //This method displays what the enemy will do on its next turn.
