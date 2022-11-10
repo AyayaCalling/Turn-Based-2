@@ -28,7 +28,7 @@ public class Skill : MonoBehaviour
 
     //These bools handle Skill-Upgrade-Tracking
     private bool u2P1 = false;
-    private bool u2P2 = true;
+    private bool u2P2 = false;
     private bool u2P3 = false;
     private bool u3P1 = false;
     private bool u3P2 = false;
@@ -105,14 +105,32 @@ public class Skill : MonoBehaviour
         return u3P3;
     }
 
-    public void SetUpgrade11(bool u21, bool u22, bool u23, bool u31, bool u32, bool u33)
+    public void SetUpgrade(int iD, bool state)
     {    
-        u2P1 = u21;
-        u2P2 = u22;
-        u2P3 = u23;
-        u3P1 = u31;
-        u3P2 = u32;
-        u3P3 = u33;
+        switch(iD)
+        {
+            case 21:
+                u2P1 = state;
+                break;
+            case 22:
+                u2P2 = state;
+                break;
+            case 23:
+                u2P3 = state;
+                break;
+            case 31:
+                u3P1 = state;
+                break;
+            case 32:
+                u3P2 = state;
+                break;
+            case 33:
+                u3P3 = state;
+                break;
+            default:
+                Debug.Log("There's no such Upgrade!");
+                break;
+        }
     }
 
     public float GetUpgradeScaling(int iD)
@@ -121,8 +139,6 @@ public class Skill : MonoBehaviour
         {
             case 21:
                 return u21Scaling;
-                
-
             case 22:
                 return u22Scaling;                
             case 23:
@@ -147,7 +163,6 @@ public class Skill : MonoBehaviour
             case 21:
                 u21Scaling = scaleValue;
                 break;
-
             case 22:
                 u22Scaling = scaleValue;
                 break;
@@ -184,7 +199,6 @@ public class Skill : MonoBehaviour
     public void SetLastUsed(bool state)
     {
         lastUsed = state;
-
     }
 
     public bool GetLastUsed()

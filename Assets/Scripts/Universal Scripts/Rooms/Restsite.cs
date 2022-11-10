@@ -9,6 +9,9 @@ public class Restsite : MonoBehaviour
     //The player (you know how this works).
     public Player Player;
 
+    //Managing System for Skill Ups.
+    public SkillUpManager skillUp;
+
     //The button that needs to be pressed to heal.
     public Button HealButton;
 
@@ -38,6 +41,12 @@ public class Restsite : MonoBehaviour
     //This method opens an overview of all possible Upgrades for your skills. (The upgrading is done in a seperate class).
     public void OnSkillUpButton()
     {
-        Debug.Log("Coming Soon.");
+        skillUp.OpenSkillUp();
+    }
+
+    public void SkillUpgraded()
+    {
+        SceneHandler.RestUI.SetActive(false);
+        ExitCreation.CreateFixExit("Fight");
     }
 }

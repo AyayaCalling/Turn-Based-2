@@ -13,6 +13,12 @@ public class Strike : Skill
     private bool u21Applied;
     private bool u22Applied;
     private int u23Stacks;
+    private int maxStacks = 3;
+    private float stackRatio = 0.2f;
+    private int secondHitChance = 40;
+    private int thirdHitChance = 80;
+    private float secondHitRatio = 0.2f;
+    private float thirdHitRatio = 0.1f;
 
     #endregion
 
@@ -33,6 +39,12 @@ public class Strike : Skill
         {
             if(Player.GetCurrentMana() > 0 && Player.GetActive())
             {
+                if(GetLastUsed() == false)
+                {
+                    u23Stacks = 0;
+                    SetLastUsed(true);
+                }
+
                 ModifyStrike();
 
                 battle.DealDamageToEnemy(targetter.target, GetTotalDamage());
@@ -40,8 +52,6 @@ public class Strike : Skill
                 Player.DecCurrentMana(GetManaCost());
 
                 observer.ManaValueChange();
-
-                SetLastUsed(true);
             }
         }
         else
@@ -56,32 +66,75 @@ public class Strike : Skill
 
     public void ModifyStrike()
     {
-        if(GetUpgrade21() == true && u21Applied == false)
+        if(GetUpgrade21() && u21Applied == false)
         {
             scaler.SetKnightStrikeMagicScaling(GetUpgradeScaling(21));
             scaler.ScaleStatValue();
             u21Applied = true;
         }
-        if(GetUpgrade22() == true && u22Applied == false)
+        if(GetUpgrade22() && u22Applied == false)
         {
             scaler.SetKnightStrikePhysScaling(GetUpgradeScaling(22));
             scaler.ScaleStatValue();
             u22Applied = true;
         }
 
-        float damage = (GetBaseDamage() + GetStatDamage() + GetItemDamage()) * (1-Player.GetWeakness());
+        float strikeDamage = (GetBaseDamage() + GetStatDamage() + GetItemDamage()) * (1-Player.GetWeakness());
 
-        if(GetUpgrade23() == true)
+        if(GetUpgrade23())
+        {
+            float damage23 = strikeDamage*(1+u23Stacks*stackRatio);
+            if(GetLastUsed() && u23Stacks < maxStacks)
             {
-                damage = damage*(1+u23Stacks*0.2f);
-                if(GetLastUsed() && u23Stacks <= 3)
+                u23Stacks +=1;
+            }
+            SetTotalDamage(Mathf.RoundToInt(damage23));       
+        }
+
+        if(GetUpgrade33())
+        {
+            float damage33;
+            int rNG = Random.Range(0, 100);
+            if(GetUpgrade23())
+            {
+                u23Stacks -= 1;
+                damage33 = strikeDamage*(1+u23Stacks*stackRatio);
+            }else
+            {
+                damage33 = strikeDamage*(1+u23Stacks*stackRatio);
+            }
+            
+            if(GetLastUsed() && u23Stacks < maxStacks && GetUpgrade23())
                 {
                     u23Stacks +=1;
-                }       
+                }
+
+            if(rNG >= secondHitChance)
+            {
+                damage33 += secondHitRatio*strikeDamage*(1+u23Stacks*stackRatio);
+                if(GetLastUsed() && u23Stacks < maxStacks && GetUpgrade23())
+                    {
+                        u23Stacks +=1;
+                    }
             }
 
-        //Total damage Set
-        SetTotalDamage(Mathf.RoundToInt(damage));
+            if(rNG >= thirdHitChance)
+            {
+                damage33 += thirdHitRatio*strikeDamage*(1+u23Stacks*stackRatio);
+                if(GetLastUsed() && u23Stacks < maxStacks && GetUpgrade23())
+                    {
+                        u23Stacks +=1;
+                    }
+            }
+            
+            SetTotalDamage(Mathf.RoundToInt(damage33));
+        }
+
+        if(!GetUpgrade21() && !GetUpgrade22() && !GetUpgrade23())
+        {
+            SetTotalDamage(Mathf.RoundToInt(strikeDamage));
+        }
+
     } 
 
     #endregion
