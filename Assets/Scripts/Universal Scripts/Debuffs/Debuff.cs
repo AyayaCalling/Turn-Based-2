@@ -18,7 +18,7 @@ public class Debuff : MonoBehaviour
     private bool isActive = false;
 
     #endregion
-
+    
     public virtual void ApplyDebuff(int turns, Enemy target)
     {
         DebuffSprite.enabled = true;

@@ -30,7 +30,7 @@ public class Skill : MonoBehaviour
     private bool u2P1 = false;
     private bool u2P2 = false;
     private bool u2P3 = false;
-    private bool u3P1 = false;
+    private bool u3P1 = true;
     private bool u3P2 = false;
     private bool u3P3 = false;
 

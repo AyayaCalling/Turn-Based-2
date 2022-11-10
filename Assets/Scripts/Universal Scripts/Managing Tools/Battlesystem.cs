@@ -237,8 +237,6 @@ public class Battlesystem : MonoBehaviour
 
     public void DebuffEnemy(Debuff debuff, Enemy enemy, int duration)
     {
-        debuff.Target = enemy;
-        debuff.SetDuration(duration);
         activeDebuffs.Add(debuff);
     }
     //These methods are used to update the "enemies" list.

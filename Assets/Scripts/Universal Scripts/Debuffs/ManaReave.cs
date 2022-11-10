@@ -14,12 +14,14 @@ public class ManaReave : Debuff
     private float mindScaling = 0.5f;
     private float intScaling = 0.5f;
 
-
-    public override void ApplyDebuff(int turns, Enemy target)
+    public ManaReave(Enemy enemy, int duration)
     {
-        DebuffSprite = target.ManaReaveSpirte;
-        DebuffTimer = target.ManaReaveTimer;
-        base.ApplyDebuff(turns, target);
+        Target = enemy;
+        SetDuration(duration);
+        DebuffSprite = Target.ManaReaveSpirte;
+        DebuffTimer = Target.ManaReaveTimer;
+        DebuffSprite.enabled = true;
+        DebuffTimer.text = duration.ToString();
     }
 
     public override void TriggerEffect()
