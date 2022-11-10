@@ -11,11 +11,11 @@ public class Strike : Skill
     public TargettingSystem targetter;
     public Battlesystem battle;
 
-    float u21Scaling = 0.5f;
-    float u22Scaling = 1f;
-    int u23Stacks;
-
-    private bool lastUsed;
+    private float u21Scaling = 0.5f;
+    private float u22Scaling = 1f;
+    private bool u21Applied;
+    private bool u22Applied;
+    private int u23Stacks;
 
     #endregion
 
@@ -55,12 +55,20 @@ public class Strike : Skill
 
     public void ApplyUpgrades()
     {
-        if(GetUpgrade21() == true && scaler.GetKnightStrikeMagicScaling != u21Scaling){scaler.SetKnightStrikeMagicScaling(u21Scaling)}
-        if(GetUpgrade22() == true && scaler.GetKnightStrikePhysScaling != u22Scaling){scaler.SetKnightStrikePhysScaling(u22Scaling)}
+        if(GetUpgrade21() == true && u21Applied == false)
+        {
+            scaler.SetKnightStrikeMagicScaling(u21Scaling);
+            u21Applied = true;
+        }
+        if(GetUpgrade22() == true && u22Applied == false)
+        {
+            scaler.SetKnightStrikePhysScaling(u22Scaling);
+            u22Applied = true;
+        }
         if(GetUpgrade23() == true)
             {
-                damage = damage*(1+u23Stacks*0.2);
-                if(GetLastUsed())
+                //damage = damage*(1+u23Stacks*0.2);
+                if(GetLastUsed() && u23Stacks <= 3)
                 {
                     u23Stacks +=1;
                 }       
@@ -69,21 +77,5 @@ public class Strike : Skill
 
     #endregion
 
-    #region Getter/Setter
-
-    public void SetLastUsed(bool state)
-    {
-        lastUsed = state;
-
-        if(lastUsed == False)
-        {
-            u23Stacks = 0;
-        }
-    }
-
-    public bool GetLastUsed()
-    {
-        return lastUsed;
-    }    
 }
 

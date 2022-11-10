@@ -89,7 +89,7 @@ public class Dodge : Skill
             }
         }
 
-        scaler.SkillOne.SetLastUsed(False);
+        scaler.SkillOne.SetLastUsed(false);
     }
 
     #endregion

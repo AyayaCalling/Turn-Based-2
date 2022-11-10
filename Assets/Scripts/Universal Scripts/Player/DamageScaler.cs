@@ -39,8 +39,10 @@ public class DamageScaler : MonoBehaviour
                 Debug.Log("There's no such class.");
                 break;
         }
+    
     }
 
+    public void ScaleStatValue()
     {
         switch(Player.PlayerObj.name)
         {
@@ -83,3 +85,4 @@ public class DamageScaler : MonoBehaviour
 
     #endregion
 }
+

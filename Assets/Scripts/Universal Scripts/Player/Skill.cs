@@ -18,28 +18,28 @@ public class Skill : MonoBehaviour
     public ManaObserver observer;
 
     //These variables scale the Skilldamage the player will deal.
-    private DamageScaler scaler;
+    public DamageScaler scaler;
     private int baseDamage;
     private int statDamage;
     private int itemDamage;
 
+    private bool lastUsed;
+
     //These bools handle Skill-Upgrade-Tracking
-    private bool u1P1 = False;
-    private bool u1P2 = False;
-    private bool u2P1 = False;
-    private bool u2P2 = False;
-    private bool u2P3 = False;
-    private bool u3P1 = False;
-    private bool u3P2 = False;
-    private bool u3P3 = False;
+    private bool u2P1 = false;
+    private bool u2P2 = false;
+    private bool u2P3 = false;
+    private bool u3P1 = false;
+    private bool u3P2 = false;
+    private bool u3P3 = false;
 
     //These variables determine scalings of Skill Upgrades.
-    private int u21Scaling;
-    private int u22Scaling;
-    private int u23Scaling;
-    private int u31Scaling;
-    private int u32Scaling;
-    private int u33Scaling;
+    private float u21Scaling;
+    private float u22Scaling;
+    private float u23Scaling;
+    private float u31Scaling;
+    private float u32Scaling;
+    private float u33Scaling;
 
     //These methods set and get different values of "Strike".
     #region Setter/Getter
@@ -74,21 +74,6 @@ public class Skill : MonoBehaviour
         return itemDamage;
     }
     
-    public bool GetUpgrade11()
-    {    
-        return u1P1;
-    }
-
-    public bool GetUpgrade12()
-    {    
-        return u1P2;
-    }
-
-    public bool GetUpgrade13()
-    {    
-        return u1P3;
-    }
-
     public bool GetUpgrade21()
     {    
         return u2P1;
@@ -119,20 +104,17 @@ public class Skill : MonoBehaviour
         return u3P3;
     }
 
-    public void SetUpgrade11(bool u11, bool u12, bool u13, bool u21, bool u22, bool u23, bool u31, bool u32, bool u33)
+    public void SetUpgrade11(bool u21, bool u22, bool u23, bool u31, bool u32, bool u33)
     {    
-        u1P1 = u11;
-        u1P2 = u22;
-        u1P3 = u33;
         u2P1 = u21;
-        u2p2 = u22;
+        u2P2 = u22;
         u2P3 = u23;
-        u3p1 = u31;
-        u3p2 = u32;
+        u3P1 = u31;
+        u3P2 = u32;
         u3P3 = u33;
     }
 
-    public void GetUpgradeScaling(int iD)
+    public float GetUpgradeScaling(int iD)
     {
         switch(iD)
         {
@@ -156,7 +138,8 @@ public class Skill : MonoBehaviour
                 return u33Scaling;
                 break;
             default:
-                Debug.Log("There's no such Upgrade!")
+                Debug.Log("There's no such Upgrade!");
+                return 0;
                 break;
 
         }
@@ -186,7 +169,7 @@ public class Skill : MonoBehaviour
                 u33Scaling = scaleValue;
                 break;
             default:
-                Debug.Log("There's no such Upgrade!")
+                Debug.Log("There's no such Upgrade!");
                 break;   
         }
     }
@@ -237,4 +220,15 @@ public class Skill : MonoBehaviour
     {
         manaCost = cost;
     }
+
+    public void SetLastUsed(bool state)
+    {
+        lastUsed = state;
+
+    }
+
+    public bool GetLastUsed()
+    {
+        return lastUsed;
+    }   
 }
