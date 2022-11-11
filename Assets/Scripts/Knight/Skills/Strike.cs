@@ -3,7 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// This Class contains the basic variables and methods for Attacking/Striking in the game.
+/*This Class contains the basic variables and methods for Attacking/Striking in the game.
+
+Upgrade List:
+
+U21: Spellsword. Adds magic damage scaling.
+U22: Slash. Increases physical damage scaling.
+U23: Raging Blade. Successive hits scale up in damage.
+U31: Reaver. Applies debuff to enemies.
+U32: Spin To Win. Deals percentage AoE damage.
+U33: Bladestorm. Can hit multiple times.
+*/
 public class Strike : Skill
 {
     #region Variables
