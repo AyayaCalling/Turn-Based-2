@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// This Class contains the basic variables and methods for Defending/ Blocking in the game.
+/* This Class contains the basic variables and methods for Defending/ Blocking in the game.
+U21:
+U22:Heavy Armor. Increases dex scaling.
+U23:Reinforced Defense. Prevents the first damage that breaks your shield.
+U31:Shimmering Scales. Converts blocked damage to HP.
+U32:
+U33:Everlasting Shield. Block now lasts 2 turns.
+*/
 public class Defend : Skill
 {
     #region Variables
