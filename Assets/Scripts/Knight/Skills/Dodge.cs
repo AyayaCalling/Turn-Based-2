@@ -15,6 +15,13 @@ public class Dodge : Skill
 
     #region InitializeTiles
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            UsingDodge();
+        }
+    }
     // This Method initializes the Lists with all needed Buttons.
     public void Awake()
     {

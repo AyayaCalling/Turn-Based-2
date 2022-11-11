@@ -16,6 +16,15 @@ public class Defend : Skill
 
     #endregion
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UsingDefend();
+        }
+    }
+    //
+
     public void Awake()
     {
         manaCostText.text = GetManaCost().ToString();

@@ -39,6 +39,13 @@ public class Strike : Skill
 
     #endregion
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UsingStrike();
+        }
+    }
     public void Awake()
     {
         manaCostText.text = GetManaCost().ToString();
@@ -260,19 +267,23 @@ public class Strike : Skill
         if(!GetUpgrade31() && !GetUpgrade32() && !GetUpgrade33())
         {
             if(GetUpgrade21())
-        {
-            StrikeDesc.UpdateDescription(21);
-            UpdateManaCost(21);
-            Debug.Log("Updating UI");
-        }else if(GetUpgrade22())
-        {
-            StrikeDesc.UpdateDescription(22);
-            UpdateManaCost(22);
-        }else if(GetUpgrade23())
-            StrikeDesc.UpdateDescription(23);
-            UpdateManaCost(23);
-        }
-        else if(GetUpgrade31())
+            {
+                StrikeDesc.UpdateDescription(21);
+                UpdateManaCost(21);
+            }else if(GetUpgrade22())
+            {
+                StrikeDesc.UpdateDescription(22);
+                UpdateManaCost(22);
+            }else if(GetUpgrade23())
+            {
+                StrikeDesc.UpdateDescription(23);
+                UpdateManaCost(23);
+            }else
+            {
+            Debug.Log("No Upgrades!");
+            StrikeDesc.UpdateDescription(11);
+            }
+        }else if(GetUpgrade31())
         {   
             StrikeDesc.UpdateDescription(31);
             UpdateManaCost(31);
@@ -284,9 +295,6 @@ public class Strike : Skill
         {
             StrikeDesc.UpdateDescription(33);
             UpdateManaCost(33);
-        }else
-        {
-            StrikeDesc.UpdateDescription(11);
         }
     }
 
@@ -329,6 +337,85 @@ public class Strike : Skill
         stackRatio = ratio;
     }
 
+    public float GetAoeRatio()
+    {
+        return spinRatio;
+    }
+
+    public void SetAoeRatio(float ratio)
+    {
+        spinRatio = ratio;
+    }
+
+    public float GetSpinHitRatio()
+    {
+        return spinHitRatio;
+    }
+
+    public void SetSpinHitRatio(float ratio)
+    {
+        spinHitRatio = ratio;
+    }
+
+    public int GetHitChance(int iD)
+    {
+        switch(iD)
+        {
+            case 2:
+                return secondHitChance;
+            case 3:
+                return thirdHitChance;
+            default:
+                Debug.Log("Invalid hit!");
+                return 0;
+        }
+    }
+
+    public void SetHitChance(int iD, int chance)
+    {
+        switch(iD)
+        {
+            case 2:
+                secondHitChance = chance;
+                break;
+            case 3:
+                thirdHitChance = chance;
+                break;
+            default:
+                Debug.Log("Invalid hit!");
+                break;
+        }
+    }
+
+    public float GetHitRatio(int iD)
+    {
+        switch(iD)
+        {
+            case 2:
+                return secondHitRatio;
+            case 3:
+                return thirdHitRatio;
+            default:
+                Debug.Log("Invalid hit!");
+                return 0;
+        }
+    }
+
+    public void SetHitRatio(int iD, float ratio)
+    {   
+        switch(iD)
+        {
+            case 2:
+                secondHitRatio = ratio;
+                break;
+            case 3:
+                thirdHitRatio = ratio;
+                break;
+            default:
+                Debug.Log("Invalid hit!");
+                break;
+        }
+    }
     #endregion
 }
 

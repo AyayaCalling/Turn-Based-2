@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     // These variables are the indivdual player stats.
     private int vigor;
     private int mind;
-    private int strength = 100;
+    private int strength;
     private int intelligence;
     private int dexterity;
 
