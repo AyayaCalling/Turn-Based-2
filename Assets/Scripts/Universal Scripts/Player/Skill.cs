@@ -12,13 +12,14 @@ public class Skill : MonoBehaviour
     public Button SkillButton;
 
     //This variable stores information for the Skills mana cost.
-    private int manaCost = 1;
+    private int manaCost = 30;
+    public Text manaCostText;
 
     //This varibale constantly checks for availability of the Skill.
     public ManaObserver observer;
 
     //These variables scale the Skilldamage the player will deal.
-    public DamageScaler scaler;
+    public DamageScaler Scaler;
     private int baseDamage;
     private int statDamage;
     private int itemDamage;
@@ -30,7 +31,7 @@ public class Skill : MonoBehaviour
     private bool u2P1 = false;
     private bool u2P2 = false;
     private bool u2P3 = false;
-    private bool u3P1 = true;
+    private bool u3P1 = false;
     private bool u3P2 = false;
     private bool u3P3 = false;
 
@@ -42,9 +43,100 @@ public class Skill : MonoBehaviour
     private float u32Scaling;
     private float u33Scaling;
 
+    #region Roll Mech
+
+    public Button TileOne;
+    public Button TileTwo;
+    public Button TileThree;
+    public Button TileFour;
+    public Button TileFive;
+    
+    public Transform playerTrans;
+
+    public Transform TileOneTrans;
+    public Transform TileTwoTrans;
+    public Transform TileThreeTrans;
+    public Transform TileFourTrans;
+    public Transform TileFiveTrans;
+
+    private List<Button> buttons = new List<Button>();
+
+    private List<Transform> buttonTrans = new List<Transform>();
+    private List<Transform> availableButtonTrans = new List<Transform>();
+
+    public CharacterController PlayerController; 
+    private Vector3 rollPos;
+
+    #endregion
+
     //These methods set and get different values of "Strike".
     #region Setter/Getter
 
+    public void SetButtons(List<Button> buttonList)
+    {
+        buttons = buttonList;
+    }
+
+    public List<Button> GetButtons()
+    {
+        return buttons;
+    }
+
+    public void SetTrans(List<Transform> transList ,string switchString)
+    {
+        switch(switchString)
+        {
+            case "available":
+                availableButtonTrans = transList;
+                break;
+            case "standard":
+                buttonTrans = transList;
+                break;
+            default:
+                buttonTrans = transList;
+                break;
+        }
+    }
+
+    public void AddTrans(Transform trans ,string switchString)
+    {
+        switch(switchString)
+        {
+            case "available":
+                availableButtonTrans.Add(trans);
+                break;
+            case "standard":
+                buttonTrans.Add(trans);
+                break;
+            default:
+                buttonTrans.Add(trans);
+                break;
+        }
+    }
+
+    public List<Transform> GetTrans(string switchString)
+    {
+        switch(switchString)
+        {
+            case "available":
+                return availableButtonTrans;
+            case "standard":
+                return buttonTrans;
+            default:
+                Debug.Log("Wrong String input!");
+                return buttonTrans;
+        }
+    }
+
+    public void SetRollPos(Vector3 pos)
+    {
+        rollPos = pos;
+    }
+
+    public Vector3 GetRollPos()
+    {
+        return rollPos;
+    }
     public void SetBaseDamage(int dmg)
     {
         baseDamage = dmg;
@@ -105,7 +197,7 @@ public class Skill : MonoBehaviour
         return u3P3;
     }
 
-    public void SetUpgrade(int iD, bool state)
+    public virtual void SetUpgrade(int iD, bool state)
     {    
         switch(iD)
         {
@@ -251,4 +343,13 @@ public class Skill : MonoBehaviour
     }
     #endregion
 
+    public virtual void UpdateManaCost(int iD)
+    {
+        manaCostText.text = manaCost.ToString();
+    }
+
+    public virtual void UpdateUI()
+    {
+        
+    }
 }

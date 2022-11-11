@@ -9,31 +9,6 @@ public class Dodge : Skill
 {
     // BRAUCHT KOMMENTARE
     #region Variables
-
-    public Button TileOne;
-    public Button TileTwo;
-    public Button TileThree;
-    public Button TileFour;
-    public Button TileFive;
-    
-    public Transform playerTrans;
-
-    public Transform TileOneTrans;
-    public Transform TileTwoTrans;
-    public Transform TileThreeTrans;
-    public Transform TileFourTrans;
-    public Transform TileFiveTrans;
-
-    private Button tempButton;
-
-    private List<Button> buttons = new List<Button>();
-
-    private List<Transform> buttonTrans = new List<Transform>();
-    private List<Transform> availableButtonTrans = new List<Transform>();
-
-    public CharacterController PlayerController; 
-    private Vector3 rollPos;
-
     private float rollRange = 1.2f;
 
     #endregion
@@ -43,17 +18,19 @@ public class Dodge : Skill
     // This Method initializes the Lists with all needed Buttons.
     public void Awake()
     {
-        buttons.Add(TileOne);
-        buttons.Add(TileTwo);
-        buttons.Add(TileThree);
-        buttons.Add(TileFour);
-        buttons.Add(TileFive);
+        manaCostText.text = GetManaCost().ToString();
+        
+        GetButtons().Add(TileOne);
+        GetButtons().Add(TileTwo);
+        GetButtons().Add(TileThree);
+        GetButtons().Add(TileFour);
+        GetButtons().Add(TileFive);
 
-        buttonTrans.Add(TileOneTrans);
-        buttonTrans.Add(TileTwoTrans);
-        buttonTrans.Add(TileThreeTrans);
-        buttonTrans.Add(TileFourTrans);
-        buttonTrans.Add(TileFiveTrans);
+        GetTrans("standard").Add(TileOneTrans);
+        GetTrans("standard").Add(TileTwoTrans);
+        GetTrans("standard").Add(TileThreeTrans);
+        GetTrans("standard").Add(TileFourTrans);
+        GetTrans("standard").Add(TileFiveTrans);
     }
 
     #endregion
@@ -70,26 +47,32 @@ public class Dodge : Skill
         }
         else if (Player.GetActive())
         {
-
-            SkillButton.interactable = false;
-            
-            foreach(Transform trans in buttonTrans)
+            foreach(Transform trans in GetTrans("standard"))
             {
                 if ((Mathf.Abs(Player.transform.position.x - trans.position.x) <= rollRange) && (Mathf.Abs(Player.transform.position.x - trans.position.x) > 0.1))
                 {
-                    //Debug.Log("The absolute distance to this tile, " + trans + " is calculated as: " + Mathf.Abs(Player.transform.position.x - trans.position.x));
-                    availableButtonTrans.Add(trans);
+                    Debug.Log("The absolute distance to this tile, " + trans + " is calculated as: " + Mathf.Abs(Player.transform.position.x - trans.position.x));
+                    List<Transform> tempTrans = new List<Transform>();
+                    tempTrans.Add(trans);
+                    
+                    foreach(Transform tile in tempTrans)
+                    {
+                        Debug.Log("The following tile has been added to the List: " + tile);
+                    }
+                    
+                    AddTrans(trans, "available");
                 }
             }
 
-            foreach(Transform trans in availableButtonTrans)
+
+            foreach(Transform trans in GetTrans("available"))
             {
-                tempButton = trans.GetComponentInChildren<Button>();
+                Button tempButton = trans.GetComponentInChildren<Button>();
                 tempButton.interactable = true;
             }
         }
 
-        scaler.SkillOne.SetLastUsed(false);
+        Scaler.SkillOne.SetLastUsed(false);
     }
 
     #endregion
@@ -102,15 +85,15 @@ public class Dodge : Skill
     {
         posX = posX - Mathf.RoundToInt(playerTrans.position.x);
 
-        rollPos = new Vector3(posX, 0, 0);
+        SetRollPos(new Vector3(posX, 0, 0));
 
-        PlayerController.Move(rollPos);
+        PlayerController.Move(GetRollPos());
         
-        rollPos = new Vector3(0, 0, 0);
+        SetRollPos(new Vector3(0, 0, 0));
 
-        availableButtonTrans.Clear();
+        GetTrans("available").Clear();
 
-        foreach(Button button in buttons)
+        foreach(Button button in GetButtons())
         {
             button.interactable = false;
         }

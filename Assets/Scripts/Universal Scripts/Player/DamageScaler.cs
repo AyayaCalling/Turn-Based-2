@@ -48,6 +48,7 @@ public class DamageScaler : MonoBehaviour
         {
             case "Knight":
                 SkillOne.SetStatDamage(Mathf.RoundToInt(Player.GetPhysDamage() * knightStrikeScalingPhys), Mathf.RoundToInt(Player.GetMagicDamage() * knightStrikeScalingMagic));
+                SkillOne.UpdateUI();
                 break;
             
             default:
@@ -66,11 +67,13 @@ public class DamageScaler : MonoBehaviour
     public void SetKnightStrikePhysScaling(float value)
     {
         knightStrikeScalingPhys = value;
+        SkillOne.UpdateUI();
     }
 
     public void SetKnightStrikeMagicScaling(float value)
     {
         knightStrikeScalingMagic = value;
+        SkillOne.UpdateUI();
     }
 
     public float GetKnightStrikePhysScaling()

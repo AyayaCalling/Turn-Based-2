@@ -46,6 +46,19 @@ public class SkillUpManager : MonoBehaviour
 
     #region UI-Management
 
+    public void Awake()
+    {
+        S1U31.interactable = false;
+        S1U32.interactable = false;
+        S1U33.interactable = false;
+        /*S2U31.interactable = false;
+        S2U32.interactable = false;
+        S2U33.interactable = false;
+        S3U31.interactable = false;
+        S3U32.interactable = false;
+        S3U33.interactable = false;*/
+    }
+
     public void OpenSkillUp()
     {
         SkillUpWindow.SetActive(true);
@@ -66,21 +79,33 @@ public class SkillUpManager : MonoBehaviour
                 S1U21.interactable = false;
                 S1U22.interactable = false;
                 S1U23.interactable = false;
+                S1U31.interactable = true;
+                S1U32.interactable = true;
+                S1U33.interactable = true;
                 SkillOne.SetUpgrade(21, true);
+                SkillOne.SetManaCost(21);
                 Debug.Log("Upgrade applied!");
                 break;
             case 122:
                 S1U21.interactable = false;
                 S1U22.interactable = false;
                 S1U23.interactable = false;
+                S1U31.interactable = true;
+                S1U32.interactable = true;
+                S1U33.interactable = true;
                 SkillOne.SetUpgrade(22, true);
+                SkillOne.SetManaCost(22);
                 Debug.Log("Upgrade applied!");
                 break;
             case 123:
                 S1U21.interactable = false;
                 S1U22.interactable = false;
                 S1U23.interactable = false;
+                S1U31.interactable = true;
+                S1U32.interactable = true;
+                S1U33.interactable = true;
                 SkillOne.SetUpgrade(23, true);
+                SkillOne.SetManaCost(23);
                 Debug.Log("Upgrade applied!");
                 break;
             case 131:
@@ -88,6 +113,7 @@ public class SkillUpManager : MonoBehaviour
                 S1U32.interactable = false;
                 S1U33.interactable = false;
                 SkillOne.SetUpgrade(31, true);
+                SkillOne.SetManaCost(31);
                 Debug.Log("Upgrade applied!");
                 break;
             case 132:
@@ -95,6 +121,7 @@ public class SkillUpManager : MonoBehaviour
                 S1U32.interactable = false;
                 S1U33.interactable = false;
                 SkillOne.SetUpgrade(32, true);
+                SkillOne.SetManaCost(32);
                 Debug.Log("Upgrade applied!");
                 break;
             case 133:
@@ -102,6 +129,7 @@ public class SkillUpManager : MonoBehaviour
                 S1U32.interactable = false;
                 S1U33.interactable = false;
                 SkillOne.SetUpgrade(33, true);
+                SkillOne.SetManaCost(33);
                 Debug.Log("Upgrade applied!");
                 break;
             default:

@@ -16,6 +16,10 @@ public class Defend : Skill
 
     #endregion
 
+    public void Awake()
+    {
+        manaCostText.text = GetManaCost().ToString();
+    }
     #region GetterAndSetter
 
     // Getter-Method for the Variable baseBlock.
@@ -73,7 +77,7 @@ public class Defend : Skill
             Debug.Log("No Mana for this!");
         }
 
-        scaler.SkillOne.SetLastUsed(false);
+        Scaler.SkillOne.SetLastUsed(false);
     }
 
     #endregion
