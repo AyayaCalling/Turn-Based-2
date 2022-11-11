@@ -17,7 +17,7 @@ public class StrikeDesc : Descriptions
         + Strike.GetStatDamage().ToString() + " scaling Physical damage (" + (Scaler.GetKnightStrikePhysScaling()* 100).ToString() + "% phys Damage scaling)";
     }
 
-    public override async void UpdateDescription(int iD)
+    public override void UpdateDescription(int iD)
     {
         Enemy enemy = new Enemy();
         ManaReave manaReave = new ManaReave(enemy, 3);
