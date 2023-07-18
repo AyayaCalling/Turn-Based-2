@@ -149,7 +149,7 @@ public class Strike : Skill
         {
             foreach(Debuff debuff in battle.GetDebuffs())
             {
-                if(debuff.Target == targetter.target && debuff.Name == "Mana Reave")
+                if(debuff.Enemy == targetter.target && debuff.Name == "Mana Reave")
                 {
                     debuff.TriggerEffect();
                 }

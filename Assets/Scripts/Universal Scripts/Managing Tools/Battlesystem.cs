@@ -39,8 +39,7 @@ public class Battlesystem : MonoBehaviour
     //This List tracks the amount of enemies that currently are present in the game.
     private List<Enemy> enemies = new List<Enemy>();
     private Enemy[] intitialEnemies;
-    private List<Debuff> activeDebuffs = new List<Debuff>();
-    private List<Debuff> debuffHelp = new List<Debuff>();    
+    private List<Debuff> activeDebuffs = new List<Debuff>();   
 
     //This variable is a Game related object for the defeat screen.
     public GameObject DefeatScreen;
@@ -204,15 +203,12 @@ public class Battlesystem : MonoBehaviour
             if(debuff.GetDuration() == 0)
             {
                 debuff.SetActive(false);
-                debuffHelp.Add(debuff); 
             }
             else
             {
                 debuff.TickEffect();
             }
         }
-
-        if(debuffHelp != null) debuffHelp.Clear();
 
         ChangeStateToEnemyTurn();
     }

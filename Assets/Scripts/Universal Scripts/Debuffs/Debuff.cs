@@ -10,7 +10,7 @@ public class Debuff : MonoBehaviour
     #region Variables
 
     public Player Player;
-    public Enemy Target;
+    public Enemy Enemy;
     public Image DebuffSprite;
     public Text DebuffTimer;
 
@@ -20,7 +20,13 @@ public class Debuff : MonoBehaviour
 
     #endregion
     
-    public virtual void ApplyDebuff(int turns, Enemy target)
+    public virtual void ApplyDebuffToEnemy(int turns, Enemy target)
+    {
+        DebuffSprite.enabled = true;
+        DebuffTimer.text = turns.ToString();
+    }
+
+    public virtual void ApplyDebuffToPlayer(int turns, Player target)
     {
         DebuffSprite.enabled = true;
         DebuffTimer.text = turns.ToString();

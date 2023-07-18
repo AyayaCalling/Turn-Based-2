@@ -14,8 +14,7 @@ U33:Explosive Steel. When a hit reduces your Block to 0 you explode, dealing AoE
 public class Defend : Skill
 {
     #region Variables
-
-
+    
     private bool u22Applied = false;
 
     private int spikeDamage = 5;
