@@ -230,6 +230,12 @@ public class Battlesystem : MonoBehaviour
 
         if(damage > 0)
         {
+            if(thisPlayer.GetClass().Equals("Knight") && thisPlayer.GetUpgradeActive(223))
+            {
+                damage = 0;
+                thisPlayer.SetBlock(0); //Still buggy
+                Debug.Log("Damage mitigated!");
+            }
             thisPlayer.DecCurrentHP(damage);
         }
         else

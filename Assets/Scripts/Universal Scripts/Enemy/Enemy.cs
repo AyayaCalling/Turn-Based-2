@@ -254,7 +254,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //This method cycles the enemy's turns. Its virtual so it can be overwritten by children of the class.
+    //This method cycles the enemy's turns.
     public virtual void  Move()
     {
         switch(turnNumber)

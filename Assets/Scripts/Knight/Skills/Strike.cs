@@ -56,8 +56,10 @@ public class Strike : Skill
             UsingStrike();
         }
     }
+    
     public void Awake()
     {
+        Player.SetClass("Knight"); //TODO
         manaCostText.text = GetManaCost().ToString();
 
         SetUpgradeScaling(21, 0.5f);

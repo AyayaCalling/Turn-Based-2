@@ -22,6 +22,7 @@ public class CharacterSelection : MonoBehaviour
             case "Knight":
                 SelectKnight.GetComponent<Image>().color = Color.green;
                 Debug.Log("Knight selected.");
+                
             break;
 
             default:
