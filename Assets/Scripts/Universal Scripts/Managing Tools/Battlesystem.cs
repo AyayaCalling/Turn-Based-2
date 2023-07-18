@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum CharClass
+{
+    Knight, Mage, None
+}
+
 public class Battlesystem : MonoBehaviour
 {
     #region Variables
@@ -10,9 +15,17 @@ public class Battlesystem : MonoBehaviour
     enum BattleState
     {
         PlayerTurn, EnemyTurn, Won, Lost, None
-    }  
+    }
+
+
     //This variable stores all needed player info.
     public Player Player;
+
+    //These Varaibles store all different skills, that exist in the game
+    public Strike knightStrike;
+    public Defend knightDefend;
+
+    public Dodge dodge;
 
     //These variables describe Buttons, that need to be dis-/enabled
     public Button SkillOneButton;
@@ -224,18 +237,29 @@ public class Battlesystem : MonoBehaviour
         }
     }
 
-    public void DealDamageToPlayer(Player thisPlayer, int amount)
+    public void DealDamageToPlayer(Enemy thisEnemy, Player thisPlayer, int amount)
     {
         int damage = Mathf.RoundToInt(amount * thisPlayer.GetVulnerable() - thisPlayer.GetBlock());
 
+        if(thisPlayer.GetBlock() > 0 && thisPlayer.GetClass().Equals(CharClass.Knight))
+            {
+                if(knightDefend.GetUpgrade21())
+                {
+                    DealDamageToEnemy(thisEnemy, knightDefend.GetSpikeDamage());
+                }
+            }
+
         if(damage > 0)
         {
-            if(thisPlayer.GetClass().Equals("Knight") && thisPlayer.GetUpgradeActive(223))
+            if(thisPlayer.GetClass().Equals(CharClass.Knight) && thisPlayer.GetBlock() > 0)
             {
-                damage = 0;
-                thisPlayer.SetBlock(0); //Still buggy
-                Debug.Log("Damage mitigated!");
+                if(knightDefend.GetUpgrade23())
+                {
+                    damage = 0;
+                    thisPlayer.SetBlock(0);
+                }
             }
+
             thisPlayer.DecCurrentHP(damage);
         }
         else

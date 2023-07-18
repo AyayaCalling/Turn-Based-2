@@ -232,7 +232,7 @@ public class FireMage : Enemy
 
     public void DealDamage()
     {
-        GetBattle().DealDamageToPlayer(Player, totalDamage);
+        GetBattle().DealDamageToPlayer(this, Player, totalDamage);
         totalDamage = 0;
     }
 }

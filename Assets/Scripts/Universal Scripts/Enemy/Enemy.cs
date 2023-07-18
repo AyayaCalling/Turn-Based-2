@@ -260,12 +260,12 @@ public class Enemy : MonoBehaviour
         switch(turnNumber)
         {
             case 1:
-            Battle.DealDamageToPlayer(Player, 10);
+            Battle.DealDamageToPlayer(this, Player, 10);
             turnNumber = 2;
             break;
 
             case 2:
-            Battle.DealDamageToPlayer(Player, 5);
+            Battle.DealDamageToPlayer(this, Player, 5);
             turnNumber = 3;
             break;
 

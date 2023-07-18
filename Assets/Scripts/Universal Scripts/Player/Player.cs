@@ -67,28 +67,7 @@ public class Player : MonoBehaviour
     private int vulnerableTurns;
     private int poisonTurns;
 
-    //This variable describes the class the Player chose.
-    private string playerClass;
-
-    //These variables say wether or not the different skillupgrades are active or not
-    private bool s1u2p1 = false;
-    private bool s1u2p2 = false;
-    private bool s1u2p3 = false;
-    private bool s1u3p1 = false;
-    private bool s1u3p2 = false;
-    private bool s1u3p3 = false;
-    private bool s2u2p1 = false;
-    private bool s2u2p2 = false;
-    private bool s2u2p3 = false;
-    private bool s2u3p1 = false;
-    private bool s2u3p2 = false;
-    private bool s2u3p3 = false;
-    private bool s3u2p1 = false;
-    private bool s3u2p2 = false;
-    private bool s3u2p3 = false;
-    private bool s3u3p1 = false;
-    private bool s3u3p2 = false;
-    private bool s3u3p3 = false;
+    private CharClass playerClass;
 
     #endregion  
     
@@ -100,12 +79,12 @@ public class Player : MonoBehaviour
     
     #region GetterAndSetter
     
-    public void SetClass(string className)
+    public void SetClass(CharClass className)
     {
         playerClass = className;
     }
 
-    public string GetClass()
+    public CharClass GetClass()
     {
         return playerClass;
     }
@@ -399,116 +378,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetUpgradeActive(int upgrade, bool state)
-    {
-        switch(upgrade)
-        {
-            case 121:
-                s1u2p1 = state;
-                break;
-            case 122:
-                s1u2p2 = state;
-                break;
-            case 123:
-                s1u2p3 = state;
-                break;
-            case 131:
-                s1u3p1 = state;
-                break;
-            case 132:
-                s1u3p2 = state;
-                break;
-            case 133:
-                s1u3p3 = state;
-                break;
-            case 221:
-                s2u2p1 = state;
-                break;
-            case 222:
-                s2u2p2 = state;
-                break;
-            case 223:
-                s2u2p3 = state;
-                break;
-            case 231:
-                s2u3p1 = state;
-                break;
-            case 232:
-                s2u3p2 = state;
-                break;
-            case 233:
-                s2u3p3 = state;
-                break;
-            case 321:
-                s3u2p1 = state;
-                break;
-            case 322:
-                s3u2p2 = state;
-                break;
-            case 323:
-                s3u2p3 = state;
-                break;
-            case 331:
-                s3u3p1 = state;
-                break;
-            case 332:
-                s3u3p2 = state;
-                break;
-            case 333:
-                s3u3p3 = state;
-                break;
-            default:
-                Debug.Log("This Upgrade does not exist!");
-                break;
+   
 
-        }
-    }
-    
-    public bool GetUpgradeActive(int upgrade)
-    {
-        switch(upgrade)
-    {
-        case 121:
-            return s1u2p1;;
-        case 122:
-            return s1u2p2;
-        case 123:
-            return s1u2p3;
-        case 131:
-            return s1u3p1;
-        case 132:
-            return s1u3p2;
-        case 133:
-            return s1u3p3;
-        case 221:
-            return s2u2p1;
-        case 222:
-            return s2u2p2;
-        case 223:
-            return s2u2p3;
-        case 231:
-            return s2u3p1;
-        case 232:
-            return s2u3p2;
-        case 233:
-            return s2u3p3;
-        case 321:
-            return s3u2p1;
-        case 322:
-            return s3u2p2;
-        case 323:
-            return s3u2p3;
-        case 331:
-            return s3u3p1;
-        case 332:
-            return s3u3p2;
-        case 333:
-            return s3u3p3;
-        default:
-            Debug.Log("This Upgrade does not exist!");
-            return false;
-    }
-}
+
     #endregion
 
 

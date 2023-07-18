@@ -17,7 +17,8 @@ public class Defend : Skill
 
 
     private bool u22Applied = false;
-    private bool spikyShieldActive = false;
+
+    private int spikeDamage = 5;
 
     // This variable is the basic amount of Block you get, while not having any modifiers.
     private static int baseBlock = 5;
@@ -51,7 +52,6 @@ public class Defend : Skill
 
     public void Awake()
     {
-        SetUpgrade(23, true);
         SetUpgradeScaling(22, 0.75f);
         manaCostText.text = GetManaCost().ToString();
     }
@@ -105,14 +105,14 @@ public class Defend : Skill
         return totalBlock;
     }
 
-    public void SetSpiky(bool state)
+    public void SetSpikeDamage(int damage)
     {
-        spikyShieldActive = state;
+        spikeDamage = damage;
     }
 
-    public bool GetSpiky()
+    public int GetSpikeDamage()
     {
-        return spikyShieldActive;
+        return spikeDamage;
     }
    
    #endregion
@@ -152,19 +152,11 @@ public class Defend : Skill
 
     public void ModifyDefend()
     {
-        if(GetUpgrade21())
-        {
-            SetSpiky(true); //Spiky Shield will trigger in the Combatmanager, on enemy turns.
-        }
-
         if(GetUpgrade22() && !u22Applied)
         {
             dexScaling = GetUpgradeScaling(22);
             u22Applied = true;
         }
-
-        //Upgrade 2.3 is handled in the Battlesystem.
-
 
         SetTotalBlock(GetBase() + Mathf.RoundToInt(Player.GetDexterity() * dexScaling) + GetBlockMod());
     }

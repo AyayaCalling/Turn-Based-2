@@ -25,7 +25,7 @@ public class SkillUpManager : MonoBehaviour
     public Button S1U33;
 
     //Buttons for Skill 2:
-    public Button S2U11; //SKill 1 Upgrade 1.1
+    public Button S2U11; //SKill 2 Upgrade 1.1
     public Button S2U21;
     public Button S2U22;
     public Button S2U23;
@@ -34,7 +34,7 @@ public class SkillUpManager : MonoBehaviour
     public Button S2U33;
 
     //Buttons for Skill 3:
-    public Button S3U11; //SKill 1 Upgrade 1.1
+    public Button S3U11; //SKill 3 Upgrade 1.1
     public Button S3U21;
     public Button S3U22;
     public Button S3U23;
@@ -51,10 +51,10 @@ public class SkillUpManager : MonoBehaviour
         S1U31.interactable = false;
         S1U32.interactable = false;
         S1U33.interactable = false;
-        /*S2U31.interactable = false;
+        S2U31.interactable = false;
         S2U32.interactable = false;
         S2U33.interactable = false;
-        S3U31.interactable = false;
+        /*S3U31.interactable = false;
         S3U32.interactable = false;
         S3U33.interactable = false;*/
     }
@@ -130,6 +130,39 @@ public class SkillUpManager : MonoBehaviour
                 S1U33.interactable = false;
                 SkillOne.SetUpgrade(33, true);
                 SkillOne.SetManaCost(33);
+                Debug.Log("Upgrade applied!");
+                break;
+            case 221:
+                S2U21.interactable = false;
+                S2U22.interactable = false;
+                S2U23.interactable = false;
+                S2U31.interactable = true;
+                S2U32.interactable = true;
+                S2U33.interactable = true;
+                SkillTwo.SetUpgrade(21, true);
+                SkillTwo.SetManaCost(21);
+                Debug.Log("Upgrade applied!");
+                break;
+            case 222:
+                S2U21.interactable = false;
+                S2U22.interactable = false;
+                S2U23.interactable = false;
+                S2U31.interactable = true;
+                S2U32.interactable = true;
+                S2U33.interactable = true;
+                SkillTwo.SetUpgrade(22, true);
+                SkillTwo.SetManaCost(22);
+                Debug.Log("Upgrade applied!");
+                break;
+            case 223:
+                S2U21.interactable = false;
+                S2U22.interactable = false;
+                S2U23.interactable = false;
+                S2U31.interactable = true;
+                S2U32.interactable = true;
+                S2U33.interactable = true;
+                SkillTwo.SetUpgrade(23, true);
+                SkillTwo.SetManaCost(23);
                 Debug.Log("Upgrade applied!");
                 break;
             default:
